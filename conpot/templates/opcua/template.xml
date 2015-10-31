@@ -1,0 +1,18 @@
+    <core>
+    <template>
+        <!-- General information about the template -->
+        <entity name="unit">OPCUA</entity>
+        <entity name="vendor">None</entity>
+        <entity name="description">MJ OPCUA Server</entity>
+        <entity name="protocols">OPCUA</entity>
+        <entity name="creator">LM</entity>
+    </template>
+    <databus>
+        <!-- Core value that can be retrieved from the databus by key -->
+        <key_value_mappings>
+            <key name="ns=1;s=FanucRobot.Group1Joint1">
+                <value type="value">0.0</value>
+            </key>
+        </key_value_mappings>
+    </databus>
+</core>

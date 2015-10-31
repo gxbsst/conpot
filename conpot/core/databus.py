@@ -54,10 +54,11 @@ class Databus(object):
 
     def set_value(self, key, value):
         logger.debug('DataBus: Storing key: [%s] value: [%s]', key, value)
-        self._data[key] = value
-        # notify observers
-        if key in self._observer_map:
-            gevent.spawn(self.notify_observers, key)
+        if key not in self._data or not self._data[key] == value:
+            self._data[key] = value
+            # notify observers
+            if key in self._observer_map:
+                gevent.spawn(self.notify_observers, key)
 
     def notify_observers(self, key):
         for cb in self._observer_map[key]:

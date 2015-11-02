@@ -9,7 +9,6 @@ class OPCUAServer(Server):
 
     def __init__(self, template, template_directory, args):
         Server.__init__(self)
-        # importer = xmlimporter.XmlImporter(self.iserver.node_mgt_service)
         importer = xmlimporter.XmlImporter(self)
         importer.import_xml(template)
 

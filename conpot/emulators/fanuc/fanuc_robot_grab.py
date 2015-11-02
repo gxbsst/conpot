@@ -41,7 +41,7 @@ def grab():
             result = robot_parser.parse(lines)
             conpot_core.get_databus().set_value("ns=1;s=FanucRobot.Group1Joint1", result[1][0])
         except Exception as e:
-            log.error('Error grab because: ', e.message, e)
+            log.error('Error grab because: %s', e.message, e)
 
         time.sleep(1)
 

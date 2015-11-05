@@ -28,7 +28,7 @@ import pwd
 import grp
 import ast
 import inspect
-from ConfigParser import ConfigParser, NoOptionError
+from ConfigParser import ConfigParser, NoSectionError, NoOptionError
 
 import gevent
 from lxml import etree
@@ -42,6 +42,7 @@ from conpot.protocols.modbus.modbus_server import ModbusServer
 from conpot.protocols.s7comm.s7_server import S7Server
 from conpot.protocols.http.web_server import HTTPServer
 from conpot.protocols.opcua.opcua_server import OPCUAServer
+from conpot.emulators.dct.dct import DCT
 from conpot.helpers import fix_sslwrap
 from conpot.protocols.kamstrup.meter_protocol.kamstrup_server import KamstrupServer
 from conpot.protocols.kamstrup.management_protocol.kamstrup_management_server import KamstrupManagementServer
@@ -50,7 +51,6 @@ from conpot.protocols.ipmi.ipmi_server import IpmiServer
 from conpot.protocols.guardian_ast.guardian_ast_server import GuardianASTServer
 
 from conpot.emulators.proxy import Proxy
-from conpot.emulators.fanuc import fanuc_robot_grab
 from conpot.utils import ext_ip
 from conpot.utils import mac_addr
 
@@ -283,7 +283,10 @@ def main():
         ('bacnet', BacnetServer),
         ('ipmi', IpmiServer),
         ('guardian_ast', GuardianASTServer),
-        ('opcua', OPCUAServer)
+        ('opcua', OPCUAServer),
+
+        # emulators
+        ('dct', DCT)
     )
 
     # no need to fork process when we don't want to change MAC address
@@ -365,13 +368,13 @@ def main():
             try:
                 # retrieve user to run as
                 conpot_user = config.get('daemon', 'user')
-            except NoOptionError:
+            except (NoSectionError, NoOptionError):
                 conpot_user = None
 
             try:
                 # retrieve group to run as
                 conpot_group = config.get('daemon', 'group')
-            except NoOptionError:
+            except (NoSectionError, NoOptionError):
                 conpot_group = None
 
             drop_privileges(conpot_user, conpot_group)

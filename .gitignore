@@ -46,3 +46,5 @@ docs/build
 .DS_Store
 
 docs/source/conpot_version.py
+
+bin/*.log

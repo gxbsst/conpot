@@ -4,7 +4,7 @@
         <entity name="unit">OPCUA</entity>
         <entity name="vendor">None</entity>
         <entity name="description">MJ OPCUA Server</entity>
-        <entity name="protocols">OPCUA</entity>
+        <entity name="protocols">DCT, OPCUA</entity>
         <entity name="creator">LM</entity>
     </template>
     <databus>

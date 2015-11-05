@@ -40473,3 +40473,57 @@ Exception: No enough data left in buffer, request for 1, we have Buffer(size:0, 
 2015-11-01 10:17:27,777 writting 196 bytes to socket, with header Header(type:MSG, body_size:184, channel:10) 
 2015-11-01 10:17:28,736 Stopping Conpot
 2015-11-01 10:17:28,737 stopping internal server
+2015-11-05 08:18:58,086 Starting Conpot using template: /Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/Conpot-0.4.0-py2.7.egg/conpot/templates/opcua
+2015-11-05 08:18:58,088 Starting Conpot using configuration found in: /Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/Conpot-0.4.0-py2.7.egg/conpot/conpot.cfg
+2015-11-05 08:18:59,541 Fetched 139.162.16.96 as external ip.
+2015-11-05 08:19:01,156 Importing XML file /Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/Conpot-0.4.0-py2.7.egg/conpot/templates/opcua/opcua/opcua.xml
+2015-11-05 08:19:01,159 Found and enabled ('opcua', <class 'conpot.protocols.opcua.opcua_server.OPCUAServer'>) protocol.
+2015-11-05 08:19:01,159 No proxy template found. Service will remain unconfigured/stopped.
+2015-11-05 08:19:01,160 OPCUA server started on: ('0.0.0.0', 4881)
+2015-11-05 08:19:01,160 starting internal server
+2015-11-05 08:19:06,164 Privileges dropped, running as "nobody:nobody"
+2015-11-05 08:19:09,282 Stopping Conpot
+2015-11-05 08:19:09,283 stopping internal server
+2015-11-05 17:18:45,727 Starting Conpot using template: /Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/Conpot-0.4.0-py2.7.egg/conpot/templates/opcua
+2015-11-05 17:18:45,728 Starting Conpot using configuration found in: /Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/Conpot-0.4.0-py2.7.egg/conpot/conpot.cfg
+2015-11-05 17:19:15,831 Could not fetch public ip from http://www.telize.com/ip
+2015-11-05 17:19:17,989 Fetched 183.63.182.170 as external ip.
+2015-11-05 17:19:19,544 Importing XML file /Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/Conpot-0.4.0-py2.7.egg/conpot/templates/opcua/opcua/opcua.xml
+2015-11-05 17:19:19,547 Found and enabled ('opcua', <class 'conpot.protocols.opcua.opcua_server.OPCUAServer'>) protocol.
+2015-11-05 17:19:19,548 No proxy template found. Service will remain unconfigured/stopped.
+2015-11-05 17:19:19,548 OPCUA server started on: ('0.0.0.0', 4881)
+2015-11-05 17:19:19,548 starting internal server
+2015-11-05 17:19:24,553 Privileges dropped, running as "nobody:nobody"
+2015-11-05 17:21:03,726 Stopping Conpot
+2015-11-05 17:21:03,730 stopping internal server
+2015-11-05 17:24:54,763 Starting Conpot using template: /Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/Conpot-0.4.0-py2.7.egg/conpot/templates/opcua
+2015-11-05 17:24:54,763 Starting Conpot using configuration found in: /Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/Conpot-0.4.0-py2.7.egg/conpot/conpot.cfg
+2015-11-05 17:25:03,571 Could not fetch public ip from http://www.telize.com/ip
+2015-11-05 17:25:11,433 Fetched 183.63.182.170 as external ip.
+2015-11-05 17:25:12,959 Importing XML file /Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/Conpot-0.4.0-py2.7.egg/conpot/templates/opcua/opcua/opcua.xml
+2015-11-05 17:25:12,962 Found and enabled ('opcua', <class 'conpot.protocols.opcua.opcua_server.OPCUAServer'>) protocol.
+2015-11-05 17:25:12,963 Found and enabled ('dct', <class 'conpot.emulators.dct.dct.DCT'>) protocol.
+2015-11-05 17:25:12,963 No proxy template found. Service will remain unconfigured/stopped.
+2015-11-05 17:25:12,964 OPCUA server started on: ('0.0.0.0', 4881)
+2015-11-05 17:25:12,964 starting internal server
+2015-11-05 17:25:12,964 connecting to 192.168.1.188 port 9002
+2015-11-05 17:25:17,965 Privileges dropped, running as "nobody:nobody"
+2015-11-05 17:25:34,667 Stopping Conpot
+2015-11-05 17:25:34,671 stopping internal server
+2015-11-05 17:25:34,671 closing socket
+2015-11-05 17:25:34,672 Error because: [Errno 9] File descriptor was closed in another greenlet
+2015-11-05 17:26:47,105 Starting Conpot using template: /Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/Conpot-0.4.0-py2.7.egg/conpot/templates/opcua
+2015-11-05 17:26:47,106 Starting Conpot using configuration found in: /Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/Conpot-0.4.0-py2.7.egg/conpot/conpot.cfg
+2015-11-05 17:26:49,888 Fetched 183.63.182.170 as external ip.
+2015-11-05 17:26:52,336 Importing XML file /Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/Conpot-0.4.0-py2.7.egg/conpot/templates/opcua/opcua/opcua.xml
+2015-11-05 17:26:52,339 Found and enabled ('opcua', <class 'conpot.protocols.opcua.opcua_server.OPCUAServer'>) protocol.
+2015-11-05 17:26:52,340 Found and enabled ('dct', <class 'conpot.emulators.dct.dct.DCT'>) protocol.
+2015-11-05 17:26:52,340 No proxy template found. Service will remain unconfigured/stopped.
+2015-11-05 17:26:52,340 OPCUA server started on: ('0.0.0.0', 4881)
+2015-11-05 17:26:52,341 starting internal server
+2015-11-05 17:26:52,341 connecting to 192.168.1.188 port 9002
+2015-11-05 17:26:57,342 Privileges dropped, running as "nobody:nobody"
+2015-11-05 17:28:07,564 Error because: [Errno 60] Operation timed out
+2015-11-05 17:28:44,745 Stopping Conpot
+2015-11-05 17:28:44,746 stopping internal server
+2015-11-05 17:28:44,748 closing socket

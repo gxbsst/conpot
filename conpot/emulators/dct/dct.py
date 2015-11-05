@@ -7,9 +7,10 @@ import errno
 import time
 from enum import Enum
 import sys
-import threading
 
 logger = logging.getLogger(__name__)
+# stream_handler = logging.StreamHandler(sys.stderr)
+# logger.addHandler(stream_handler)
 
 # 发送命令串
 READ_STATUS_MSG = '\x01\x03\x00\x1B\x00\x05'
@@ -59,7 +60,7 @@ class RGVError(Exception):
         self.message = message
 
     def __str__(self):
-        return '[error: ' + self.message + ']'
+        return 'RGVError - [error: ' + self.message + ']'
 
 
 ERRORS = (
@@ -88,29 +89,37 @@ ERRORS = (
     RGVError(8, 32, "系统面板急停")
 )
 
+DEFAULT_HOST = '192.168.1.188'
+DEFAULT_PORT = 90002
+
 
 class DCT(object):
-    def __init__(self, host, port, current_site=1, state=State.waiting, load_state=LoadState.no_load):
+    def __init__(self, template, template_directory, args):
         # Create a TCP/IP socket
         self.sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        # Connect the socket to the port where the server is listening
-        self.server_address = (host, port)
-        logger.info('connecting to %s port %s' % self.server_address)
-        self.sock.connect(self.server_address)
-        self.sock.sendall(READ_STATUS_MSG)
-        self.current_site = current_site
-        self.target_site = current_site
-        self.state = state
-        self.load_state = load_state
+        self.host = DEFAULT_HOST
+        self.port = DEFAULT_PORT
+        self.current_site = 1
+        self.source_site = 1
+        self.target_site = 1
+        self.state = State.waiting
+        self.load_state = LoadState.no_load
         self.errors = set()
+        self.connected = False
+        self.closed = False
 
     def __str__(self):
-        return '[current_site: ' + str(self.current_site) + ', load_state: ' + str(self.load_state) + ', state: ' + str(self.state) \
+        return 'DCT - [current_site: ' + str(self.current_site) + ', load_state: ' + str(
+            self.load_state) + ', state: ' + str(self.state) \
                + ', errors: ' + str(self.errors) + ']'
 
-    def reconnect(self):
-        self.sock.connect(self.server_address)
+    def connect(self):
+        # Connect the socket to the port where the server is listening
+        server_address = (self.host, self.port)
+        logger.info('connecting to %s port %s' % server_address)
+        self.sock.connect(server_address)
         self.sock.sendall(READ_STATUS_MSG)
+        self.connected = True
 
     def execute_msg(self, reset_msg, order_msg):
         # 重置
@@ -129,7 +138,7 @@ class DCT(object):
         receive_msg = self.sock.recv(6)
         logger.info('received "%s"' % binascii.hexlify(receive_msg))
 
-    def go(self, target_site=1):
+    def go(self, source_site=1, target_site=1):
         """
         指定目标站点启动
         """
@@ -139,18 +148,19 @@ class DCT(object):
             # 如果小车不处于停止状态直接返回
             if (not self.state == State.stopped) and (not self.state == State.halt):
                 return
-            if (self.current_site == 1 and target_site == 2) or (self.current_site == 2 and target_site == 1):
+            if (source_site == 1 and target_site == 2) or (source_site == 2 and target_site == 1):
                 self.execute_msg(REST_1_2_MSG, START_1_2_MSG)
-            elif (self.current_site == 1 and target_site == 3) or (self.current_site == 3 and target_site == 1):
+            elif (source_site == 1 and target_site == 3) or (source_site == 3 and target_site == 1):
                 self.execute_msg(REST_1_3_MSG, START_1_3_MSG)
             else:
                 return
+            self.source_site = source_site
             self.target_site = target_site
         except socket.error, e:
             if e.errno == errno.ECONNRESET:
                 # Handle disconnection -- close & reopen socket etc.
                 logging.exception(e)
-                self.reconnect()
+                self.connected = False
             else:
                 # Other error
                 raise
@@ -165,9 +175,9 @@ class DCT(object):
             # 如果小车不处于停止状态直接返回
             if not self.state == State.running:
                 return
-            if (self.current_site == 1 and self.target_site == 2) or (self.current_site == 2 and self.target_site == 1):
+            if (self.source_site == 1 and self.target_site == 2) or (self.source_site == 2 and self.target_site == 1):
                 self.execute_msg(REST_1_2_MSG, PAUSE_1_2_MSG)
-            elif (self.current_site == 1 and self.target_site == 3) or (self.current_site == 3 and self.target_site == 1):
+            elif (self.source_site == 1 and self.target_site == 3) or (self.source_site == 3 and self.target_site == 1):
                 self.execute_msg(REST_1_3_MSG, PAUSE_1_3_MSG)
             else:
                 return
@@ -175,7 +185,7 @@ class DCT(object):
             if e.errno == errno.ECONNRESET:
                 # Handle disconnection -- close & reopen socket etc.
                 logging.exception(e)
-                self.reconnect()
+                self.connected = False
             else:
                 # Other error
                 raise
@@ -186,20 +196,20 @@ class DCT(object):
                 self.errors.add(err)
 
     def unpack_state(self, msg_bytes):
-        if msg_bytes[3] & LoadState.no_load == LoadState.no_load:
+        if msg_bytes[3] & LoadState.no_load.value == LoadState.no_load.value:
             self.load_state = LoadState.no_load
-        elif msg_bytes[3] & LoadState.full_load == LoadState.full_load:
+        elif msg_bytes[3] & LoadState.full_load.value == LoadState.full_load.value:
             self.load_state = LoadState.full_load
 
-        if msg_bytes[4] & State.stopped == State.stopped:
+        if msg_bytes[4] & State.stopped.value == State.stopped.value:
             self.state = State.stopped
-        elif msg_bytes[4] & State.halt == State.halt:
+        elif msg_bytes[4] & State.halt.value == State.halt.value:
             self.state = State.halt
-        elif msg_bytes[4] & State.running == State.running:
+        elif msg_bytes[4] & State.running.value == State.running.value:
             self.state = State.running
-        elif msg_bytes[4] & State.fault == State.fault:
+        elif msg_bytes[4] & State.fault.value == State.fault.value:
             self.state = State.fault
-        elif msg_bytes[4] & State.repair == State.repair:
+        elif msg_bytes[4] & State.repair.value == State.repair.value:
             self.state = State.repair
         else:
             self.state = State.waiting
@@ -224,30 +234,34 @@ class DCT(object):
         logger.info('received "%s"' % binascii.hexlify(receive_msg))
         self.unpack_state(bytearray(receive_msg))
 
-    def start(self):
+    def start(self, host, port):
+        self.host = host
+        self.port = port
         while 1:
             try:
+                if self.closed:
+                    break
+                if not self.connected:
+                    self.connect()
                 self.get_rgv_state()
+                time.sleep(1)
             except socket.error, e:
                 if e.errno == errno.ECONNRESET:
                     # Handle disconnection -- close & reopen socket etc.
                     logging.exception(e)
-                    self.reconnect()
+                    self.connected = False
                 else:
                     # Other error
                     logger.error('Error because: %s' % e)
-
-            time.sleep(1)
+                    break
 
     def stop(self):
         logger.info('closing socket')
+        self.closed = True
         self.sock.close()
 
-
-dct = DCT('192.168.1.188', 9002)
-
 # while 1:
-#     order = sys.stdin.readline().rstrip()
+# order = sys.stdin.readline().rstrip()
 #     if order == 's':
 #         threading.Thread(target=dct.start()).start()
 #     elif order == 'p':

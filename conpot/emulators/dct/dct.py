@@ -244,16 +244,11 @@ class DCT(object):
                 if not self.connected:
                     self.connect()
                 self.get_rgv_state()
-                time.sleep(1)
             except socket.error, e:
-                if e.errno == errno.ECONNRESET:
-                    # Handle disconnection -- close & reopen socket etc.
-                    logging.exception(e)
-                    self.connected = False
-                else:
-                    # Other error
-                    logger.error('Error because: %s' % e)
-                    break
+                logger.error('Error because: %s' % e)
+                self.connected = False
+
+            time.sleep(1)
 
     def stop(self):
         logger.info('closing socket')

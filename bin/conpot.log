@@ -40527,3 +40527,504 @@ Exception: No enough data left in buffer, request for 1, we have Buffer(size:0, 
 2015-11-05 17:28:44,745 Stopping Conpot
 2015-11-05 17:28:44,746 stopping internal server
 2015-11-05 17:28:44,748 closing socket
+2015-11-07 15:06:19,545 Starting Conpot using template: /Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/Conpot-0.4.0-py2.7.egg/conpot/templates/opcua
+2015-11-07 15:06:19,547 Starting Conpot using configuration found in: /Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/Conpot-0.4.0-py2.7.egg/conpot/conpot.cfg
+2015-11-07 15:06:22,043 Fetched 117.136.40.54 as external ip.
+2015-11-07 15:07:01,785 Starting Conpot using template: /Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/Conpot-0.4.0-py2.7.egg/conpot/templates/opcua
+2015-11-07 15:07:01,786 Starting Conpot using configuration found in: /Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/Conpot-0.4.0-py2.7.egg/conpot/conpot.cfg
+2015-11-07 15:07:03,871 Could not fetch public ip from http://www.telize.com/ip
+2015-11-07 15:07:05,819 Fetched 117.136.40.54 as external ip.
+2015-11-07 15:08:28,149 Starting Conpot using template: /Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/Conpot-0.4.0-py2.7.egg/conpot/templates/opcua
+2015-11-07 15:08:28,149 Starting Conpot using configuration found in: /Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/Conpot-0.4.0-py2.7.egg/conpot/conpot.cfg
+2015-11-07 15:08:29,785 Fetched 117.136.40.54 as external ip.
+2015-11-07 15:08:29,788 Error parsing XML template: /Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/Conpot-0.4.0-py2.7.egg/conpot/templates/opcua/opcua/opcua.xml:1:0:ERROR:SCHEMASV:SCHEMAV_CVC_ELT_1: Element 'opcua': No matching global declaration available for the validation root.
+2015-11-07 15:10:22,434 Starting Conpot using template: /Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/Conpot-0.4.0-py2.7.egg/conpot/templates/opcua
+2015-11-07 15:10:22,434 Starting Conpot using configuration found in: /Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/Conpot-0.4.0-py2.7.egg/conpot/conpot.cfg
+2015-11-07 15:10:24,265 Fetched 117.136.40.54 as external ip.
+2015-11-07 15:10:24,266 Error parsing XML template: /Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/Conpot-0.4.0-py2.7.egg/conpot/templates/opcua/opcua/opcua.xml:6:0:ERROR:SCHEMASV:SCHEMAV_CVC_COMPLEX_TYPE_2_1: Element 'value': Character content is not allowed, because the content type is empty.
+2015-11-07 15:15:35,945 Starting Conpot using template: /Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/Conpot-0.4.0-py2.7.egg/conpot/templates/opcua
+2015-11-07 15:15:35,945 Starting Conpot using configuration found in: /Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/Conpot-0.4.0-py2.7.egg/conpot/conpot.cfg
+2015-11-07 15:15:38,422 Fetched 117.136.40.54 as external ip.
+2015-11-07 15:15:38,423 Error parsing XML template: /Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/Conpot-0.4.0-py2.7.egg/conpot/templates/opcua/opcua/opcua.xml:6:0:ERROR:SCHEMASV:SCHEMAV_CVC_COMPLEX_TYPE_2_3: Element 'value': Character content other than whitespace is not allowed because the content type is 'element-only'.
+2015-11-07 15:23:44,457 Starting Conpot using template: /Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/Conpot-0.4.0-py2.7.egg/conpot/templates/opcua
+2015-11-07 15:23:44,458 Starting Conpot using configuration found in: /Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/Conpot-0.4.0-py2.7.egg/conpot/conpot.cfg
+2015-11-07 15:23:47,164 Could not fetch public ip from http://www.telize.com/ip
+2015-11-07 15:23:49,113 Fetched 117.136.40.54 as external ip.
+2015-11-07 15:23:50,650 create subscription with callback: <bound method Subscription.publish_callback of <opcua.subscription.Subscription object at 0x10bbaf8d0>>
+2015-11-07 15:47:45,845 Starting Conpot using template: /Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/Conpot-0.4.0-py2.7.egg/conpot/templates/opcua
+2015-11-07 15:47:45,846 Starting Conpot using configuration found in: /Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/Conpot-0.4.0-py2.7.egg/conpot/conpot.cfg
+2015-11-07 15:47:46,296 Could not fetch public ip from http://www.telize.com/ip
+2015-11-07 15:47:46,696 Could not fetch public ip from http://queryip.net/ip/
+2015-11-07 15:47:47,106 Could not fetch public ip from http://ifconfig.me/ip
+2015-11-07 15:47:47,107 Could not fetch public ip: None
+2015-11-07 15:47:48,580 create subscription with callback: <bound method Subscription.publish_callback of <opcua.subscription.Subscription object at 0x10bcb4790>>
+2015-11-07 16:01:55,512 Starting Conpot using template: /Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/Conpot-0.4.0-py2.7.egg/conpot/templates/opcua
+2015-11-07 16:01:55,514 Starting Conpot using configuration found in: /Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/Conpot-0.4.0-py2.7.egg/conpot/conpot.cfg
+2015-11-07 16:01:55,558 Could not fetch public ip from http://www.telize.com/ip
+2015-11-07 16:01:55,968 Could not fetch public ip from http://queryip.net/ip/
+2015-11-07 16:01:56,377 Could not fetch public ip from http://ifconfig.me/ip
+2015-11-07 16:01:56,378 Could not fetch public ip: None
+2015-11-07 16:01:57,858 create subscription with callback: <bound method Subscription.publish_callback of <opcua.subscription.Subscription object at 0x10bcb4790>>
+2015-11-07 16:23:29,897 Starting Conpot using template: /Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/Conpot-0.4.0-py2.7.egg/conpot/templates/opcua
+2015-11-07 16:23:29,898 Starting Conpot using configuration found in: /Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/Conpot-0.4.0-py2.7.egg/conpot/conpot.cfg
+2015-11-07 16:23:32,497 Fetched 117.136.40.54 as external ip.
+2015-11-07 16:23:33,967 Found and enabled ('opcua', <class 'conpot.protocols.opcua.opcua_server.OPCUAServer'>) protocol.
+2015-11-07 16:23:33,968 Found and enabled ('dct', <class 'conpot.emulators.dct.dct.DCT'>) protocol.
+2015-11-07 16:23:33,968 No proxy template found. Service will remain unconfigured/stopped.
+2015-11-07 16:23:33,968 OPCUA server started on: ('0.0.0.0', 102)
+2015-11-07 16:23:33,968 starting internal server
+2015-11-07 16:23:33,969 connecting to 192.168.1.188 port 9002
+2015-11-07 16:23:33,971 create subscription with callback: <bound method Subscription.publish_callback of <opcua.subscription.Subscription object at 0x10bbb4790>>
+2015-11-07 16:23:33,972 publish request with acks []
+2015-11-07 16:23:33,972 publish request with acks []
+2015-11-07 16:23:33,972 create monitored items
+2015-11-07 16:23:33,972 request to subscribe to datachange for node NodeId(ns=1;s=MyFolder.MyObject.MyVar) and attribute 13
+2015-11-07 16:23:33,973 subscription <opcua.internal_subscription.MonitoredItemService object at 0x10bbb4f90>: datachange callback called with handle '201' and value 'Variant(val:6.7,type:VariantType.Double)'
+2015-11-07 16:23:34,479 Publish callback called with result: PublishResult(SubscriptionId:78, AvailableSequenceNumbers:[], MoreNotifications:False, NotificationMessage:NotificationMessage(SequenceNumber:1, PublishTime:2015-11-07 16:23:34.478942, NotificationData:[DataChangeNotification(TypeId:NodeId(i=811), Encoding:1, BodyLength:0, MonitoredItems:[MonitoredItemNotification(ClientHandle:201, Value:DataValue(Value:Variant(val:6.7,type:VariantType.Double)), StatusCode:StatusCode(Good), SourceTimestamp:2015-11-07 16:23:33.967122, ServerTimestamp:2015-11-07 16:23:33.967120))], DiagnosticInfos:[])]), Results:[], DiagnosticInfos:[])
+2015-11-07 16:23:34,481 publish request with acks [SubscriptionAcknowledgement(SubscriptionId:78, SequenceNumber:1)]
+2015-11-07 16:23:38,974 Privileges dropped, running as "nobody:nobody"
+2015-11-07 16:24:39,242 Stopping Conpot
+2015-11-07 16:24:39,243 stopping internal server
+2015-11-07 16:24:39,243 closing socket
+2015-11-07 16:24:39,243 Error because: [Errno 9] File descriptor was closed in another greenlet
+2015-11-07 16:25:22,337 Starting Conpot using template: /Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/Conpot-0.4.0-py2.7.egg/conpot/templates/opcua
+2015-11-07 16:25:22,337 Starting Conpot using configuration found in: /Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/Conpot-0.4.0-py2.7.egg/conpot/conpot.cfg
+2015-11-07 16:25:23,907 Fetched 117.136.40.54 as external ip.
+2015-11-07 16:25:25,375 Found and enabled ('opcua', <class 'conpot.protocols.opcua.opcua_server.OPCUAServer'>) protocol.
+2015-11-07 16:25:25,375 Found and enabled ('dct', <class 'conpot.emulators.dct.dct.DCT'>) protocol.
+2015-11-07 16:25:25,376 No proxy template found. Service will remain unconfigured/stopped.
+2015-11-07 16:25:25,376 OPCUA server started on: ('0.0.0.0', 4881)
+2015-11-07 16:25:25,376 starting internal server
+2015-11-07 16:25:25,376 connecting to 192.168.1.188 port 9002
+2015-11-07 16:25:25,379 create subscription with callback: <bound method Subscription.publish_callback of <opcua.subscription.Subscription object at 0x10bbd78d0>>
+2015-11-07 16:25:25,379 publish request with acks []
+2015-11-07 16:25:25,380 publish request with acks []
+2015-11-07 16:25:25,380 create monitored items
+2015-11-07 16:25:25,380 request to subscribe to datachange for node NodeId(ns=1;s=MyFolder.MyObject.MyVar) and attribute 13
+2015-11-07 16:25:25,380 subscription <opcua.internal_subscription.MonitoredItemService object at 0x10bbf50d0>: datachange callback called with handle '201' and value 'Variant(val:6.7,type:VariantType.Double)'
+2015-11-07 16:25:25,885 Publish callback called with result: PublishResult(SubscriptionId:78, AvailableSequenceNumbers:[], MoreNotifications:False, NotificationMessage:NotificationMessage(SequenceNumber:1, PublishTime:2015-11-07 16:25:25.885095, NotificationData:[DataChangeNotification(TypeId:NodeId(i=811), Encoding:1, BodyLength:0, MonitoredItems:[MonitoredItemNotification(ClientHandle:201, Value:DataValue(Value:Variant(val:6.7,type:VariantType.Double)), StatusCode:StatusCode(Good), SourceTimestamp:2015-11-07 16:25:25.374819, ServerTimestamp:2015-11-07 16:25:25.374817))], DiagnosticInfos:[])]), Results:[], DiagnosticInfos:[])
+2015-11-07 16:25:25,886 publish request with acks [SubscriptionAcknowledgement(SubscriptionId:78, SequenceNumber:1)]
+2015-11-07 16:25:30,379 Privileges dropped, running as "nobody:nobody"
+2015-11-07 16:25:33,659 writting 28 bytes to socket, with header Header(type:ACK, body_size:20, channel:0) 
+2015-11-07 16:25:33,663 open secure channel
+2015-11-07 16:25:33,664 writting 171 bytes to socket, with header Header(type:OPN, body_size:159, channel:6) 
+2015-11-07 16:25:33,665 find servers request
+2015-11-07 16:25:33,666 sending find servers response
+2015-11-07 16:25:33,666 writting 205 bytes to socket, with header Header(type:MSG, body_size:193, channel:6) 
+2015-11-07 16:25:33,667 close secure channel request
+2015-11-07 16:25:33,667 writting 56 bytes to socket, with header Header(type:MSG, body_size:44, channel:6) 
+2015-11-07 16:25:33,668 processor returned False, we close connection from ('192.168.43.185', 64958)
+2015-11-07 16:25:33,696 writting 28 bytes to socket, with header Header(type:ACK, body_size:20, channel:0) 
+2015-11-07 16:25:33,698 open secure channel
+2015-11-07 16:25:33,699 writting 171 bytes to socket, with header Header(type:OPN, body_size:159, channel:7) 
+2015-11-07 16:25:33,700 find servers request
+2015-11-07 16:25:33,701 sending find servers response
+2015-11-07 16:25:33,701 writting 205 bytes to socket, with header Header(type:MSG, body_size:193, channel:7) 
+2015-11-07 16:25:33,705 close secure channel request
+2015-11-07 16:25:33,706 writting 56 bytes to socket, with header Header(type:MSG, body_size:44, channel:7) 
+2015-11-07 16:25:33,706 processor returned False, we close connection from ('192.168.43.185', 64959)
+2015-11-07 16:25:33,707 writting 28 bytes to socket, with header Header(type:ACK, body_size:20, channel:0) 
+2015-11-07 16:25:33,708 open secure channel
+2015-11-07 16:25:33,709 writting 171 bytes to socket, with header Header(type:OPN, body_size:159, channel:8) 
+2015-11-07 16:25:33,710 get endpoints request
+2015-11-07 16:25:33,710 get endpoint
+2015-11-07 16:25:33,711 sending get endpoints response
+2015-11-07 16:25:33,711 writting 411 bytes to socket, with header Header(type:MSG, body_size:399, channel:8) 
+2015-11-07 16:25:33,712 close secure channel request
+2015-11-07 16:25:33,713 writting 56 bytes to socket, with header Header(type:MSG, body_size:44, channel:8) 
+2015-11-07 16:25:33,713 processor returned False, we close connection from ('192.168.43.185', 64960)
+2015-11-07 16:25:33,714 writting 28 bytes to socket, with header Header(type:ACK, body_size:20, channel:0) 
+2015-11-07 16:25:33,715 open secure channel
+2015-11-07 16:25:33,716 writting 171 bytes to socket, with header Header(type:OPN, body_size:159, channel:9) 
+2015-11-07 16:25:33,717 get endpoints request
+2015-11-07 16:25:33,717 get endpoint
+2015-11-07 16:25:33,717 sending get endpoints response
+2015-11-07 16:25:33,718 writting 411 bytes to socket, with header Header(type:MSG, body_size:399, channel:9) 
+2015-11-07 16:25:33,719 close secure channel request
+2015-11-07 16:25:33,719 writting 56 bytes to socket, with header Header(type:MSG, body_size:44, channel:9) 
+2015-11-07 16:25:33,720 processor returned False, we close connection from ('192.168.43.185', 64961)
+2015-11-07 16:25:33,721 writting 28 bytes to socket, with header Header(type:ACK, body_size:20, channel:0) 
+2015-11-07 16:25:33,722 open secure channel
+2015-11-07 16:25:33,723 writting 171 bytes to socket, with header Header(type:OPN, body_size:159, channel:10) 
+2015-11-07 16:25:33,724 Create session request
+2015-11-07 16:25:33,724 Create session request
+2015-11-07 16:25:33,725 get endpoint
+2015-11-07 16:25:33,725 sending create sesssion response
+2015-11-07 16:25:33,725 writting 489 bytes to socket, with header Header(type:MSG, body_size:477, channel:10) 
+2015-11-07 16:25:33,726 Activate session request
+2015-11-07 16:25:33,727 activate session
+2015-11-07 16:25:33,727 sending read response
+2015-11-07 16:25:33,727 writting 100 bytes to socket, with header Header(type:MSG, body_size:88, channel:10) 
+2015-11-07 16:25:33,728 Read request
+2015-11-07 16:25:33,729 sending read response
+2015-11-07 16:25:33,729 writting 86 bytes to socket, with header Header(type:MSG, body_size:74, channel:10) 
+2015-11-07 16:25:33,730 Read request
+2015-11-07 16:25:33,731 sending read response
+2015-11-07 16:25:33,731 writting 133 bytes to socket, with header Header(type:MSG, body_size:121, channel:10) 
+2015-11-07 16:25:33,732 Read request
+2015-11-07 16:25:33,733 sending read response
+2015-11-07 16:25:33,733 writting 220 bytes to socket, with header Header(type:MSG, body_size:208, channel:10) 
+2015-11-07 16:25:33,734 Read request
+2015-11-07 16:25:33,735 sending read response
+2015-11-07 16:25:33,736 writting 387 bytes to socket, with header Header(type:MSG, body_size:375, channel:10) 
+2015-11-07 16:25:33,736 Read request
+2015-11-07 16:25:33,738 sending read response
+2015-11-07 16:25:33,738 writting 196 bytes to socket, with header Header(type:MSG, body_size:184, channel:10) 
+2015-11-07 16:25:33,740 Read request
+2015-11-07 16:25:33,740 sending read response
+2015-11-07 16:25:33,741 writting 143 bytes to socket, with header Header(type:MSG, body_size:131, channel:10) 
+2015-11-07 16:25:33,743 Browse request
+2015-11-07 16:25:33,744 sending browse response
+2015-11-07 16:25:33,744 writting 146 bytes to socket, with header Header(type:MSG, body_size:134, channel:10) 
+2015-11-07 16:25:33,746 Read request
+2015-11-07 16:25:33,747 sending read response
+2015-11-07 16:25:33,747 writting 151 bytes to socket, with header Header(type:MSG, body_size:139, channel:10) 
+2015-11-07 16:25:33,748 Read request
+2015-11-07 16:25:33,749 sending read response
+2015-11-07 16:25:33,750 writting 314 bytes to socket, with header Header(type:MSG, body_size:302, channel:10) 
+2015-11-07 16:25:33,751 Read request
+2015-11-07 16:25:33,752 sending read response
+2015-11-07 16:25:33,752 writting 320 bytes to socket, with header Header(type:MSG, body_size:308, channel:10) 
+2015-11-07 16:25:33,789 Browse request
+2015-11-07 16:25:33,790 sending browse response
+2015-11-07 16:25:33,790 writting 221 bytes to socket, with header Header(type:MSG, body_size:209, channel:10) 
+2015-11-07 16:25:33,794 Read request
+2015-11-07 16:25:33,794 sending read response
+2015-11-07 16:25:33,794 writting 127 bytes to socket, with header Header(type:MSG, body_size:115, channel:10) 
+2015-11-07 16:25:33,796 Browse request
+2015-11-07 16:25:33,796 sending browse response
+2015-11-07 16:25:33,796 writting 128 bytes to socket, with header Header(type:MSG, body_size:116, channel:10) 
+2015-11-07 16:25:33,797 Read request
+2015-11-07 16:25:33,797 sending read response
+2015-11-07 16:25:33,798 writting 133 bytes to socket, with header Header(type:MSG, body_size:121, channel:10) 
+2015-11-07 16:25:33,799 Read request
+2015-11-07 16:25:33,800 sending read response
+2015-11-07 16:25:33,800 writting 289 bytes to socket, with header Header(type:MSG, body_size:277, channel:10) 
+2015-11-07 16:25:33,802 Read request
+2015-11-07 16:25:33,802 sending read response
+2015-11-07 16:25:33,803 writting 312 bytes to socket, with header Header(type:MSG, body_size:300, channel:10) 
+2015-11-07 16:25:34,757 Read request
+2015-11-07 16:25:34,758 sending read response
+2015-11-07 16:25:34,758 writting 86 bytes to socket, with header Header(type:MSG, body_size:74, channel:10) 
+2015-11-07 16:25:34,759 Read request
+2015-11-07 16:25:34,760 sending read response
+2015-11-07 16:25:34,761 writting 220 bytes to socket, with header Header(type:MSG, body_size:208, channel:10) 
+2015-11-07 16:25:34,762 Read request
+2015-11-07 16:25:34,762 sending read response
+2015-11-07 16:25:34,763 writting 196 bytes to socket, with header Header(type:MSG, body_size:184, channel:10) 
+2015-11-07 16:25:35,768 Read request
+2015-11-07 16:25:35,769 sending read response
+2015-11-07 16:25:35,769 writting 86 bytes to socket, with header Header(type:MSG, body_size:74, channel:10) 
+2015-11-07 16:25:35,771 Read request
+2015-11-07 16:25:35,771 sending read response
+2015-11-07 16:25:35,772 writting 220 bytes to socket, with header Header(type:MSG, body_size:208, channel:10) 
+2015-11-07 16:25:35,773 Read request
+2015-11-07 16:25:35,774 sending read response
+2015-11-07 16:25:35,774 writting 196 bytes to socket, with header Header(type:MSG, body_size:184, channel:10) 
+2015-11-07 16:25:36,697 Browse request
+2015-11-07 16:25:36,698 sending browse response
+2015-11-07 16:25:36,698 writting 186 bytes to socket, with header Header(type:MSG, body_size:174, channel:10) 
+2015-11-07 16:25:36,780 Read request
+2015-11-07 16:25:36,780 sending read response
+2015-11-07 16:25:36,781 writting 86 bytes to socket, with header Header(type:MSG, body_size:74, channel:10) 
+2015-11-07 16:25:36,782 Read request
+2015-11-07 16:25:36,783 sending read response
+2015-11-07 16:25:36,784 writting 220 bytes to socket, with header Header(type:MSG, body_size:208, channel:10) 
+2015-11-07 16:25:36,785 Read request
+2015-11-07 16:25:36,785 sending read response
+2015-11-07 16:25:36,786 writting 196 bytes to socket, with header Header(type:MSG, body_size:184, channel:10) 
+2015-11-07 16:25:37,777 Browse request
+2015-11-07 16:25:37,778 sending browse response
+2015-11-07 16:25:37,778 writting 146 bytes to socket, with header Header(type:MSG, body_size:134, channel:10) 
+2015-11-07 16:25:37,789 Read request
+2015-11-07 16:25:37,794 sending read response
+2015-11-07 16:25:37,795 writting 86 bytes to socket, with header Header(type:MSG, body_size:74, channel:10) 
+2015-11-07 16:25:37,796 Read request
+2015-11-07 16:25:37,797 sending read response
+2015-11-07 16:25:37,797 writting 220 bytes to socket, with header Header(type:MSG, body_size:208, channel:10) 
+2015-11-07 16:25:37,799 Read request
+2015-11-07 16:25:37,799 sending read response
+2015-11-07 16:25:37,800 writting 196 bytes to socket, with header Header(type:MSG, body_size:184, channel:10) 
+2015-11-07 16:25:38,694 Browse request
+2015-11-07 16:25:38,695 sending browse response
+2015-11-07 16:25:38,696 writting 146 bytes to socket, with header Header(type:MSG, body_size:134, channel:10) 
+2015-11-07 16:25:38,803 Read request
+2015-11-07 16:25:38,803 sending read response
+2015-11-07 16:25:38,804 writting 86 bytes to socket, with header Header(type:MSG, body_size:74, channel:10) 
+2015-11-07 16:25:38,805 Read request
+2015-11-07 16:25:38,806 sending read response
+2015-11-07 16:25:38,807 writting 220 bytes to socket, with header Header(type:MSG, body_size:208, channel:10) 
+2015-11-07 16:25:38,808 Read request
+2015-11-07 16:25:38,808 sending read response
+2015-11-07 16:25:38,809 writting 196 bytes to socket, with header Header(type:MSG, body_size:184, channel:10) 
+2015-11-07 16:25:39,229 Read request
+2015-11-07 16:25:39,229 sending read response
+2015-11-07 16:25:39,230 writting 123 bytes to socket, with header Header(type:MSG, body_size:111, channel:10) 
+2015-11-07 16:25:39,231 Browse request
+2015-11-07 16:25:39,231 sending browse response
+2015-11-07 16:25:39,231 writting 148 bytes to socket, with header Header(type:MSG, body_size:136, channel:10) 
+2015-11-07 16:25:39,233 Read request
+2015-11-07 16:25:39,233 sending read response
+2015-11-07 16:25:39,233 writting 153 bytes to socket, with header Header(type:MSG, body_size:141, channel:10) 
+2015-11-07 16:25:39,235 Read request
+2015-11-07 16:25:39,235 sending read response
+2015-11-07 16:25:39,236 writting 419 bytes to socket, with header Header(type:MSG, body_size:407, channel:10) 
+2015-11-07 16:25:39,237 Browse request
+2015-11-07 16:25:39,241 sending browse response
+2015-11-07 16:25:39,242 writting 1680 bytes to socket, with header Header(type:MSG, body_size:1668, channel:10) 
+2015-11-07 16:25:39,243 Read request
+2015-11-07 16:25:39,244 sending read response
+2015-11-07 16:25:39,245 writting 447 bytes to socket, with header Header(type:MSG, body_size:435, channel:10) 
+2015-11-07 16:25:39,246 Browse request
+2015-11-07 16:25:39,246 sending browse response
+2015-11-07 16:25:39,246 writting 148 bytes to socket, with header Header(type:MSG, body_size:136, channel:10) 
+2015-11-07 16:25:39,247 Read request
+2015-11-07 16:25:39,248 sending read response
+2015-11-07 16:25:39,248 writting 94 bytes to socket, with header Header(type:MSG, body_size:82, channel:10) 
+2015-11-07 16:25:39,255 Browse request
+2015-11-07 16:25:39,255 sending browse response
+2015-11-07 16:25:39,255 writting 148 bytes to socket, with header Header(type:MSG, body_size:136, channel:10) 
+2015-11-07 16:25:39,256 Read request
+2015-11-07 16:25:39,257 sending read response
+2015-11-07 16:25:39,257 writting 147 bytes to socket, with header Header(type:MSG, body_size:135, channel:10) 
+2015-11-07 16:25:39,258 Read request
+2015-11-07 16:25:39,259 sending read response
+2015-11-07 16:25:39,259 writting 391 bytes to socket, with header Header(type:MSG, body_size:379, channel:10) 
+2015-11-07 16:25:39,815 Read request
+2015-11-07 16:25:39,816 sending read response
+2015-11-07 16:25:39,816 writting 86 bytes to socket, with header Header(type:MSG, body_size:74, channel:10) 
+2015-11-07 16:25:39,818 Read request
+2015-11-07 16:25:39,818 sending read response
+2015-11-07 16:25:39,819 writting 220 bytes to socket, with header Header(type:MSG, body_size:208, channel:10) 
+2015-11-07 16:25:39,820 Read request
+2015-11-07 16:25:39,821 sending read response
+2015-11-07 16:25:39,821 writting 196 bytes to socket, with header Header(type:MSG, body_size:184, channel:10) 
+2015-11-07 16:25:40,824 Read request
+2015-11-07 16:25:40,824 sending read response
+2015-11-07 16:25:40,825 writting 86 bytes to socket, with header Header(type:MSG, body_size:74, channel:10) 
+2015-11-07 16:25:40,827 Read request
+2015-11-07 16:25:40,827 sending read response
+2015-11-07 16:25:40,828 writting 220 bytes to socket, with header Header(type:MSG, body_size:208, channel:10) 
+2015-11-07 16:25:40,829 Read request
+2015-11-07 16:25:40,830 sending read response
+2015-11-07 16:25:40,830 writting 196 bytes to socket, with header Header(type:MSG, body_size:184, channel:10) 
+2015-11-07 16:25:41,837 Read request
+2015-11-07 16:25:41,838 sending read response
+2015-11-07 16:25:41,838 writting 86 bytes to socket, with header Header(type:MSG, body_size:74, channel:10) 
+2015-11-07 16:25:41,840 Read request
+2015-11-07 16:25:41,840 sending read response
+2015-11-07 16:25:41,841 writting 220 bytes to socket, with header Header(type:MSG, body_size:208, channel:10) 
+2015-11-07 16:25:41,842 Read request
+2015-11-07 16:25:41,842 sending read response
+2015-11-07 16:25:41,843 writting 196 bytes to socket, with header Header(type:MSG, body_size:184, channel:10) 
+2015-11-07 16:25:42,845 Read request
+2015-11-07 16:25:42,846 sending read response
+2015-11-07 16:25:42,846 writting 86 bytes to socket, with header Header(type:MSG, body_size:74, channel:10) 
+2015-11-07 16:25:42,847 Read request
+2015-11-07 16:25:42,848 sending read response
+2015-11-07 16:25:42,849 writting 220 bytes to socket, with header Header(type:MSG, body_size:208, channel:10) 
+2015-11-07 16:25:42,850 Read request
+2015-11-07 16:25:42,850 sending read response
+2015-11-07 16:25:42,851 writting 196 bytes to socket, with header Header(type:MSG, body_size:184, channel:10) 
+2015-11-07 16:25:43,853 Read request
+2015-11-07 16:25:43,853 sending read response
+2015-11-07 16:25:43,854 writting 86 bytes to socket, with header Header(type:MSG, body_size:74, channel:10) 
+2015-11-07 16:25:43,855 Read request
+2015-11-07 16:25:43,856 sending read response
+2015-11-07 16:25:43,856 writting 220 bytes to socket, with header Header(type:MSG, body_size:208, channel:10) 
+2015-11-07 16:25:43,857 Read request
+2015-11-07 16:25:43,858 sending read response
+2015-11-07 16:25:43,858 writting 196 bytes to socket, with header Header(type:MSG, body_size:184, channel:10) 
+2015-11-07 16:25:45,864 Read request
+2015-11-07 16:25:45,865 sending read response
+2015-11-07 16:25:45,866 writting 86 bytes to socket, with header Header(type:MSG, body_size:74, channel:10) 
+2015-11-07 16:25:45,867 Read request
+2015-11-07 16:25:45,868 sending read response
+2015-11-07 16:25:45,868 writting 220 bytes to socket, with header Header(type:MSG, body_size:208, channel:10) 
+2015-11-07 16:25:45,869 Read request
+2015-11-07 16:25:45,870 sending read response
+2015-11-07 16:25:45,870 writting 196 bytes to socket, with header Header(type:MSG, body_size:184, channel:10) 
+2015-11-07 16:25:46,875 Read request
+2015-11-07 16:25:46,876 sending read response
+2015-11-07 16:25:46,876 writting 86 bytes to socket, with header Header(type:MSG, body_size:74, channel:10) 
+2015-11-07 16:25:46,878 Read request
+2015-11-07 16:25:46,879 sending read response
+2015-11-07 16:25:46,880 writting 220 bytes to socket, with header Header(type:MSG, body_size:208, channel:10) 
+2015-11-07 16:25:46,881 Read request
+2015-11-07 16:25:46,881 sending read response
+2015-11-07 16:25:46,882 writting 196 bytes to socket, with header Header(type:MSG, body_size:184, channel:10) 
+2015-11-07 16:25:47,888 Read request
+2015-11-07 16:25:47,889 sending read response
+2015-11-07 16:25:47,889 writting 86 bytes to socket, with header Header(type:MSG, body_size:74, channel:10) 
+2015-11-07 16:25:47,891 Read request
+2015-11-07 16:25:47,891 sending read response
+2015-11-07 16:25:47,892 writting 220 bytes to socket, with header Header(type:MSG, body_size:208, channel:10) 
+2015-11-07 16:25:47,893 Read request
+2015-11-07 16:25:47,894 sending read response
+2015-11-07 16:25:47,894 writting 196 bytes to socket, with header Header(type:MSG, body_size:184, channel:10) 
+2015-11-07 16:25:48,900 Read request
+2015-11-07 16:25:48,901 sending read response
+2015-11-07 16:25:48,901 writting 86 bytes to socket, with header Header(type:MSG, body_size:74, channel:10) 
+2015-11-07 16:25:48,903 Read request
+2015-11-07 16:25:48,904 sending read response
+2015-11-07 16:25:48,904 writting 220 bytes to socket, with header Header(type:MSG, body_size:208, channel:10) 
+2015-11-07 16:25:48,905 Read request
+2015-11-07 16:25:48,906 sending read response
+2015-11-07 16:25:48,906 writting 196 bytes to socket, with header Header(type:MSG, body_size:184, channel:10) 
+2015-11-07 16:25:49,910 Read request
+2015-11-07 16:25:49,910 sending read response
+2015-11-07 16:25:49,911 writting 86 bytes to socket, with header Header(type:MSG, body_size:74, channel:10) 
+2015-11-07 16:25:49,912 Read request
+2015-11-07 16:25:49,913 sending read response
+2015-11-07 16:25:49,913 writting 220 bytes to socket, with header Header(type:MSG, body_size:208, channel:10) 
+2015-11-07 16:25:49,914 Read request
+2015-11-07 16:25:49,915 sending read response
+2015-11-07 16:25:49,915 writting 196 bytes to socket, with header Header(type:MSG, body_size:184, channel:10) 
+2015-11-07 16:25:50,919 Read request
+2015-11-07 16:25:50,920 sending read response
+2015-11-07 16:25:50,920 writting 86 bytes to socket, with header Header(type:MSG, body_size:74, channel:10) 
+2015-11-07 16:25:50,922 Read request
+2015-11-07 16:25:50,922 sending read response
+2015-11-07 16:25:50,923 writting 220 bytes to socket, with header Header(type:MSG, body_size:208, channel:10) 
+2015-11-07 16:25:50,924 Read request
+2015-11-07 16:25:50,925 sending read response
+2015-11-07 16:25:50,925 writting 196 bytes to socket, with header Header(type:MSG, body_size:184, channel:10) 
+2015-11-07 16:25:51,929 Read request
+2015-11-07 16:25:51,930 sending read response
+2015-11-07 16:25:51,930 writting 86 bytes to socket, with header Header(type:MSG, body_size:74, channel:10) 
+2015-11-07 16:25:51,932 Read request
+2015-11-07 16:25:51,932 sending read response
+2015-11-07 16:25:51,933 writting 220 bytes to socket, with header Header(type:MSG, body_size:208, channel:10) 
+2015-11-07 16:25:51,934 Read request
+2015-11-07 16:25:51,934 sending read response
+2015-11-07 16:25:51,935 writting 196 bytes to socket, with header Header(type:MSG, body_size:184, channel:10) 
+2015-11-07 16:25:52,937 Read request
+2015-11-07 16:25:52,938 sending read response
+2015-11-07 16:25:52,938 writting 86 bytes to socket, with header Header(type:MSG, body_size:74, channel:10) 
+2015-11-07 16:25:52,939 Read request
+2015-11-07 16:25:52,940 sending read response
+2015-11-07 16:25:52,941 writting 220 bytes to socket, with header Header(type:MSG, body_size:208, channel:10) 
+2015-11-07 16:25:52,942 Read request
+2015-11-07 16:25:52,942 sending read response
+2015-11-07 16:25:52,943 writting 196 bytes to socket, with header Header(type:MSG, body_size:184, channel:10) 
+2015-11-07 16:25:53,945 Read request
+2015-11-07 16:25:53,945 sending read response
+2015-11-07 16:25:53,946 writting 86 bytes to socket, with header Header(type:MSG, body_size:74, channel:10) 
+2015-11-07 16:25:53,947 Read request
+2015-11-07 16:25:53,948 sending read response
+2015-11-07 16:25:53,949 writting 220 bytes to socket, with header Header(type:MSG, body_size:208, channel:10) 
+2015-11-07 16:25:53,950 Read request
+2015-11-07 16:25:53,950 sending read response
+2015-11-07 16:25:53,951 writting 196 bytes to socket, with header Header(type:MSG, body_size:184, channel:10) 
+2015-11-07 16:25:54,953 Read request
+2015-11-07 16:25:54,953 sending read response
+2015-11-07 16:25:54,954 writting 86 bytes to socket, with header Header(type:MSG, body_size:74, channel:10) 
+2015-11-07 16:25:54,955 Read request
+2015-11-07 16:25:54,956 sending read response
+2015-11-07 16:25:54,957 writting 220 bytes to socket, with header Header(type:MSG, body_size:208, channel:10) 
+2015-11-07 16:25:54,958 Read request
+2015-11-07 16:25:54,958 sending read response
+2015-11-07 16:25:54,959 writting 196 bytes to socket, with header Header(type:MSG, body_size:184, channel:10) 
+2015-11-07 16:25:55,964 Read request
+2015-11-07 16:25:55,965 sending read response
+2015-11-07 16:25:55,966 writting 86 bytes to socket, with header Header(type:MSG, body_size:74, channel:10) 
+2015-11-07 16:25:55,967 Read request
+2015-11-07 16:25:55,968 sending read response
+2015-11-07 16:25:55,968 writting 220 bytes to socket, with header Header(type:MSG, body_size:208, channel:10) 
+2015-11-07 16:25:55,970 Read request
+2015-11-07 16:25:55,970 sending read response
+2015-11-07 16:25:55,971 writting 196 bytes to socket, with header Header(type:MSG, body_size:184, channel:10) 
+2015-11-07 16:25:56,978 Read request
+2015-11-07 16:25:56,978 sending read response
+2015-11-07 16:25:56,979 writting 86 bytes to socket, with header Header(type:MSG, body_size:74, channel:10) 
+2015-11-07 16:25:56,980 Read request
+2015-11-07 16:25:56,981 sending read response
+2015-11-07 16:25:56,981 writting 220 bytes to socket, with header Header(type:MSG, body_size:208, channel:10) 
+2015-11-07 16:25:56,982 Read request
+2015-11-07 16:25:56,983 sending read response
+2015-11-07 16:25:56,983 writting 196 bytes to socket, with header Header(type:MSG, body_size:184, channel:10) 
+2015-11-07 16:25:57,990 Read request
+2015-11-07 16:25:57,991 sending read response
+2015-11-07 16:25:57,991 writting 86 bytes to socket, with header Header(type:MSG, body_size:74, channel:10) 
+2015-11-07 16:25:57,992 Read request
+2015-11-07 16:25:57,993 sending read response
+2015-11-07 16:25:57,994 writting 220 bytes to socket, with header Header(type:MSG, body_size:208, channel:10) 
+2015-11-07 16:25:57,995 Read request
+2015-11-07 16:25:57,995 sending read response
+2015-11-07 16:25:57,996 writting 196 bytes to socket, with header Header(type:MSG, body_size:184, channel:10) 
+2015-11-07 16:25:59,001 Read request
+2015-11-07 16:25:59,001 sending read response
+2015-11-07 16:25:59,002 writting 86 bytes to socket, with header Header(type:MSG, body_size:74, channel:10) 
+2015-11-07 16:25:59,003 Read request
+2015-11-07 16:25:59,004 sending read response
+2015-11-07 16:25:59,005 writting 220 bytes to socket, with header Header(type:MSG, body_size:208, channel:10) 
+2015-11-07 16:25:59,006 Read request
+2015-11-07 16:25:59,006 sending read response
+2015-11-07 16:25:59,007 writting 196 bytes to socket, with header Header(type:MSG, body_size:184, channel:10) 
+2015-11-07 16:26:00,009 Read request
+2015-11-07 16:26:00,010 sending read response
+2015-11-07 16:26:00,010 writting 86 bytes to socket, with header Header(type:MSG, body_size:74, channel:10) 
+2015-11-07 16:26:00,011 Read request
+2015-11-07 16:26:00,012 sending read response
+2015-11-07 16:26:00,013 writting 220 bytes to socket, with header Header(type:MSG, body_size:208, channel:10) 
+2015-11-07 16:26:00,014 Read request
+2015-11-07 16:26:00,014 sending read response
+2015-11-07 16:26:00,015 writting 196 bytes to socket, with header Header(type:MSG, body_size:184, channel:10) 
+2015-11-07 16:26:01,020 Read request
+2015-11-07 16:26:01,021 sending read response
+2015-11-07 16:26:01,022 writting 86 bytes to socket, with header Header(type:MSG, body_size:74, channel:10) 
+2015-11-07 16:26:01,023 Read request
+2015-11-07 16:26:01,024 sending read response
+2015-11-07 16:26:01,024 writting 220 bytes to socket, with header Header(type:MSG, body_size:208, channel:10) 
+2015-11-07 16:26:01,025 Read request
+2015-11-07 16:26:01,026 sending read response
+2015-11-07 16:26:01,026 writting 196 bytes to socket, with header Header(type:MSG, body_size:184, channel:10) 
+2015-11-07 16:26:02,031 Read request
+2015-11-07 16:26:02,031 sending read response
+2015-11-07 16:26:02,032 writting 86 bytes to socket, with header Header(type:MSG, body_size:74, channel:10) 
+2015-11-07 16:26:02,033 Read request
+2015-11-07 16:26:02,034 sending read response
+2015-11-07 16:26:02,034 writting 220 bytes to socket, with header Header(type:MSG, body_size:208, channel:10) 
+2015-11-07 16:26:02,035 Read request
+2015-11-07 16:26:02,036 sending read response
+2015-11-07 16:26:02,036 writting 196 bytes to socket, with header Header(type:MSG, body_size:184, channel:10) 
+2015-11-07 16:26:03,042 Read request
+2015-11-07 16:26:03,043 sending read response
+2015-11-07 16:26:03,043 writting 86 bytes to socket, with header Header(type:MSG, body_size:74, channel:10) 
+2015-11-07 16:26:03,045 Read request
+2015-11-07 16:26:03,045 sending read response
+2015-11-07 16:26:03,046 writting 220 bytes to socket, with header Header(type:MSG, body_size:208, channel:10) 
+2015-11-07 16:26:03,047 Read request
+2015-11-07 16:26:03,047 sending read response
+2015-11-07 16:26:03,048 writting 196 bytes to socket, with header Header(type:MSG, body_size:184, channel:10) 
+2015-11-07 16:26:04,053 Read request
+2015-11-07 16:26:04,054 sending read response
+2015-11-07 16:26:04,054 writting 86 bytes to socket, with header Header(type:MSG, body_size:74, channel:10) 
+2015-11-07 16:26:04,056 Read request
+2015-11-07 16:26:04,057 sending read response
+2015-11-07 16:26:04,057 writting 220 bytes to socket, with header Header(type:MSG, body_size:208, channel:10) 
+2015-11-07 16:26:04,058 Read request
+2015-11-07 16:26:04,059 sending read response
+2015-11-07 16:26:04,059 writting 196 bytes to socket, with header Header(type:MSG, body_size:184, channel:10) 
+2015-11-07 16:26:05,064 Read request
+2015-11-07 16:26:05,065 sending read response
+2015-11-07 16:26:05,065 writting 86 bytes to socket, with header Header(type:MSG, body_size:74, channel:10) 
+2015-11-07 16:26:05,067 Read request
+2015-11-07 16:26:05,067 sending read response
+2015-11-07 16:26:05,068 writting 220 bytes to socket, with header Header(type:MSG, body_size:208, channel:10) 
+2015-11-07 16:26:05,069 Read request
+2015-11-07 16:26:05,069 sending read response
+2015-11-07 16:26:05,070 writting 196 bytes to socket, with header Header(type:MSG, body_size:184, channel:10) 
+2015-11-07 16:26:06,073 Read request
+2015-11-07 16:26:06,073 sending read response
+2015-11-07 16:26:06,074 writting 86 bytes to socket, with header Header(type:MSG, body_size:74, channel:10) 
+2015-11-07 16:26:06,076 Read request
+2015-11-07 16:26:06,077 sending read response
+2015-11-07 16:26:06,077 writting 220 bytes to socket, with header Header(type:MSG, body_size:208, channel:10) 
+2015-11-07 16:26:06,078 Read request
+2015-11-07 16:26:06,079 sending read response
+2015-11-07 16:26:06,079 writting 196 bytes to socket, with header Header(type:MSG, body_size:184, channel:10) 
+2015-11-07 16:26:06,730 Stopping Conpot
+2015-11-07 16:26:06,731 stopping internal server
+2015-11-07 16:26:06,732 closing socket
+2015-11-07 16:26:06,732 Error because: [Errno 9] File descriptor was closed in another greenlet

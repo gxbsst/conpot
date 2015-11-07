@@ -19,6 +19,7 @@ logger.addHandler(stream_handler)
 CHECK_SUM_FMT = '<B'
 SEND_ORDER_FMT = '<HI12H'
 RECEIVE_ORDER_FMT = '<HI2HB'
+CONFIRM_ORDER_FMT = '<HIH'
 
 # 0x19, 0x27, 0x01, 0x00, 0xff, 0xff, 0xff, 0xff, 0x00, 0x00, 0x00
 
@@ -61,8 +62,16 @@ class MMIS(object):
     def send_order(self, order_no, source_site, target_site):
         data = struct.pack(SEND_ORDER_FMT, 10003, order_no, 0, 0, 0, 1, 255, 0, 0, 4, source_site, 0, target_site, 0)
         data += MMIS.checksum(data)
-        logger.info('sending "%s"' % binascii.hexlify(data))
         self.sock.sendall(data)
+        logger.info('sending "%s"' % binascii.hexlify(data))
+        logger.info('发送订单，订单号: ' + str(order_no) + ' 取货点: ' + str(source_site) + ' 送货点: ' + str(target_site))
+
+    def confirm_order(self, order_no):
+        data = struct.pack(CONFIRM_ORDER_FMT, 10005, order_no, 0xFFFF)
+        data += MMIS.checksum(data)
+        self.sock.sendall(data)
+        logger.info('sending "%s"' % binascii.hexlify(data))
+        logger.info('确认订单完成: ' + str(order_no))
 
     def start(self, host, port):
         self.host = host
@@ -74,13 +83,16 @@ class MMIS(object):
                 if not self.connected:
                     self.connect()
                 receive_msg = self.sock.recv(11)
-                logger.info('received "%s"' % binascii.hexlify(receive_msg))
+                logger.debug('received "%s"' % binascii.hexlify(receive_msg))
                 header, order_no, oder_step, state, checksum = struct.unpack(RECEIVE_ORDER_FMT, receive_msg)
-                logger.info((header, order_no, oder_step, state, checksum))
+                logger.debug((header, order_no, oder_step, state, checksum))
                 if header == 10003:
-                    logger.info('订单已确认，订单号: ' + order_no)
+                    logger.info('received "%s"' % binascii.hexlify(receive_msg))
+                    logger.info('订单已确认，订单号: ' + str(order_no))
                 elif header == 10005:
-                    logger.info('订单已完成，订单号: ' + order_no)
+                    logger.info('received "%s"' % binascii.hexlify(receive_msg))
+                    logger.info('订单已完成，订单号: ' + str(order_no))
+                    self.confirm_order(order_no)
             except socket.error, e:
                 logger.error('Error because: %s' % e)
                 self.connected = False
@@ -97,6 +109,6 @@ mmis = MMIS(None, None, None)
 threading.Thread(target=mmis.start, args=('192.168.1.100', 3000)).start()
 while 1:
     if mmis.connected:
-        mmis.send_order(1, 5, 11)
+        mmis.send_order(1, 13, 5)
         break
     time.sleep(1.1)

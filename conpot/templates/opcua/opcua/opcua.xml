@@ -1,22 +1,9 @@
-<opcua enabled="True" host="0.0.0.0" port="4881">
-    <UANodeSet>
-        <UAObject NodeId="ns=1;s=FanucRobot" BrowseName="FanucRobot">
-            <Description>Fanuc Robot</Description>
-            <References>
-                <Reference ReferenceType="HasTypeDefinition">i=61</Reference>
-                <Reference ReferenceType="Organizes" IsForward="false">i=85</Reference>
-            </References>
-        </UAObject>
+<opcua enabled="True" name="MJ OPCUA Server" host="0.0.0.0" port="4881">
+    <folder node_id="ns=1;s=MyFolder" browser_name="MyFolder"/>
 
-        <UAVariable NodeId="ns=1;s=FanucRobot.Group1Joint1" BrowseName="Group1Joint1" DataType="Float">
-            <References>
-                <Reference ReferenceType="HasTypeDefinition">i=69</Reference>
-                <Reference ReferenceType="Organizes" IsForward="false">ns=1;s=FanucRobot</Reference>
-            </References>
-            <Value>
-                <Float>${ns=1;s=FanucRobot.Group1Joint1}</Float>
-            </Value>
-        </UAVariable>
-
-    </UANodeSet>
+    <object node_id="ns=1;s=MyFolder.MyObject" browser_name="MyObject" parent="ns=1;s=MyFolder">
+        <variable node_id="ns=1;s=MyFolder.MyObject.MyVar" browser_name="MyVar">
+            <value type="float">6.7</value>
+        </variable>
+    </object>
 </opcua>

@@ -4,6 +4,11 @@ from gevent.coros import RLock
 import logging
 import socket
 import time
+from pymodbus.constants import Endian
+from pymodbus.payload import BinaryPayloadDecoder
+from pymodbus.payload import BinaryPayloadBuilder
+from pymodbus.register_read_message import ReadHoldingRegistersResponse
+from pymodbus.bit_read_message import ReadCoilsResponse
 from pymodbus.client.sync import ModbusTcpClient as ModbusClient
 import conpot.core as conpot_core
 from pymodbus.exceptions import ConnectionException
@@ -68,14 +73,15 @@ class MMaster(object):
                     point_id = point_node.attrib['id']
                     address = point_node.xpath('./address')[0].text
                     point = Point(point_id, int(address))
-                    if point_node.find('./count'):
-                        count = point_node.xpath('./count')[0].text
-                        point.count = int(count)
-                    if point_node.find('./encoding'):
-                        encoding = point_node.xpath('./encoding')[0].text
-                        point.encoding = encoding
-                    if point_node.find('./endian'):
-                        endian = point_node.xpath('./endian')[0].text
+                    count_nodes = point_node.xpath('./count')
+                    if count_nodes is not None and len(count_nodes) > 0:
+                        point.count = int(count_nodes[0].text)
+                    encoding_nodes = point_node.xpath('./encoding')
+                    if encoding_nodes is not None and len(encoding_nodes) > 0:
+                        point.encoding = encoding_nodes[0].text
+                    endian_nodes = point_node.xpath('./endian')
+                    if endian_nodes is not None and len(endian_nodes) > 0:
+                        endian = endian_nodes[0].text
                         point.endian = endian
                     block.points.append(point)
 
@@ -83,9 +89,29 @@ class MMaster(object):
         with lock:
             return self.modbus_client.write_coils(address, value, unit=unit)
 
-    def write_registers(self, address, value, unit=1):
-        with lock:
-            return self.modbus_client.write_registers(address, value, unit=unit)
+    def write_registers(self, point, address, value, unit=1):
+        if not point.encoding == 'none':
+            endian = Endian.Auto
+            if point.endian == 'Little':
+                endian = Endian.Little
+            elif point.endian == 'Big':
+                endian = Endian.Big
+            builder = BinaryPayloadBuilder(endian=endian)
+            if point.encoding == 'bits':
+                builder.add_bits(value)
+            elif point.encoding == '8int':
+                builder.add_8bit_int(value)
+            elif point.encoding == '16uint':
+                builder.add_16bit_uint(value)
+            elif point.encoding == 'float':
+                builder.add_32bit_float(value)
+            elif point.encoding == 'string':
+                builder.add_string(value)
+            with lock:
+                return self.modbus_client.write_registers(address, builder.build(), unit=unit, skip_encode=True)
+        else:
+            with lock:
+                return self.modbus_client.write_registers(address, [value], unit=unit)
 
     def read_coils(self, address, size, unit=1):
         with lock:
@@ -136,6 +162,7 @@ class MMaster(object):
                     for point in block.points:
                         conpot_core.get_databus().observe_value('w ' + point.point_id,
                                                                 lambda key: self.write_registers(
+                                                                    point,
                                                                     point.address,
                                                                     conpot_core.get_databus().get_value(key),
                                                                     unit=slave.slave_id))
@@ -165,10 +192,28 @@ class MMaster(object):
                     if result:
                         for point in points:
                             value = None
-                            if result.bits:
+                            if isinstance(result, ReadCoilsResponse):
                                 value = result.bits[point.address - starting_address]
-                            elif result.registers:
-                                value = result.bits[point.address - starting_address]
+                            elif isinstance(result, ReadHoldingRegistersResponse):
+                                value = result.registers[point.address - starting_address:point.count]
+                                if not point.encoding == 'none':
+                                    endian = Endian.Auto
+                                    if point.endian == 'Little':
+                                        endian = Endian.Little
+                                    elif point.endian == 'Big':
+                                        endian = Endian.Big
+                                    decoder = BinaryPayloadDecoder.fromRegisters(value, endian=endian)
+                                    if point.encoding == 'bits':
+                                        value = decoder.decode_bits()
+                                    elif point.encoding == '8int':
+                                        value = decoder.decode_8bit_int()
+                                    elif point.encoding == '16uint':
+                                        value = decoder.decode_16bit_uint()
+                                    elif point.encoding == 'float':
+                                        value = decoder.decode_32bit_float()
+                                    elif point.encoding == 'string':
+                                        value = decoder.decode_string(point.count)
+
                             conpot_core.get_databus().set_value('r ' + point.point_id, value)
             except ConnectionException, e:
                 logger.error('Error because: %s' % e)

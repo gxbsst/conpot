@@ -3,22 +3,16 @@
         <slave id="1">
             <block>
                 <!-- COILS DISCRETE_INPUTS HOLDING_REGISTERS INPUT_REGISTERS -->
-                <type>COILS</type>
-                <starting_address>1</starting_address>
-                <size>1</size>
+                <type>HOLDING_REGISTERS</type>
+                <starting_address>0</starting_address>
+                <size>5</size>
                 <point id="ns=1;s=MyFolder.MyObject.MyVar">
-                    <address>1</address>
-                    <!--
-                    <count>2</count>
-                    -->
-                    <!-- none bits 8int 16uint float string -->
-                    <!--
-                    <encoding>float</encoding>
-                    -->
-                    <!-- Auto Big Little  -->
-                    <!--
-                    <endian>Little</endian>
-                    -->
+                    <address>0</address>
+                    <!--<count>2</count>-->
+                    <!--&lt;!&ndash; Auto Big Little  &ndash;&gt;-->
+                    <!--<endian>Little</endian>-->
+                    <!--&lt;!&ndash; none bits 8int 16uint float string &ndash;&gt;-->
+                    <!--<encoding>float</encoding>-->
                 </point>
             </block>
         </slave>

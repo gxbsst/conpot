@@ -3,7 +3,7 @@
 
     <object node_id="ns=1;s=MyFolder.MyObject" browser_name="MyObject" parent="ns=1;s=MyFolder">
         <variable node_id="ns=1;s=MyFolder.MyObject.MyVar" browser_name="MyVar">
-            <value type="bool">False</value>
+            <value type="int">1</value>
         </variable>
     </object>
 </opcua>

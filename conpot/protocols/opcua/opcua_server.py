@@ -65,6 +65,26 @@ class OPCUAServer(Server):
                                                         lambda key: self.get_node(key[2:]).set_value(
                                                             conpot_core.get_databus().get_value(key)))
 
+            methods = obj.xpath('./method')
+            for method in methods:
+                node_id = variable.attrib['node_id']
+                browser_name = variable.attrib['browser_name']
+
+                input_args = method.xpath('./input_args')
+                ua_input_args = []
+                if input_args is not None and len(input_args) > 0:
+                    for arg in input_args[0].text.split(',', 1):
+                        ua_input_args.append(ua.VariantType[arg])
+
+                output_args = method.xpath('./output_args')
+                ua_output_args = []
+                for arg in output_args[0].text.split(',', 1):
+                    ua_output_args.append(ua.VariantType[arg])
+
+                # ua_func = eval(method.xpath('./func')[0].text) in {ua}
+                #
+                # ua_object.add_method(node_id, browser_name, ua_func, ua_input_args, output_args)
+
     def start(self, host, port):
         self.set_endpoint("opc.tcp://" + str(host) + ":" + str(port) + "/ua/server/")
         logger.info('OPCUA server started on: %s', (host, port))

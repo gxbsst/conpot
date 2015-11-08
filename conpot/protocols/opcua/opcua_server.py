@@ -59,6 +59,7 @@ class OPCUAServer(Server):
                 ua_variable = ua_object.add_variable(variable.attrib['node_id'],
                                                      variable.attrib['browser_name'],
                                                      eval(value.attrib['type'] + "('" + value.text + "')"))
+                ua_variable.set_writable(True)
                 self.variables.append(ua_variable)
                 conpot_core.get_databus().observe_value('r ' + node_id,
                                                         lambda key: self.get_node(key[2:]).set_value(

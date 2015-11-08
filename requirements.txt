@@ -19,3 +19,5 @@ cybox
 bacpypes
 pyghmi
 mixbox
+pymodbus
+trollius

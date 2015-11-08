@@ -44,6 +44,7 @@ from conpot.protocols.http.web_server import HTTPServer
 from conpot.protocols.opcua.opcua_server import OPCUAServer
 from conpot.emulators.dct.dct import DCT
 # from conpot.emulators.mmis.mmis import MMIS
+from conpot.emulators.mmaster.mmaster import MMaster
 from conpot.helpers import fix_sslwrap
 from conpot.protocols.kamstrup.meter_protocol.kamstrup_server import KamstrupServer
 from conpot.protocols.kamstrup.management_protocol.kamstrup_management_server import KamstrupManagementServer
@@ -287,7 +288,7 @@ def main():
         ('opcua', OPCUAServer),
 
         # emulators
-        ('dct', DCT)
+        # ('dct', DCT)
     )
 
     # no need to fork process when we don't want to change MAC address
@@ -320,6 +321,30 @@ def main():
         log_worker = LogWorker(config, dom_base, session_manager, public_ip)
         greenlet = gevent.spawn(log_worker.start)
         greenlet.link_exception(on_unhandled_greenlet_exception)
+
+        # Modbus Master
+        template_mmaster = os.path.join(root_template_directory, 'mmaster', 'mmaster.xml')
+        if os.path.isfile(template_mmaster):
+            xsd_file = os.path.join(os.path.dirname(inspect.getfile(MMaster)), 'MMaster.xsd')
+            validate_template(template_mmaster, xsd_file)
+            dom_mmaster = etree.parse(template_mmaster)
+            if dom_mmaster.xpath('//mmaster'):
+                if ast.literal_eval(dom_mmaster.xpath('//mmaster/@enabled')[0]):
+                    devices = dom_mmaster.xpath('./device')
+                    for device in devices:
+                        host = device.attrib['host']
+                        port = int(device.attrib['port'])
+                        update_period = float(device.attrib['update_period'])
+                        mmaster = MMaster(device)
+                        greenlet = gevent.spawn(mmaster.start, host, port, update_period)
+                        greenlet.link_exception(on_unhandled_greenlet_exception)
+                        servers.append(mmaster)
+                        logger.info('Found and enabled %s protocol.', mmaster)
+                else:
+                    logger.info('MMaster available but disabled by template.')
+        else:
+            logger.info('No mmaster template found. Service will remain unconfigured/stopped.')
+
 
         # TODO: Make proxy fit into protocol_instance_mapping
         template_proxy = os.path.join(root_template_directory, 'proxy', 'proxy.xml')

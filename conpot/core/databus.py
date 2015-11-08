@@ -40,8 +40,11 @@ class Databus(object):
     # could interface with a real sensor
     def get_value(self, key):
         logger.debug('DataBus: Get value from key: [%s]', key)
-        assert key in self._data
-        item = self._data[key]
+        real_key = key
+        if key.startswith('w ') or key.startswith('r '):
+            real_key = key[2:]
+        assert real_key in self._data
+        item = self._data[real_key]
         if getattr(item, "get_value", None):
             # this could potentially generate a context switch, but as long the called method
             # does not "callback" the databus we should be fine
@@ -53,9 +56,13 @@ class Databus(object):
             return item
 
     def set_value(self, key, value):
-        logger.debug('DataBus: Storing key: [%s] value: [%s]', key, value)
-        if key not in self._data or not self._data[key] == value:
-            self._data[key] = value
+        logger.info('DataBus: Storing key: [%s] value: [%s]', key, value)
+        real_key = key
+        if key.startswith('w ') or key.startswith('r '):
+            real_key = key[2:]
+        if real_key not in self._data or not self._data[real_key] == value:
+            # store value
+            self._data[real_key] = value
             # notify observers
             if key in self._observer_map:
                 gevent.spawn(self.notify_observers, key)

@@ -157,13 +157,8 @@ class DCT(object):
             self.source_site = source_site
             self.target_site = target_site
         except socket.error, e:
-            if e.errno == errno.ECONNRESET:
-                # Handle disconnection -- close & reopen socket etc.
-                logging.exception(e)
-                self.connected = False
-            else:
-                # Other error
-                raise
+            logger.error('Error because: %s' % e)
+            self.connected = False
 
     def pause(self):
         """
@@ -182,13 +177,8 @@ class DCT(object):
             else:
                 return
         except socket.error, e:
-            if e.errno == errno.ECONNRESET:
-                # Handle disconnection -- close & reopen socket etc.
-                logging.exception(e)
-                self.connected = False
-            else:
-                # Other error
-                raise
+            logger.error('Error because: %s' % e)
+            self.connected = False
 
     def unpack_errors(self, msg_bytes):
         for err in ERRORS:

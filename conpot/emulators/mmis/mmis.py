@@ -16,6 +16,7 @@ stream_handler = logging.StreamHandler(sys.stderr)
 stream_handler.setFormatter(formatter)
 logger.addHandler(stream_handler)
 
+HEADER_FMT = '<H'
 CHECK_SUM_FMT = '<B'
 SEND_ORDER_FMT = '<HI12H'
 RECEIVE_ORDER_FMT = '<HI2HB'
@@ -35,6 +36,8 @@ CONFIRM_ORDER_FMT = '<HIH'
 #
 # print binascii.hexlify(struct.pack(CHECK_SUM_FMT, 239))
 
+# s = '\x13\x27\x01\x00\x00\x00\x00\x00\x01\x00\x3c'
+# print struct.unpack(RECEIVE_ORDER_FMT, s)
 
 DEFAULT_HOST = '192.168.1.188'
 DEFAULT_PORT = 90002
@@ -73,6 +76,18 @@ class MMIS(object):
         logger.info('sending "%s"' % binascii.hexlify(data))
         logger.info('确认订单完成: ' + str(order_no))
 
+    def recv_msg(self, header_1_msg, header_1_byte, header_2_byte):
+        if header_1_msg == header_1_byte:
+            header_2_msg = self.sock.recv(1)
+            if header_2_msg == header_2_byte:
+                body_msg = self.sock.recv(8)
+                checksum_msg = self.sock.recv(1)
+                if MMIS.checksum(header_1_msg + header_2_msg + body_msg) == checksum_msg:
+                    all_msg = header_1_msg + header_2_msg + body_msg + checksum_msg
+                    logger.info('received "%s"' % binascii.hexlify(all_msg))
+                    return struct.unpack(RECEIVE_ORDER_FMT, all_msg)
+        return None
+
     def start(self, host, port):
         self.host = host
         self.port = port
@@ -82,22 +97,21 @@ class MMIS(object):
                     break
                 if not self.connected:
                     self.connect()
-                receive_msg = self.sock.recv(11)
-                logger.debug('received "%s"' % binascii.hexlify(receive_msg))
-                header, order_no, oder_step, state, checksum = struct.unpack(RECEIVE_ORDER_FMT, receive_msg)
-                logger.debug((header, order_no, oder_step, state, checksum))
-                if header == 10003:
-                    logger.info('received "%s"' % binascii.hexlify(receive_msg))
+
+                header_1_msg = self.sock.recv(1)
+                recv_msg = self.recv_msg(header_1_msg, '\x13', '\x27')
+                if recv_msg:
+                    header, order_no, oder_step, state, checksum = recv_msg
                     logger.info('订单已确认，订单号: ' + str(order_no))
-                elif header == 10005:
-                    logger.info('received "%s"' % binascii.hexlify(receive_msg))
+                    continue
+                recv_msg = self.recv_msg(header_1_msg, '\x15', '\x27')
+                if recv_msg:
+                    header, order_no, oder_step, vno, checksum = recv_msg
                     logger.info('订单已完成，订单号: ' + str(order_no))
                     self.confirm_order(order_no)
             except socket.error, e:
                 logger.error('Error because: %s' % e)
                 self.connected = False
-
-            time.sleep(1)
 
     def stop(self):
         logger.info('closing socket')
@@ -109,6 +123,6 @@ mmis = MMIS(None, None, None)
 threading.Thread(target=mmis.start, args=('192.168.1.100', 3000)).start()
 while 1:
     if mmis.connected:
-        mmis.send_order(1, 13, 5)
+        mmis.send_order(1, 5, 13)
         break
     time.sleep(1.1)

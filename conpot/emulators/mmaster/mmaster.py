@@ -1,6 +1,6 @@
 # coding=utf-8
 
-from gevent.coros import RLock
+from gevent.lock import RLock
 import logging
 import socket
 import time

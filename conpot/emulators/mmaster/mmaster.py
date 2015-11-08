@@ -47,6 +47,7 @@ class Point(object):
 class MMaster(object):
     def __init__(self, device_node):
         self.connected = False
+        self.closed = False
         self.modbus_client = None
         self.slaves = []
         self.executions = []
@@ -183,7 +184,7 @@ class MMaster(object):
     def start(self, host, port, update_period):
         self.modbus_client = ModbusClient(host, port=port)
         self.iterate_blocks()
-        while 1:
+        while not self.closed:
             try:
                 if not self.connected:
                     self.connect()
@@ -219,3 +220,7 @@ class MMaster(object):
                 logger.error('Error because: %s' % e)
                 self.connected = False
             time.sleep(update_period)
+
+    def stop(self):
+        self.closed = True
+        self.modbus_client.close()

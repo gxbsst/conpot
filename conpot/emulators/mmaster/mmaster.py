@@ -79,13 +79,13 @@ class MMaster(object):
                         point.endian = endian
                     block.points.append(point)
 
-    def write_coils(self, address, value):
+    def write_coils(self, address, value, unit=1):
         with lock:
-            return self.modbus_client.write_coils(address, value)
+            return self.modbus_client.write_coils(address, value, unit=unit)
 
-    def write_registers(self, address, value):
+    def write_registers(self, address, value, unit=1):
         with lock:
-            return self.modbus_client.write_registers(address, value)
+            return self.modbus_client.write_registers(address, value, unit=unit)
 
     def read_coils(self, address, size, unit=1):
         with lock:
@@ -119,7 +119,8 @@ class MMaster(object):
                         conpot_core.get_databus().observe_value('w ' + point.point_id,
                                                                 lambda key: self.write_coils(
                                                                     point.address,
-                                                                    conpot_core.get_databus().get_value(key)))
+                                                                    conpot_core.get_databus().get_value(key),
+                                                                    unit=slave.slave_id))
                 elif block.range_type == 'DISCRETE_INPUTS':
                     self.executions.append((self.read_discrete_inputs,
                                             block.starting_address,
@@ -136,7 +137,8 @@ class MMaster(object):
                         conpot_core.get_databus().observe_value('w ' + point.point_id,
                                                                 lambda key: self.write_registers(
                                                                     point.address,
-                                                                    conpot_core.get_databus().get_value(key)))
+                                                                    conpot_core.get_databus().get_value(key),
+                                                                    unit=slave.slave_id))
                 elif block.range_type == 'INPUT_REGISTERS':
                     self.executions.append((self.read_input_registers,
                                             block.starting_address,
@@ -167,7 +169,6 @@ class MMaster(object):
                                 value = result.bits[point.address - starting_address]
                             elif result.registers:
                                 value = result.bits[point.address - starting_address]
-                            print value
                             conpot_core.get_databus().set_value('r ' + point.point_id, value)
             except ConnectionException, e:
                 logger.error('Error because: %s' % e)

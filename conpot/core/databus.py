@@ -56,7 +56,7 @@ class Databus(object):
             return item
 
     def set_value(self, key, value):
-        logger.info('DataBus: Storing key: [%s] value: [%s]', key, value)
+        logger.debug('DataBus: Storing key: [%s] value: [%s]', key, value)
         real_key = key
         if key.startswith('w ') or key.startswith('r '):
             real_key = key[2:]

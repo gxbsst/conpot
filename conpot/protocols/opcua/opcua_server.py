@@ -88,6 +88,7 @@ class OPCUAServer(Server):
                     'Server': OPCUAServer,
                     'server': self,
                     'ua': ua,
+                    'databus': conpot_core.get_databus(),
                     'ua_object': ua_object,
                     'node_id': method_node_id,
                     'browser_name': method_browser_name,

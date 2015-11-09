@@ -6,19 +6,6 @@
         <variable node_id="ns=1;s=MyFolder.MingjiangRobot.Start" browser_name="Start">
             <value type="int">1</value>
         </variable>
-        <method node_id="ns=1;s=MyFolder.MingjiangRobot.MyMethod" browser_name="MyMethod">
-            <input_args>Int64</input_args>
-            <output_args>Boolean</output_args>
-            <func>
-                <![CDATA[
-                def func(parent, variant)
-                    ret = False
-                    if variant.Value % 2 == 0:
-                        ret = True
-                    return [ua.Variant(ret, ua.VariantType.Boolean)]
-                ]]>
-            </func>
-        </method>
     </object>
     <object node_id="ns=1;s=MyFolder.SinsunRobot" browser_name="SinsunRobot" parent="ns=1;s=MyFolder">
         <variable node_id="ns=1;s=MyFolder.SinsunRobot.MyVar" browser_name="MyVar">

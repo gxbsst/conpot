@@ -42,6 +42,7 @@ class Point(object):
         self.count = count
         self.encoding = encoding
         self.endian = endian
+        self.slave_id = 1
 
 
 class MMaster(object):
@@ -50,6 +51,7 @@ class MMaster(object):
         self.closed = False
         self.modbus_client = None
         self.slaves = []
+        self.point_dict = {}
         self.executions = []
         self.parse(device_node)
 
@@ -84,35 +86,46 @@ class MMaster(object):
                     if endian_nodes is not None and len(endian_nodes) > 0:
                         endian = endian_nodes[0].text
                         point.endian = endian
+                    point.slave_id = slave.slave_id
+                    self.point_dict[point_id] = point
                     block.points.append(point)
 
-    def write_coils(self, address, value, unit=1):
-        with lock:
-            return self.modbus_client.write_coils(address, value, unit=unit)
+    def write_coils(self, key):
+        point = self.point_dict.get(key[2:])
+        if point:
+            value = conpot_core.get_databus().get_value(key)
+            with lock:
+                return self.modbus_client.write_coils(point.address, value, unit=point.slave_id)
 
-    def write_registers(self, point, address, value, unit=1):
-        if not point.encoding == 'none':
-            endian = Endian.Auto
-            if point.endian == 'Little':
-                endian = Endian.Little
-            elif point.endian == 'Big':
-                endian = Endian.Big
-            builder = BinaryPayloadBuilder(endian=endian)
-            if point.encoding == 'bits':
-                builder.add_bits(value)
-            elif point.encoding == '8int':
-                builder.add_8bit_int(value)
-            elif point.encoding == '16uint':
-                builder.add_16bit_uint(value)
-            elif point.encoding == 'float':
-                builder.add_32bit_float(value)
-            elif point.encoding == 'string':
-                builder.add_string(value)
-            with lock:
-                return self.modbus_client.write_registers(address, builder.build(), unit=unit, skip_encode=True)
-        else:
-            with lock:
-                return self.modbus_client.write_registers(address, [value], unit=unit)
+    def write_registers(self, key):
+        point = self.point_dict.get(key[2:])
+        if point:
+            value = conpot_core.get_databus().get_value(key)
+            if not point.encoding == 'none':
+                endian = Endian.Auto
+                if point.endian == 'Little':
+                    endian = Endian.Little
+                elif point.endian == 'Big':
+                    endian = Endian.Big
+                builder = BinaryPayloadBuilder(endian=endian)
+                if point.encoding == 'bits':
+                    builder.add_bits(value)
+                elif point.encoding == '8int':
+                    builder.add_8bit_int(value)
+                elif point.encoding == '16uint':
+                    builder.add_16bit_uint(value)
+                elif point.encoding == 'float':
+                    builder.add_32bit_float(value)
+                elif point.encoding == 'string':
+                    builder.add_string(value)
+                with lock:
+                    return self.modbus_client.write_registers(point.address,
+                                                              builder.build(),
+                                                              unit=point.slave_id,
+                                                              skip_encode=True)
+            else:
+                with lock:
+                    return self.modbus_client.write_registers(point.address, [value], unit=point.slave_id)
 
     def read_coils(self, address, size, unit=1):
         with lock:
@@ -144,10 +157,7 @@ class MMaster(object):
                                             block.points))
                     for point in block.points:
                         conpot_core.get_databus().observe_value('w ' + point.point_id,
-                                                                lambda key: self.write_coils(
-                                                                    point.address,
-                                                                    conpot_core.get_databus().get_value(key),
-                                                                    unit=slave.slave_id))
+                                                                lambda key: self.write_coils(key))
                 elif block.range_type == 'DISCRETE_INPUTS':
                     self.executions.append((self.read_discrete_inputs,
                                             block.starting_address,
@@ -162,11 +172,7 @@ class MMaster(object):
                                             block.points))
                     for point in block.points:
                         conpot_core.get_databus().observe_value('w ' + point.point_id,
-                                                                lambda key: self.write_registers(
-                                                                    point,
-                                                                    point.address,
-                                                                    conpot_core.get_databus().get_value(key),
-                                                                    unit=slave.slave_id))
+                                                                lambda key: self.write_registers(key))
                 elif block.range_type == 'INPUT_REGISTERS':
                     self.executions.append((self.read_input_registers,
                                             block.starting_address,

@@ -14,16 +14,18 @@
         <variable node_id="ns=1;s=MyFolder.MyObject.Pro" browser_name="Pro">
             <value type="int">1</value>
         </variable>
-        <method node_id="ns=1;s=MyFolder.MyObject.MyMethod" browser_name="MyMethod">
+        <method node_id="ns=1;s=MyFolder.MyObject.MyTestMethod" browser_name="MyTestMethod">
             <input_args>Int64</input_args>
             <output_args>Boolean</output_args>
             <func>
                 <![CDATA[
-                def func(parent, variant)
-                    ret = False
-                    if variant.Value % 2 == 0:
-                        ret = True
-                    return [ua.Variant(ret, ua.VariantType.Boolean)]
+def func(parent, variant):
+    ret = False
+    if variant.Value % 2 == 0:
+        ret = True
+    return [ua.Variant(ret, ua.VariantType.Boolean)]
+
+Server.create_method(ua_object, node_id, browser_name, func, input_args, output_args)
                 ]]>
             </func>
         </method>

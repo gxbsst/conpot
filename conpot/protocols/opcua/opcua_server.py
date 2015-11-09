@@ -1,6 +1,7 @@
 # coding=utf-8
 
 from opcua import ua, Server
+from opcua.node import Node
 from lxml import etree
 import logging
 import conpot.core as conpot_core
@@ -23,7 +24,11 @@ class SubHandler(object):
 class OPCUAServer(Server):
     def __init__(self, template, template_directory, args):
         Server.__init__(self)
-        dom = etree.parse(template)
+        self.template = template
+        self.variables = []
+
+    def parse(self):
+        dom = etree.parse(self.template)
 
         # Server name
         root = dom.xpath('//opcua')[0]
@@ -39,8 +44,6 @@ class OPCUAServer(Server):
                     parent = self.get_node(parent_id)
                     break
             parent.add_folder(folder.attrib['node_id'], folder.attrib['browser_name'])
-
-        self.variables = []
 
         # Objects
         objects = dom.xpath('//opcua/object')
@@ -67,8 +70,8 @@ class OPCUAServer(Server):
 
             methods = obj.xpath('./method')
             for method in methods:
-                node_id = variable.attrib['node_id']
-                browser_name = variable.attrib['browser_name']
+                method_node_id = method.attrib['node_id']
+                method_browser_name = method.attrib['browser_name']
 
                 input_args = method.xpath('./input_args')
                 ua_input_args = []
@@ -81,11 +84,21 @@ class OPCUAServer(Server):
                 for arg in output_args[0].text.split(',', 1):
                     ua_output_args.append(ua.VariantType[arg])
 
-                # ua_func = eval(method.xpath('./func')[0].text) in {ua}
-                #
-                # ua_object.add_method(node_id, browser_name, ua_func, ua_input_args, output_args)
+                exec method.xpath('./func')[0].text.strip() in {
+                    'Server': OPCUAServer,
+                    'server': self,
+                    'ua': ua,
+                    'ua_object': ua_object,
+                    'node_id': method_node_id,
+                    'browser_name': method_browser_name,
+                    'input_args': ua_input_args,
+                    'output_args': ua_output_args
+                }
 
     def start(self, host, port):
+        # 首先解析XML
+        self.parse()
+
         self.set_endpoint("opc.tcp://" + str(host) + ":" + str(port) + "/ua/server/")
         logger.info('OPCUA server started on: %s', (host, port))
         Server.start(self)
@@ -98,3 +111,82 @@ class OPCUAServer(Server):
 
     def stop(self):
         Server.stop(self)
+
+    @staticmethod
+    def create_method(parent, *args):
+        nodeid, qname = OPCUAServer._parse_add_args(*args[:2])
+        callback = args[2]
+        if len(args) > 3:
+            inputs = args[3]
+        if len(args) > 4:
+            outputs = args[4]
+        return OPCUAServer._create_method(parent, nodeid, qname, callback, inputs, outputs)
+
+    @staticmethod
+    def _parse_add_args(*args):
+        if isinstance(args[0], ua.NodeId):
+            return args[0], args[1]
+        elif isinstance(args[0], str):
+            return ua.NodeId.from_string(args[0]), ua.QualifiedName.from_string(args[1])
+        elif isinstance(args[0], int):
+            return ua.generate_nodeid(args[0]), ua.QualifiedName(args[1], args[0])
+        else:
+            raise TypeError("Add methods takes a nodeid and a qualifiedname as argument, received %s" % args)
+
+    @staticmethod
+    def _create_method(parent, nodeid, qname, callback, inputs, outputs):
+        node = ua.AddNodesItem()
+        node.RequestedNewNodeId = nodeid
+        node.BrowseName = qname
+        node.NodeClass = ua.NodeClass.Method
+        node.ParentNodeId = parent.nodeid
+        node.ReferenceTypeId = ua.NodeId.from_string("i=47")
+        attrs = ua.MethodAttributes()
+        attrs.Description = ua.LocalizedText(qname.Name)
+        attrs.DisplayName = ua.LocalizedText(qname.Name)
+        attrs.WriteMask = ua.OpenFileMode.Read
+        attrs.UserWriteMask = ua.OpenFileMode.Read
+        attrs.Executable = True
+        attrs.UserExecutable = True
+        node.NodeAttributes = attrs
+        results = parent.server.add_nodes([node])
+        results[0].StatusCode.check()
+        method = Node(parent.server, nodeid)
+        if inputs:
+            print [OPCUAServer._vtype_to_argument(vtype) for vtype in inputs]
+            method.add_property(ua.NodeId.from_string(method.nodeid.to_string() + '.InputArguments'),
+                                ua.QualifiedName("InputArguments", 0),
+                                [OPCUAServer._vtype_to_argument(vtype) for vtype in inputs])
+        if outputs:
+            method.add_property(ua.NodeId.from_string(method.nodeid.to_string() + '.OutputArguments'),
+                                ua.QualifiedName("OutputArguments", 0),
+                                [OPCUAServer._vtype_to_argument(vtype) for vtype in outputs])
+        parent.server.add_method_callback(method.nodeid, callback)
+        return nodeid
+
+    @staticmethod
+    def _vtype_to_argument(vtype):
+        if isinstance(vtype, ua.Argument):
+            return ua.ExtensionObject.from_object(vtype)
+
+        arg = ua.Argument()
+        v = ua.Variant(None, vtype)
+        arg.DataType = OPCUAServer._guess_uatype(v)
+        return ua.ExtensionObject.from_object(arg)
+
+    @staticmethod
+    def _guess_uatype(variant):
+        if variant.VariantType == ua.VariantType.ExtensionObject:
+            if variant.Value is None:
+                raise Exception("Cannot guess DataType from Null ExtensionObject")
+            if type(variant.Value) in (list, tuple):
+                if len(variant.Value) == 0:
+                    raise Exception("Cannot guess DataType from Null ExtensionObject")
+                extobj = variant.Value[0]
+            else:
+                extobj = variant.Value
+            objectidname = ua.ObjectIdsInv[extobj.TypeId.Identifier]
+            classname = objectidname.split("_")[0]
+            return ua.NodeId(getattr(ua.ObjectIds, classname))
+        else:
+            return ua.NodeId(getattr(ua.ObjectIds, variant.VariantType.name))

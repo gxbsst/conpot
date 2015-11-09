@@ -196,7 +196,8 @@ class MMaster(object):
                             if isinstance(result, ReadCoilsResponse):
                                 value = result.bits[point.address - starting_address]
                             elif isinstance(result, ReadHoldingRegistersResponse):
-                                value = result.registers[point.address - starting_address:point.count]
+                                start = point.address - starting_address
+                                value = result.registers[start: start + point.count]
                                 if not point.encoding == 'none':
                                     endian = Endian.Auto
                                     if point.endian == 'Little':

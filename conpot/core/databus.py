@@ -55,7 +55,11 @@ class Databus(object):
             # guaranteed to not generate context switch
             return item
 
-    def set_value(self, key, value):
+    def set_value(self, key, value, sync=False):
+        """
+        放入key相关的值，并通知调用者
+        当sync为True的时候将会通知调用者，并等待调用结果返回
+        """
         logger.debug('DataBus: Storing key: [%s] value: [%s]', key, value)
         real_key = key
         if key.startswith('w ') or key.startswith('r '):
@@ -65,11 +69,19 @@ class Databus(object):
             self._data[real_key] = value
             # notify observers
             if key in self._observer_map:
+                if sync:
+                    return self.notify_observers(key, sync)
                 gevent.spawn(self.notify_observers, key)
 
-    def notify_observers(self, key):
+    def notify_observers(self, key, sync=False):
+        result = []
         for cb in self._observer_map[key]:
-            cb(key)
+            if sync:
+                result.append(cb(key))
+            else:
+                cb(key)
+        if sync:
+            return result
 
     def observe_value(self, key, callback):
         assert hasattr(callback, '__call__')

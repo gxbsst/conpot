@@ -1,13 +1,43 @@
 <mmaster enabled="True">
-    <device name="localhost" host="localhost" port="502" update_period="1">
+    <device name="siasun" host="127.0.0.1" port="502" update_period="1">
         <slave id="1">
             <block>
                 <!-- COILS DISCRETE_INPUTS HOLDING_REGISTERS INPUT_REGISTERS -->
                 <type>HOLDING_REGISTERS</type>
-                <starting_address>0</starting_address>
-                <size>5</size>
+                <starting_address>24000</starting_address>
+                <size>1</size>
                 <point id="ns=1;s=MyFolder.MyObject.MyVar">
-                    <address>0</address>
+                    <address>24000</address>
+                    <!--<count>2</count>-->
+                    <!--&lt;!&ndash; Auto Big Little  &ndash;&gt;-->
+                    <!--<endian>Little</endian>-->
+                    <!--&lt;!&ndash; none bits 8int 16uint float string &ndash;&gt;-->
+                    <!--<encoding>float</encoding>-->
+                </point>
+            </block>
+            <block>
+                <!-- COILS DISCRETE_INPUTS HOLDING_REGISTERS INPUT_REGISTERS -->
+                <type>HOLDING_REGISTERS</type>
+                <starting_address>23900</starting_address>
+                <size>3</size>
+                <point id="ns=1;s=MyFolder.MyObject.Move">
+                    <address>23900</address>
+                    <!--<count>2</count>-->
+                    <!--&lt;!&ndash; Auto Big Little  &ndash;&gt;-->
+                    <!--<endian>Little</endian>-->
+                    <!--&lt;!&ndash; none bits 8int 16uint float string &ndash;&gt;-->
+                    <!--<encoding>float</encoding>-->
+                </point>
+                <point id="ns=1;s=MyFolder.MyObject.Status">
+                    <address>23901</address>
+                    <!--<count>2</count>-->
+                    <!--&lt;!&ndash; Auto Big Little  &ndash;&gt;-->
+                    <!--<endian>Little</endian>-->
+                    <!--&lt;!&ndash; none bits 8int 16uint float string &ndash;&gt;-->
+                    <!--<encoding>float</encoding>-->
+                </point>
+                <point id="ns=1;s=MyFolder.MyObject.Pro">
+                    <address>23902</address>
                     <!--<count>2</count>-->
                     <!--&lt;!&ndash; Auto Big Little  &ndash;&gt;-->
                     <!--<endian>Little</endian>-->

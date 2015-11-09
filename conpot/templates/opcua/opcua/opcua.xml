@@ -5,6 +5,15 @@
         <variable node_id="ns=1;s=MyFolder.MyObject.MyVar" browser_name="MyVar">
             <value type="int">1</value>
         </variable>
+        <variable node_id="ns=1;s=MyFolder.MyObject.Move" browser_name="Move">
+            <value type="int">1</value>
+        </variable>
+        <variable node_id="ns=1;s=MyFolder.MyObject.Status" browser_name="Status">
+            <value type="int">1</value>
+        </variable>
+        <variable node_id="ns=1;s=MyFolder.MyObject.Pro" browser_name="Pro">
+            <value type="int">1</value>
+        </variable>
         <method node_id="ns=1;s=MyFolder.MyObject.MyMethod" browser_name="MyMethod">
             <input_args>Int64</input_args>
             <output_args>Boolean</output_args>

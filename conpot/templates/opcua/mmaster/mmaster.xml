@@ -1,12 +1,30 @@
 <mmaster enabled="True">
-    <device name="siasun" host="127.0.0.1" port="502" update_period="1">
+    <device name="mingjiang" host="localhost" port="502" update_period="1">
+        <slave id="1">
+            <block>
+                <!-- COILS DISCRETE_INPUTS HOLDING_REGISTERS INPUT_REGISTERS -->
+                <type>COILS</type>
+                <starting_address>2148</starting_address>
+                <size>1</size>
+                <point id="ns=1;s=MyFolder.MingjiangRobot.Start">
+                    <address>2148</address>
+                    <!--<count>2</count>-->
+                    <!--&lt;!&ndash; Auto Big Little  &ndash;&gt;-->
+                    <!--<endian>Little</endian>-->
+                    <!--&lt;!&ndash; none bits 8int 16uint float string &ndash;&gt;-->
+                    <!--<encoding>float</encoding>-->
+                </point>
+            </block>
+        </slave>
+    </device>
+    <device name="sinsun" host="localhost" port="502" update_period="1">
         <slave id="1">
             <block>
                 <!-- COILS DISCRETE_INPUTS HOLDING_REGISTERS INPUT_REGISTERS -->
                 <type>HOLDING_REGISTERS</type>
                 <starting_address>24000</starting_address>
                 <size>1</size>
-                <point id="ns=1;s=MyFolder.MyObject.MyVar">
+                <point id="ns=1;s=MyFolder.SinsunRobot.MyVar">
                     <address>24000</address>
                     <!--<count>2</count>-->
                     <!--&lt;!&ndash; Auto Big Little  &ndash;&gt;-->
@@ -20,7 +38,7 @@
                 <type>HOLDING_REGISTERS</type>
                 <starting_address>23900</starting_address>
                 <size>3</size>
-                <point id="ns=1;s=MyFolder.MyObject.Move">
+                <point id="ns=1;s=MyFolder.SinsunRobot.Move">
                     <address>23900</address>
                     <!--<count>2</count>-->
                     <!--&lt;!&ndash; Auto Big Little  &ndash;&gt;-->
@@ -28,7 +46,7 @@
                     <!--&lt;!&ndash; none bits 8int 16uint float string &ndash;&gt;-->
                     <!--<encoding>float</encoding>-->
                 </point>
-                <point id="ns=1;s=MyFolder.MyObject.Status">
+                <point id="ns=1;s=MyFolder.SinsunRobot.Status">
                     <address>23901</address>
                     <!--<count>2</count>-->
                     <!--&lt;!&ndash; Auto Big Little  &ndash;&gt;-->
@@ -36,7 +54,7 @@
                     <!--&lt;!&ndash; none bits 8int 16uint float string &ndash;&gt;-->
                     <!--<encoding>float</encoding>-->
                 </point>
-                <point id="ns=1;s=MyFolder.MyObject.Pro">
+                <point id="ns=1;s=MyFolder.SinsunRobot.Pro">
                     <address>23902</address>
                     <!--<count>2</count>-->
                     <!--&lt;!&ndash; Auto Big Little  &ndash;&gt;-->

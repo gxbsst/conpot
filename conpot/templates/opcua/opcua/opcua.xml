@@ -30,11 +30,10 @@
         <variable node_id="ns=1;s=MyFolder.SinsunRobot.Status" browser_name="Status">
             <value type="int">1</value>
         </variable>
-        <method node_id="ns=1;s=MyFolder.MyObject.MyTestMethod" browser_name="MyTestMethod">
         <variable node_id="ns=1;s=MyFolder.SinsunRobot.Pro" browser_name="Pro">
             <value type="int">1</value>
         </variable>
-        <method node_id="ns=1;s=MyFolder.SinsunRobot.MyMethod" browser_name="MyMethod">
+        <method node_id="ns=1;s=MyFolder.MyObject.MyTestMethod" browser_name="MyTestMethod">
             <input_args>Int64</input_args>
             <output_args>Boolean</output_args>
             <func>

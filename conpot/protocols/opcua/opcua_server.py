@@ -26,6 +26,7 @@ class OPCUAServer(Server):
         Server.__init__(self)
         self.template = template
         self.variables = []
+        self.event_dict = {}
 
     def parse(self):
         dom = etree.parse(self.template)
@@ -55,6 +56,8 @@ class OPCUAServer(Server):
                     parent = self.get_node(parent_id)
                     break
             ua_object = parent.add_folder(obj.attrib['node_id'], obj.attrib['browser_name'])
+
+            # Variables
             variables = obj.xpath('./variable')
             for variable in variables:
                 value = variable.xpath('./value')[0]
@@ -68,6 +71,7 @@ class OPCUAServer(Server):
                                                         lambda key: self.get_node(key[2:]).set_value(
                                                             conpot_core.get_databus().get_value(key)))
 
+            # Methods
             methods = obj.xpath('./method')
             for method in methods:
                 method_node_id = method.attrib['node_id']
@@ -95,6 +99,22 @@ class OPCUAServer(Server):
                     'input_args': ua_input_args,
                     'output_args': ua_output_args
                 }
+
+            # Events
+            events = obj.xpath('./event')
+            for event in events:
+                event_id = event.attrib['event_id']
+                severity = int(event.attrib['severity'])
+                message_text = event.xpath('./message')[0].text
+
+                ua_event = self.get_event_object(ua.ObjectIds.BaseEventType)
+                ua_event.EventId = event_id
+                ua_event.Message.Text = message_text
+                ua_event.Severity = severity
+                self.event_dict[event_id] = ua_event
+
+                conpot_core.get_databus().observe_value('r ' + event_id,
+                                                        lambda key: self.event_dict[key[2:]].trigger())
 
     def start(self, host, port):
         # 首先解析XML

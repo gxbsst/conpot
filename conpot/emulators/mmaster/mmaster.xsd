@@ -3,7 +3,7 @@
     <xs:element name="mmaster">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="device">
+                <xs:element name="device" maxOccurs="unbounded" minOccurs="0">
                     <xs:complexType>
                         <xs:sequence>
                             <xs:element name="slave" maxOccurs="unbounded" minOccurs="0">

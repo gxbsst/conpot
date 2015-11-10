@@ -174,7 +174,6 @@ class OPCUAServer(Server):
         results[0].StatusCode.check()
         method = Node(parent.server, nodeid)
         if inputs:
-            print [OPCUAServer._vtype_to_argument(vtype) for vtype in inputs]
             method.add_property(ua.NodeId.from_string(method.nodeid.to_string() + '.InputArguments'),
                                 ua.QualifiedName("InputArguments", 0),
                                 [OPCUAServer._vtype_to_argument(vtype) for vtype in inputs])

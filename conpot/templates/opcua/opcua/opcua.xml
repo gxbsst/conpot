@@ -25,10 +25,10 @@
             <func>
                 <![CDATA[
 def func(parent, variant):
-    ret = False
-    if variant.Value % 2 == 0:
-        ret = True
-    return [ua.Variant(ret, ua.VariantType.Boolean)]
+    ret = databus.set_value('w ns=1;s=MyFolder.SinsunRobot.Status', variant.Value, sync=True)
+    if not ret[0]:
+        return [ua.Variant(False, ua.VariantType.Boolean)]
+    return [ua.Variant(True, ua.VariantType.Boolean)]
 
 Server.create_method(ua_object, node_id, browser_name, func, input_args, output_args)
                 ]]>

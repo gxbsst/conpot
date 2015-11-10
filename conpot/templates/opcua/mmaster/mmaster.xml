@@ -6,7 +6,7 @@
                 <type>COILS</type>
                 <starting_address>2148</starting_address>
                 <size>1</size>
-                <point id="ns=1;s=MyFolder.MingjiangRobot.Start">
+                <point id="ns=1;s=MJGrooveRobot.StartProperty">
                     <address>2148</address>
                     <!--<count>2</count>-->
                     <!--&lt;!&ndash; Auto Big Little  &ndash;&gt;-->

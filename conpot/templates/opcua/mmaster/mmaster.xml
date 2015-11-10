@@ -1,4 +1,5 @@
 <mmaster enabled="True">
+    <!-- 明匠机器人 -->
     <device name="MJGrooveRobot" host="localhost" port="502" update_period="1">
         <slave id="1">
             <block>
@@ -20,6 +21,7 @@
             </block>
         </slave>
     </device>
+    <!-- 新松机器人 -->
     <device name="SSRobot" host="localhost" port="502" update_period="1">
         <slave id="1">
             <block>
@@ -27,7 +29,7 @@
                 <type>HOLDING_REGISTERS</type>
                 <starting_address>24000</starting_address>
                 <size>1</size>
-                <point id="ns=1;s=MyFolder.SinsunRobot.MyVar">
+                <point id="ns=1;s=SSRobot.Start">
                     <address>24000</address>
                     <!--<count>2</count>-->
                     <!--&lt;!&ndash; Auto Big Little  &ndash;&gt;-->
@@ -40,38 +42,28 @@
                 <!-- COILS DISCRETE_INPUTS HOLDING_REGISTERS INPUT_REGISTERS -->
                 <type>HOLDING_REGISTERS</type>
                 <starting_address>23900</starting_address>
-                <size>3</size>
-                <point id="ns=1;s=MyFolder.SinsunRobot.Move">
+                <size>7</size>
+                <point id="ns=1;s=SSRobot.Moved">
                     <address>23900</address>
                 </point>
-                <point id="ns=1;s=MyFolder.SinsunRobot.Status">
-                    <address>23901</address>
-                    <!--<count>2</count>-->
-                    <!--&lt;!&ndash; Auto Big Little  &ndash;&gt;-->
-                    <!--<endian>Little</endian>-->
-                    <!--&lt;!&ndash; none bits 8int 16uint float string &ndash;&gt;-->
-                    <!--<encoding>float</encoding>-->
+                <point id="ns=1;s=SSRobot.Cutting">
+                    <address>23903</address>
                 </point>
-                <point id="ns=1;s=MyFolder.SinsunRobot.Pro">
-                    <address>23902</address>
-                    <!--<count>2</count>-->
-                    <!--&lt;!&ndash; Auto Big Little  &ndash;&gt;-->
-                    <!--<endian>Little</endian>-->
-                    <!--&lt;!&ndash; none bits 8int 16uint float string &ndash;&gt;-->
-                    <!--<encoding>float</encoding>-->
+                <point id="ns=1;s=SSRobot.Welding">
+                    <address>23906</address>
                 </point>
             </block>
         </slave>
     </device>
-
-    <device name="MJWarehouse" host="192.168.1.6" port="502" update_period="1">
+    <!-- 明匠立体库 -->
+    <device name="MJWarehouse" host="127.0.0.1" port="502" update_period="1">
         <slave id="1">
             <block>
                 <!-- COILS DISCRETE_INPUTS HOLDING_REGISTERS INPUT_REGISTERS -->
                 <type>HOLDING_REGISTERS</type>
                 <starting_address>6496</starting_address>
                 <size>7</size>
-                    <point id="ns=1;s=MJWarehouse.StartDirection">
+                    <point id="ns=1;s=MJWarehouse.Start">
                         <address>6496</address>
                     </point>
                     <point id="ns=1;s=MJWarehouse.InOutLocation">

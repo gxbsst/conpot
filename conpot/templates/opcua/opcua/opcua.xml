@@ -70,15 +70,24 @@ Server.create_method(ua_object, node_id, browser_name, confirm, input_args, outp
 
     <!-- 明匠立体仓库 -->
     <object node_id="ns=1;s=MJWarehouse" browser_name="MJWarehouse">
+        <variable node_id="ns=1;s=MJWarehouse.MStatus" browser_name="MStatus" readonly="True">
+            <value type="int">1</value>
+        </variable>
         <variable node_id="ns=1;s=MJWarehouse.FinishStatus" browser_name="FinishStatus" readonly="True">
             <value type="int">1</value>
         </variable>
-        <method node_id="ns=1;s=MJWarehouse.StartDirection" browser_name="StartDirection">
+        <method node_id="ns=1;s=MJWarehouse.Start" browser_name="Start">
             <output_args>Boolean</output_args>
             <func>
                 <![CDATA[
-def start(parent, variant):
-    ret = databus.set_value('w ns=1;s=MJWarehouse.StartDirection', variant.Value, sync=True)
+def start(parent, mp_variant, io_variant, start_variant):
+    ret = databus.set_value('w ns=1;s=MJWarehouse.MpLocation', mp_variant.Value, sync=True)
+    if not ret[0]:
+        return [ua.Variant(False, ua.VariantType.Boolean)]
+    ret = databus.set_value('w ns=1;s=MJWarehouse.InOutLocation', io_variant.Value, sync=True)
+    if not ret[0]:
+        return [ua.Variant(False, ua.VariantType.Boolean)]
+    ret = databus.set_value('w ns=1;s=MJWarehouse.Start', start_variant.Value, sync=True)
     if not ret[0]:
         return [ua.Variant(False, ua.VariantType.Boolean)]
     return [ua.Variant(True, ua.VariantType.Boolean)]
@@ -87,67 +96,35 @@ Server.create_method(ua_object, node_id, browser_name, start, input_args, output
                 ]]>
             </func>
         </method>
-        <method node_id="ns=1;s=MJWarehouse.InOutLocation" browser_name="InOutLocation">
+    </object>
+
+    <!-- 新松机器人 -->
+    <object node_id="ns=1;s=SSRobot" browser_name="SSRobot">
+        <variable node_id="ns=1;s=SSRobot.Moved" browser_name="Moved" readonly="True">
+            <value type="int">1</value>
+        </variable>
+        <variable node_id="ns=1;s=SSRobot.Cutting" browser_name="Cutting" readonly="True">
+            <value type="int">1</value>
+        </variable>
+        <variable node_id="ns=1;s=SSRobot.Welding" browser_name="Welding" readonly="True">
+            <value type="int">1</value>
+        </variable>
+        <method node_id="ns=1;s=SSRobot.Start" browser_name="Start">
+            <input_args>Int64,Int64</input_args>
             <output_args>Boolean</output_args>
             <func>
                 <![CDATA[
-def confirm(parent, variant):
-    ret = databus.set_value('w ns=1;s=MJWarehouse.InOutLocation', variant.Value, sync=True)
+def start(parent, variant):
+    ret = databus.set_value('w ns=1;s=SSRobot.Start', variant.Value, sync=True)
     if not ret[0]:
         return [ua.Variant(False, ua.VariantType.Boolean)]
     return [ua.Variant(True, ua.VariantType.Boolean)]
 
-Server.create_method(ua_object, node_id, browser_name, confirm, input_args, output_args)
-                ]]>
-            </func>
-        </method>
-        <method node_id="ns=1;s=MJWarehouse.MpLocation" browser_name="MpLocation">
-            <output_args>Boolean</output_args>
-            <func>
-                <![CDATA[
-def confirm(parent, variant):
-    ret = databus.set_value('w ns=1;s=MJWarehouse.MpLocation', variant.Value, sync=True)
-    if not ret[0]:
-        return [ua.Variant(False, ua.VariantType.Boolean)]
-    return [ua.Variant(True, ua.VariantType.Boolean)]
-
-Server.create_method(ua_object, node_id, browser_name, confirm, input_args, output_args)
+Server.create_method(ua_object, node_id, browser_name, start, input_args, output_args)
                 ]]>
             </func>
         </method>
     </object>
-
-    <!--
-    <object node_id="ns=1;s=MyFolder.SinsunRobot" browser_name="SinsunRobot" parent="ns=1;s=MyFolder">
-        <variable node_id="ns=1;s=MyFolder.SinsunRobot.MyVar" browser_name="MyVar">
-            <value type="int">1</value>
-        </variable>
-        <variable node_id="ns=1;s=MyFolder.SinsunRobot.Move" browser_name="Move">
-            <value type="int">1</value>
-        </variable>
-        <variable node_id="ns=1;s=MyFolder.SinsunRobot.Status" browser_name="Status">
-            <value type="int">1</value>
-        </variable>
-        <variable node_id="ns=1;s=MyFolder.SinsunRobot.Pro" browser_name="Pro">
-            <value type="int">1</value>
-        </variable>
-        <method node_id="ns=1;s=MyFolder.MyObject.MyTestMethod" browser_name="MyTestMethod">
-            <input_args>Int64</input_args>
-            <output_args>Boolean</output_args>
-            <func>
-                <![CDATA[
-def func(parent, variant):
-    ret = databus.set_value('w ns=1;s=MyFolder.SinsunRobot.Status', variant.Value, sync=True)
-    if not ret[0]:
-        return [ua.Variant(False, ua.VariantType.Boolean)]
-    return [ua.Variant(True, ua.VariantType.Boolean)]
-
-Server.create_method(ua_object, node_id, browser_name, func, input_args, output_args)
-                ]]>
-            </func>
-        </method>
-    </object>
-    -->
 
     <event event_id="MyEvent" severity="300">
         <message>This is my event</message>

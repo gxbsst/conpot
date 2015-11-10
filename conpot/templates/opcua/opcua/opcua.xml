@@ -1,10 +1,9 @@
 <opcua enabled="True" name="MJ OPCUA Server" host="0.0.0.0" port="4881">
     <folder node_id="ns=1;s=MyFolder" browser_name="MyFolder"/>
 
-
     <object node_id="ns=1;s=MyFolder.MingjiangRobot" browser_name="MingjiangRobot" parent="ns=1;s=MyFolder">
         <variable node_id="ns=1;s=MyFolder.MingjiangRobot.Start" browser_name="Start">
-            <value type="int">1</value>
+            <value type="bool">True</value>
         </variable>
         <method node_id="ns=1;s=MyFolder.MingjiangRobot.MyMethod" browser_name="MyMethod">
             <input_args>Int64</input_args>

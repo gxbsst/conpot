@@ -5,19 +5,6 @@
         <variable node_id="ns=1;s=MyFolder.MingjiangRobot.Start" browser_name="Start">
             <value type="bool">True</value>
         </variable>
-        <method node_id="ns=1;s=MyFolder.MingjiangRobot.MyMethod" browser_name="MyMethod">
-            <input_args>Int64</input_args>
-            <output_args>Boolean</output_args>
-            <func>
-                <![CDATA[
-                def func(parent, variant)
-                    ret = False
-                    if variant.Value % 2 == 0:
-                        ret = True
-                    return [ua.Variant(ret, ua.VariantType.Boolean)]
-                ]]>
-            </func>
-        </method>
     </object>
     <object node_id="ns=1;s=MyFolder.SinsunRobot" browser_name="SinsunRobot" parent="ns=1;s=MyFolder">
         <variable node_id="ns=1;s=MyFolder.SinsunRobot.MyVar" browser_name="MyVar">
@@ -32,18 +19,24 @@
         <variable node_id="ns=1;s=MyFolder.SinsunRobot.Pro" browser_name="Pro">
             <value type="int">1</value>
         </variable>
-        <method node_id="ns=1;s=MyFolder.SinsunRobot.MyMethod" browser_name="MyMethod">
+        <method node_id="ns=1;s=MyFolder.MyObject.MyTestMethod" browser_name="MyTestMethod">
             <input_args>Int64</input_args>
             <output_args>Boolean</output_args>
             <func>
                 <![CDATA[
-                def func(parent, variant)
-                    ret = False
-                    if variant.Value % 2 == 0:
-                        ret = True
-                    return [ua.Variant(ret, ua.VariantType.Boolean)]
+def func(parent, variant):
+    ret = databus.set_value('w ns=1;s=MyFolder.SinsunRobot.Status', variant.Value, sync=True)
+    if not ret[0]:
+        return [ua.Variant(False, ua.VariantType.Boolean)]
+    return [ua.Variant(True, ua.VariantType.Boolean)]
+
+Server.create_method(ua_object, node_id, browser_name, func, input_args, output_args)
                 ]]>
             </func>
         </method>
     </object>
+
+    <event event_id="MyEvent" severity="300">
+        <message>This is my event</message>
+    </event>
 </opcua>

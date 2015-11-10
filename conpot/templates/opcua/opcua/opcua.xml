@@ -1,7 +1,7 @@
 <opcua enabled="True" name="MJ OPCUA Server" host="0.0.0.0" port="4881">
 
     <object node_id="ns=1;s=MJGrooveRobot" browser_name="MJGrooveRobot">
-        <variable node_id="ns=1;s=MJGrooveRobot.State" browser_name="State">
+        <variable node_id="ns=1;s=MJGrooveRobot.State" browser_name="State" readonly="True">
             <!-- waiting -> starting -> delivered -> grooved －> completed -> waiting... -->
             <value type="str">waiting</value>
         </variable>

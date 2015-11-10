@@ -20,7 +20,7 @@
             </block>
         </slave>
     </device>
-    <device name="sinsun" host="localhost" port="502" update_period="1">
+    <device name="SSRobot" host="localhost" port="502" update_period="1">
         <slave id="1">
             <block>
                 <!-- COILS DISCRETE_INPUTS HOLDING_REGISTERS INPUT_REGISTERS -->
@@ -43,11 +43,6 @@
                 <size>3</size>
                 <point id="ns=1;s=MyFolder.SinsunRobot.Move">
                     <address>23900</address>
-                    <!--<count>2</count>-->
-                    <!--&lt;!&ndash; Auto Big Little  &ndash;&gt;-->
-                    <!--<endian>Little</endian>-->
-                    <!--&lt;!&ndash; none bits 8int 16uint float string &ndash;&gt;-->
-                    <!--<encoding>float</encoding>-->
                 </point>
                 <point id="ns=1;s=MyFolder.SinsunRobot.Status">
                     <address>23901</address>
@@ -68,4 +63,31 @@
             </block>
         </slave>
     </device>
+
+    <device name="MJWarehouse" host="192.168.1.6" port="502" update_period="1">
+        <slave id="1">
+            <block>
+                <!-- COILS DISCRETE_INPUTS HOLDING_REGISTERS INPUT_REGISTERS -->
+                <type>HOLDING_REGISTERS</type>
+                <starting_address>6496</starting_address>
+                <size>7</size>
+                    <point id="ns=1;s=MJWarehouse.StartDirection">
+                        <address>6496</address>
+                    </point>
+                    <point id="ns=1;s=MJWarehouse.InOutLocation">
+                        <address>6497</address>
+                    </point>
+                    <point id="ns=1;s=MJWarehouse.MpLocation">
+                        <address>6498</address>
+                    </point>
+                    <point id="ns=1;s=MJWarehouse.MStatus" readonly="True">
+                        <address>6500</address>
+                    </point>
+                    <point id="ns=1;s=MJWarehouse.FinishStatus" readonly="True">
+                        <address>6502</address>
+                    </point>
+            </block>
+        </slave>
+    </device>
+
 </mmaster>

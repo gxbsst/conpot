@@ -95,7 +95,7 @@ class MMaster(object):
         if point:
             value = conpot_core.get_databus().get_value(key)
             with lock:
-                return self.modbus_client.write_coils(point.address, value, unit=point.slave_id)
+                return self.modbus_client.write_coil(point.address, value, unit=point.slave_id)
 
     def write_registers(self, key):
         point = self.point_dict.get(key[2:])

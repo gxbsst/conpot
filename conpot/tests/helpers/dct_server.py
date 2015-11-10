@@ -34,3 +34,5 @@ class DCTServer(object):
     def stop(self):
         self.closed = True
         self.conn.close()
+
+DCTServer().start()

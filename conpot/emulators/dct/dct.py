@@ -7,6 +7,7 @@ import errno
 import time
 from enum import Enum
 import sys
+import conpot.core as conpot_core
 
 logger = logging.getLogger(__name__)
 # stream_handler = logging.StreamHandler(sys.stderr)
@@ -108,6 +109,9 @@ class DCT(object):
         self.connected = False
         self.closed = False
 
+        # 绑定callback
+        conpot_core.get_databus().observe_value('w ns=1;s=KYRgv.Go', lambda key: self.bind_go(key))
+
     def __str__(self):
         return 'DCT - [current_site: ' + str(self.current_site) + ', load_state: ' + str(
             self.load_state) + ', state: ' + str(self.state) \
@@ -138,6 +142,10 @@ class DCT(object):
         receive_msg = self.sock.recv(6)
         logger.info('received "%s"' % binascii.hexlify(receive_msg))
 
+    def bind_go(self, key):
+        source_site, target_site = conpot_core.get_databus().get_value(key)
+        return self.go(source_site, target_site)
+
     def go(self, source_site=1, target_site=1):
         """
         指定目标站点启动
@@ -147,18 +155,20 @@ class DCT(object):
             self.get_rgv_state()
             # 如果小车不处于停止状态直接返回
             if (not self.state == State.stopped) and (not self.state == State.halt):
-                return
+                return False
             if (source_site == 1 and target_site == 2) or (source_site == 2 and target_site == 1):
                 self.execute_msg(REST_1_2_MSG, START_1_2_MSG)
             elif (source_site == 1 and target_site == 3) or (source_site == 3 and target_site == 1):
                 self.execute_msg(REST_1_3_MSG, START_1_3_MSG)
             else:
-                return
+                return False
             self.source_site = source_site
             self.target_site = target_site
+            return True
         except socket.error, e:
             logger.error('Error because: %s' % e)
             self.connected = False
+            return False
 
     def pause(self):
         """
@@ -191,6 +201,8 @@ class DCT(object):
         elif msg_bytes[3] & LoadState.full_load.value == LoadState.full_load.value:
             self.load_state = LoadState.full_load
 
+        conpot_core.get_databus().set_value('r ns=1;s=KYRgv.LoadState', self.load_state.name)
+
         if msg_bytes[4] & State.stopped.value == State.stopped.value:
             self.state = State.stopped
         elif msg_bytes[4] & State.halt.value == State.halt.value:
@@ -204,6 +216,8 @@ class DCT(object):
         else:
             self.state = State.waiting
 
+        conpot_core.get_databus().set_value('r ns=1;s=KYRgv.State', self.state.name)
+
         if msg_bytes[4] & SITE_1_FLAG == SITE_1_FLAG:
             self.current_site = 1
         elif msg_bytes[4] & SITE_2_FLAG == SITE_2_FLAG:
@@ -211,17 +225,19 @@ class DCT(object):
         elif msg_bytes[4] & SITE_3_FLAG == SITE_3_FLAG:
             self.current_site = 3
 
+        conpot_core.get_databus().set_value('r ns=1;s=KYRgv.CurrentSite', self.current_site)
+
         if self.state == State.halt:
             self.unpack_errors(msg_bytes)
         elif len(self.errors) > 0:
             self.errors.clear()
 
     def get_rgv_state(self):
-        logger.info('sending "%s"' % binascii.hexlify(READ_STATUS_MSG))
+        logger.debug('sending "%s"' % binascii.hexlify(READ_STATUS_MSG))
         self.sock.sendall(READ_STATUS_MSG)
         # Look for the response
         receive_msg = self.sock.recv(13)
-        logger.info('received "%s"' % binascii.hexlify(receive_msg))
+        logger.debug('received "%s"' % binascii.hexlify(receive_msg))
         self.unpack_state(bytearray(receive_msg))
 
     def start(self, host, port):
@@ -247,7 +263,7 @@ class DCT(object):
 
 # while 1:
 # order = sys.stdin.readline().rstrip()
-#     if order == 's':
+# if order == 's':
 #         threading.Thread(target=dct.start()).start()
 #     elif order == 'p':
 #         dct.pause()

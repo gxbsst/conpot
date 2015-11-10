@@ -1,8 +1,39 @@
 <opcua enabled="True" name="MJ OPCUA Server" host="0.0.0.0" port="4881">
 
+    <!-- 开元RGV -->
+    <object node_id="ns=1;s=KYRgv" browser_name="KYRgv">
+        <variable node_id="ns=1;s=KYRgv.State" browser_name="State" readonly="True">
+            <!-- waiting stopped halt running fault repair -->
+            <value type="str">waiting</value>
+        </variable>
+        <variable node_id="ns=1;s=KYRgv.LoadState" browser_name="LoadState" readonly="True">
+            <!-- no_load full_load -->
+            <value type="str">no_load</value>
+        </variable>
+        <variable node_id="ns=1;s=KYRgv.CurrentSite" browser_name="CurrentSite" readonly="True">
+            <value type="int">1</value>
+        </variable>
+        <method node_id="ns=1;s=KYRgv.Go" browser_name="Go">
+            <input_args>Int64,Int64</input_args>
+            <output_args>Boolean</output_args>
+            <func>
+                <![CDATA[
+def go(parent, source_site_variant, target_site_variant):
+    ret = databus.set_value('w ns=1;s=KYRgv.Go', (source_site_variant.Value, target_site_variant.Value), sync=True)
+    if not ret[0]:
+        return [ua.Variant(False, ua.VariantType.Boolean)]
+    return [ua.Variant(True, ua.VariantType.Boolean)]
+
+Server.create_method(ua_object, node_id, browser_name, go, input_args, output_args)
+                ]]>
+            </func>
+        </method>
+    </object>
+
+    <!-- 明匠坡口机器人 -->
     <object node_id="ns=1;s=MJGrooveRobot" browser_name="MJGrooveRobot">
         <variable node_id="ns=1;s=MJGrooveRobot.State" browser_name="State" readonly="True">
-            <!-- waiting -> starting -> delivered -> grooved －> completed -> waiting... -->
+            <!-- waiting -> starting -> delivered -> grooved －> completed -->
             <value type="str">waiting</value>
         </variable>
         <method node_id="ns=1;s=MJGrooveRobot.Start" browser_name="Start">

@@ -36,13 +36,21 @@ class Block(object):
 
 
 class Point(object):
-    def __init__(self, point_id, address, count=1, encoding='none', endian='Auto'):
+    def __init__(self, point_id, address, count=1, encoding='none', endian='Auto', readonly=False, condition=None, state=None):
         self.point_id = point_id
         self.address = address
         self.count = count
         self.encoding = encoding
         self.endian = endian
         self.slave_id = 1
+        self.readonly = readonly
+        self.condition = condition
+        self.state = state
+
+    def get_read_value(self, value):
+        if self.state:
+            return self.state
+        return value
 
 
 class MMaster(object):
@@ -74,6 +82,15 @@ class MMaster(object):
                 point_nodes = block_node.xpath('point')
                 for point_node in point_nodes:
                     point_id = point_node.attrib['id']
+                    condition = None
+                    state = None
+                    readonly = False
+                    if 'readonly' in point_node.attrib:
+                        readonly = eval(point_node.attrib['readonly'])
+                    if 'condition' in point_node.attrib:
+                        condition = point_node.attrib['condition']
+                    if 'state' in point_node.attrib:
+                        state = point_node.attrib['state']
                     address = point_node.xpath('./address')[0].text
                     point = Point(point_id, int(address))
                     count_nodes = point_node.xpath('./count')
@@ -87,6 +104,9 @@ class MMaster(object):
                         endian = endian_nodes[0].text
                         point.endian = endian
                     point.slave_id = slave.slave_id
+                    point.readonly = readonly
+                    point.condition = condition
+                    point.state = state
                     self.point_dict[point_id] = point
                     block.points.append(point)
 
@@ -156,8 +176,9 @@ class MMaster(object):
                                             slave.slave_id,
                                             block.points))
                     for point in block.points:
-                        conpot_core.get_databus().observe_value('w ' + point.point_id,
-                                                                lambda key: self.write_coils(key))
+                        if not point.readonly:
+                            conpot_core.get_databus().observe_value('w ' + point.point_id,
+                                                                    lambda key: self.write_coils(key))
                 elif block.range_type == 'DISCRETE_INPUTS':
                     self.executions.append((self.read_discrete_inputs,
                                             block.starting_address,
@@ -171,8 +192,9 @@ class MMaster(object):
                                             slave.slave_id,
                                             block.points))
                     for point in block.points:
-                        conpot_core.get_databus().observe_value('w ' + point.point_id,
-                                                                lambda key: self.write_registers(key))
+                        if not point.readonly:
+                            conpot_core.get_databus().observe_value('w ' + point.point_id,
+                                                                    lambda key: self.write_registers(key))
                 elif block.range_type == 'INPUT_REGISTERS':
                     self.executions.append((self.read_input_registers,
                                             block.starting_address,
@@ -222,7 +244,26 @@ class MMaster(object):
                                     elif point.encoding == 'string':
                                         value = decoder.decode_string(point.count)
 
-                            conpot_core.get_databus().set_value('r ' + point.point_id, value)
+                            if point.condition:
+                                if point.condition[0] == '=':
+                                    if str(value) == point.condition[1:]:
+                                        conpot_core.get_databus().set_value('r ' + point.point_id,
+                                                                            point.get_read_value(value))
+                                elif point.condition[0] == '!':
+                                    if not str(value) == point.condition[1:]:
+                                        conpot_core.get_databus().set_value('r ' + point.point_id,
+                                                                            point.get_read_value(value))
+                                elif point.condition[0] == '>':
+                                    if str(value) > point.condition[1:]:
+                                        conpot_core.get_databus().set_value('r ' + point.point_id,
+                                                                            point.get_read_value(value))
+                                elif point.condition[0] == '<':
+                                    if str(value) < point.condition[1:]:
+                                        conpot_core.get_databus().set_value('r ' + point.point_id,
+                                                                            point.get_read_value(value))
+                            else:
+                                conpot_core.get_databus().set_value('r ' + point.point_id,
+                                                                    point.get_read_value(value))
             except ConnectionException, e:
                 logger.error('Error because: %s' % e)
                 self.connected = False

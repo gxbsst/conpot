@@ -5,6 +5,7 @@ from opcua.node import Node
 from lxml import etree
 import logging
 import conpot.core as conpot_core
+import time
 
 logger = logging.getLogger(__name__)
 
@@ -89,6 +90,7 @@ class OPCUAServer(Server):
                     ua_output_args.append(ua.VariantType[arg])
 
                 exec method.xpath('./func')[0].text.strip() in {
+                    'time': time,
                     'Server': OPCUAServer,
                     'server': self,
                     'ua': ua,

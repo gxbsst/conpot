@@ -1,18 +1,21 @@
 <mmaster enabled="True">
-    <device name="mingjiang" host="localhost" port="502" update_period="1">
+    <device name="MJGrooveRobot" host="localhost" port="502" update_period="1">
         <slave id="1">
             <block>
-                <!-- COILS DISCRETE_INPUTS HOLDING_REGISTERS INPUT_REGISTERS -->
                 <type>COILS</type>
                 <starting_address>2148</starting_address>
-                <size>1</size>
-                <point id="ns=1;s=MJGrooveRobot.StartProperty">
+                <size>54</size>
+                <point id="ns=1;s=MJGrooveRobot.StartSignal">
                     <address>2148</address>
-                    <!--<count>2</count>-->
-                    <!--&lt;!&ndash; Auto Big Little  &ndash;&gt;-->
-                    <!--<endian>Little</endian>-->
-                    <!--&lt;!&ndash; none bits 8int 16uint float string &ndash;&gt;-->
-                    <!--<encoding>float</encoding>-->
+                </point>
+                <point id="ns=1;s=MJGrooveRobot.State" readonly="True" state="grooved" condition="=True">
+                    <address>2172</address>
+                </point>
+                <point id="ns=1;s=MJGrooveRobot.State" readonly="True" state="delivered" condition="=True">
+                    <address>2200</address>
+                </point>
+                <point id="ns=1;s=MJGrooveRobot.State" readonly="True" state="completed" condition="=True">
+                    <address>2201</address>
                 </point>
             </block>
         </slave>

@@ -1,17 +1,37 @@
 <opcua enabled="True" name="MJ OPCUA Server" host="0.0.0.0" port="4881">
 
     <object node_id="ns=1;s=MJGrooveRobot" browser_name="MJGrooveRobot">
+        <variable node_id="ns=1;s=MJGrooveRobot.State" browser_name="State">
+            <!-- waiting -> starting -> delivered -> grooved －> completed -> waiting... -->
+            <value type="str">waiting</value>
+        </variable>
         <method node_id="ns=1;s=MJGrooveRobot.Start" browser_name="Start">
             <output_args>Boolean</output_args>
             <func>
                 <![CDATA[
 def start(parent):
-    ret = databus.set_value('w ns=1;s=MJGrooveRobot.StartProperty', 1, sync=True)
+    ret = databus.set_value('w ns=1;s=MJGrooveRobot.StartSignal', 1, sync=True)
     if not ret[0]:
         return [ua.Variant(False, ua.VariantType.Boolean)]
+    server.get_node('ns=1;s=MJGrooveRobot.State').set_value('starting')
     return [ua.Variant(True, ua.VariantType.Boolean)]
 
 Server.create_method(ua_object, node_id, browser_name, start, input_args, output_args)
+                ]]>
+            </func>
+        </method>
+        <method node_id="ns=1;s=MJGrooveRobot.Confirm" browser_name="Confirm">
+            <output_args>Boolean</output_args>
+            <func>
+                <![CDATA[
+def confirm(parent):
+    ret = databus.set_value('w ns=1;s=MJGrooveRobot.StartSignal', 0, sync=True)
+    if not ret[0]:
+        return [ua.Variant(False, ua.VariantType.Boolean)]
+    server.get_node('ns=1;s=MJGrooveRobot.State').set_value('waiting')
+    return [ua.Variant(True, ua.VariantType.Boolean)]
+
+Server.create_method(ua_object, node_id, browser_name, confirm, input_args, output_args)
                 ]]>
             </func>
         </method>

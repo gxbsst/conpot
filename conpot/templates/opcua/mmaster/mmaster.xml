@@ -56,7 +56,7 @@
         </slave>
     </device>
     <!-- 明匠立体库 -->
-    <device name="MJWarehouse" host="127.0.0.1" port="502" update_period="1">
+    <device name="MJWarehouse" host="localhost" port="502" update_period="1">
         <slave id="1">
             <block>
                 <!-- COILS DISCRETE_INPUTS HOLDING_REGISTERS INPUT_REGISTERS -->

@@ -4,15 +4,11 @@
         <entity name="unit">OPCUA</entity>
         <entity name="vendor">None</entity>
         <entity name="description">MJ OPCUA Server</entity>
-        <entity name="protocols">DCT, OPCUA</entity>
+        <entity name="protocols">DCT, MMIS, OPCUA</entity>
         <entity name="creator">LM</entity>
     </template>
     <databus>
         <!-- Core value that can be retrieved from the databus by key -->
-        <key_value_mappings>
-            <key name="ns=1;s=FanucRobot.Group1Joint1">
-                <value type="value">0.0</value>
-            </key>
-        </key_value_mappings>
+        <key_value_mappings/>
     </databus>
 </core>

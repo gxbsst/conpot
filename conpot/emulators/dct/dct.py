@@ -118,6 +118,7 @@ class DCT(object):
                + ', errors: ' + str(self.errors) + ']'
 
     def connect(self):
+        time.sleep(3)
         # Connect the socket to the port where the server is listening
         server_address = (self.host, self.port)
         logger.info('connecting to %s port %s' % server_address)

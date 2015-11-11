@@ -20,6 +20,7 @@ import json
 import inspect
 # this is needed because we use it in the xml.
 import random
+import time
 
 import gevent
 import gevent.event
@@ -32,6 +33,7 @@ logger = logging.getLogger(__name__)
 class Databus(object):
     def __init__(self):
         self._data = {}
+        self._future = {}
         self._observer_map = {}
         self.initialized = gevent.event.Event()
 
@@ -55,25 +57,35 @@ class Databus(object):
             # guaranteed to not generate context switch
             return item
 
-    def set_value(self, key, value, sync=False):
+    @staticmethod
+    def get_real_key(key):
+        real_key = key
+        if key.startswith('w ') or key.startswith('r '):
+            real_key = key[2:]
+        return real_key
+
+    def set_value(self, key, value, sync=False, forced=False, delay=0):
         """
         放入key相关的值，并通知调用者
         当sync为True的时候将会通知调用者，并等待调用结果返回
         """
         logger.debug('DataBus: Storing key: [%s] value: [%s]', key, value)
-        real_key = key
-        if key.startswith('w ') or key.startswith('r '):
-            real_key = key[2:]
-        if real_key not in self._data or not self._data[real_key] == value:
+        real_key = Databus.get_real_key(key)
+        if forced or (real_key not in self._data or not self._data[real_key] == value):
             # store value
             self._data[real_key] = value
             # notify observers
             if key in self._observer_map:
                 if sync:
-                    return self.notify_observers(key, sync)
-                gevent.spawn(self.notify_observers, key)
+                    return self.notify_observers(key, value, sync=sync)
+                gevent.spawn(self.notify_observers, key, value, delay=delay)
 
-    def notify_observers(self, key, sync=False):
+    def notify_observers(self, key, value, sync=False, delay=0):
+        if delay > 0:
+            real_key = Databus.get_real_key(key)
+            self._future[real_key] = value
+            time.sleep(delay)
+            self._data[real_key] = self._future[real_key]
         result = []
         for cb in self._observer_map[key]:
             if sync:

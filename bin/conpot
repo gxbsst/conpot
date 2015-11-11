@@ -43,7 +43,7 @@ from conpot.protocols.s7comm.s7_server import S7Server
 from conpot.protocols.http.web_server import HTTPServer
 from conpot.protocols.opcua.opcua_server import OPCUAServer
 from conpot.emulators.dct.dct import DCT
-# from conpot.emulators.mmis.mmis import MMIS
+from conpot.emulators.mmis.mmis import MMIS
 from conpot.emulators.mmaster.mmaster import MMaster
 from conpot.helpers import fix_sslwrap
 from conpot.protocols.kamstrup.meter_protocol.kamstrup_server import KamstrupServer
@@ -288,7 +288,8 @@ def main():
         ('opcua', OPCUAServer),
 
         # emulators
-        ('dct', DCT)
+        # ('dct', DCT),
+        # ('mmis', MMIS)
     )
 
     # no need to fork process when we don't want to change MAC address

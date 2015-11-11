@@ -1,13 +1,13 @@
 <opcua enabled="True" name="MJ OPCUA Server" host="0.0.0.0" port="4881">
 
     <!-- 开元RGV -->
+    <!-- State: waiting stopped halt running fault repair -->
+    <!-- LoadState: no_load full_load -->
     <object node_id="ns=1;s=KYRgv" browser_name="KYRgv">
         <variable node_id="ns=1;s=KYRgv.State" browser_name="State" readonly="True">
-            <!-- waiting stopped halt running fault repair -->
             <value type="str">waiting</value>
         </variable>
         <variable node_id="ns=1;s=KYRgv.LoadState" browser_name="LoadState" readonly="True">
-            <!-- no_load full_load -->
             <value type="str">no_load</value>
         </variable>
         <variable node_id="ns=1;s=KYRgv.CurrentSite" browser_name="CurrentSite" readonly="True">
@@ -31,9 +31,9 @@ Server.create_method(ua_object, node_id, browser_name, go, input_args, output_ar
     </object>
 
     <!-- 明匠坡口机器人 -->
+    <!-- State: waiting -> starting -> delivered -> grooved －> completed -->
     <object node_id="ns=1;s=MJGrooveRobot" browser_name="MJGrooveRobot">
         <variable node_id="ns=1;s=MJGrooveRobot.State" browser_name="State" readonly="True">
-            <!-- waiting -> starting -> delivered -> grooved －> completed -->
             <value type="str">waiting</value>
         </variable>
         <method node_id="ns=1;s=MJGrooveRobot.Start" browser_name="Start">
@@ -41,28 +41,20 @@ Server.create_method(ua_object, node_id, browser_name, go, input_args, output_ar
             <func>
                 <![CDATA[
 def start(parent):
-    ret = databus.set_value('w ns=1;s=MJGrooveRobot.StartSignal', 1, sync=True)
-    if not ret[0]:
+    # 确保已经清零
+    ret = databus.set_value('w ns=1;s=MJGrooveRobot.StartSignal', False, sync=True, forced=True)
+    if not ret or not ret[0]:
+        return [ua.Variant(False, ua.VariantType.Boolean)]
+    # 写入运行指令
+    ret = databus.set_value('w ns=1;s=MJGrooveRobot.StartSignal', True, sync=True)
+    if not ret or not ret[0]:
         return [ua.Variant(False, ua.VariantType.Boolean)]
     server.get_node('ns=1;s=MJGrooveRobot.State').set_value('starting')
+    # 异步延时清零
+    databus.set_value('w ns=1;s=MJGrooveRobot.StartSignal', False, delay=2)
     return [ua.Variant(True, ua.VariantType.Boolean)]
 
 Server.create_method(ua_object, node_id, browser_name, start, input_args, output_args)
-                ]]>
-            </func>
-        </method>
-        <method node_id="ns=1;s=MJGrooveRobot.Confirm" browser_name="Confirm">
-            <output_args>Boolean</output_args>
-            <func>
-                <![CDATA[
-def confirm(parent):
-    ret = databus.set_value('w ns=1;s=MJGrooveRobot.StartSignal', 0, sync=True)
-    if not ret[0]:
-        return [ua.Variant(False, ua.VariantType.Boolean)]
-    server.get_node('ns=1;s=MJGrooveRobot.State').set_value('waiting')
-    return [ua.Variant(True, ua.VariantType.Boolean)]
-
-Server.create_method(ua_object, node_id, browser_name, confirm, input_args, output_args)
                 ]]>
             </func>
         </method>
@@ -126,7 +118,30 @@ Server.create_method(ua_object, node_id, browser_name, start, input_args, output
         </method>
     </object>
 
-    <event event_id="MyEvent" severity="300">
-        <message>This is my event</message>
+    <!-- 新松AGV -->
+    <object node_id="ns=1;s=SSAgv" browser_name="SSAgv">
+        <!--<method node_id="ns=1;s=SSAgv.SendOrder" browser_name="SendOrder">-->
+            <!--<input_args>Int64,Int64,Int64</input_args>-->
+            <!--<output_args>Boolean</output_args>-->
+            <!--<func>-->
+                <!--<![CDATA[-->
+<!--def send_order(parent, order_no_variant, source_site_variant, target_site_variant):-->
+    <!--ret = databus.set_value('w ns=1;s=SSAgv.SendOrder', (order_no_variant.Value, source_site_variant.Value, target_site_variant.Value), sync=True, forced=True)-->
+    <!--if not ret[0]:-->
+        <!--return [ua.Variant(False, ua.VariantType.Boolean)]-->
+    <!--return [ua.Variant(True, ua.VariantType.Boolean)]-->
+
+<!--Server.create_method(ua_object, node_id, browser_name, send_order, input_args, output_args)-->
+                <!--]]>-->
+            <!--</func>-->
+        <!--</method>-->
+    </object>
+
+    <event event_id="ns=1;s=SSAgv.ConfirmedEvent" severity="300">
+        <message>Confirmed Event</message>
+    </event>
+
+    <event event_id="ns=1;s=SSAgv.CompletedEvent" severity="300">
+        <message>Completed Event</message>
     </event>
 </opcua>

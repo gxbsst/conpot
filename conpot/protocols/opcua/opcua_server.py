@@ -1,5 +1,6 @@
 # coding=utf-8
 
+import gevent
 from opcua import ua, Server
 from opcua.node import Node
 from lxml import etree
@@ -8,6 +9,7 @@ import conpot.core as conpot_core
 import time
 
 logger = logging.getLogger(__name__)
+logger.level = logging.ERROR
 
 
 class SubHandler(object):
@@ -86,15 +88,16 @@ class OPCUAServer(Server):
                 input_args = method.xpath('./input_args')
                 ua_input_args = []
                 if input_args is not None and len(input_args) > 0:
-                    for arg in input_args[0].text.split(',', 1):
+                    for arg in input_args[0].text.split(','):
                         ua_input_args.append(ua.VariantType[arg])
 
                 output_args = method.xpath('./output_args')
                 ua_output_args = []
-                for arg in output_args[0].text.split(',', 1):
+                for arg in output_args[0].text.split(','):
                     ua_output_args.append(ua.VariantType[arg])
 
                 exec method.xpath('./func')[0].text.strip() in {
+                    'gevent': gevent,
                     'time': time,
                     'Server': OPCUAServer,
                     'server': self,
@@ -107,21 +110,27 @@ class OPCUAServer(Server):
                     'output_args': ua_output_args
                 }
 
-            # Events
-            events = obj.xpath('./event')
-            for event in events:
-                event_id = event.attrib['event_id']
-                severity = int(event.attrib['severity'])
-                message_text = event.xpath('./message')[0].text
+        # Events
+        events = dom.xpath('//opcua/event')
+        for event in events:
+            event_id = event.attrib['event_id']
+            severity = int(event.attrib['severity'])
+            message_text = event.xpath('./message')[0].text
 
-                ua_event = self.get_event_object(ua.ObjectIds.BaseEventType)
-                ua_event.EventId = event_id
-                ua_event.Message.Text = message_text
-                ua_event.Severity = severity
-                self.event_dict[event_id] = ua_event
+            ua_event = self.get_event_object(ua.ObjectIds.BaseEventType)
+            ua_event.EventId = event_id
+            ua_event.Message.Text = message_text
+            ua_event.Severity = severity
+            self.event_dict[event_id] = ua_event
 
-                conpot_core.get_databus().observe_value('r ' + event_id,
-                                                        lambda key: self.event_dict[key[2:]].trigger())
+            conpot_core.get_databus().observe_value('r ' + event_id,
+                                                    lambda key: self.trigger_event(key))
+
+    def trigger_event(self, key):
+        msg = conpot_core.get_databus().get_value(key)
+        event = self.event_dict[key[2:]]
+        event.Message.Text = str(msg)
+        event.trigger()
 
     def start(self, host, port):
         # 首先解析XML

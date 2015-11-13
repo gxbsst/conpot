@@ -1,6 +1,6 @@
 <mmaster enabled="True">
     <!-- 明匠机器人 -->
-    <device name="MJGrooveRobot" host="localhost" port="502" update_period="1">
+    <device name="MJGrooveRobot" host="192.168.1.5" port="502" update_period="1">
         <slave id="1">
             <block>
                 <type>COILS</type>
@@ -22,20 +22,18 @@
         </slave>
     </device>
     <!-- 新松机器人 -->
-    <device name="SSRobot" host="localhost" port="502" update_period="1">
+    <device name="SSRobot" host="192.168.1.66" port="502" update_period="1">
         <slave id="1">
             <block>
                 <!-- COILS DISCRETE_INPUTS HOLDING_REGISTERS INPUT_REGISTERS -->
                 <type>HOLDING_REGISTERS</type>
                 <starting_address>24000</starting_address>
                 <size>1</size>
-                <point id="ns=1;s=SSRobot.Start">
+                <point id="ns=1;s=SSRobot.MovingStart">
                     <address>24000</address>
-                    <!--<count>2</count>-->
-                    <!--&lt;!&ndash; Auto Big Little  &ndash;&gt;-->
-                    <!--<endian>Little</endian>-->
-                    <!--&lt;!&ndash; none bits 8int 16uint float string &ndash;&gt;-->
-                    <!--<encoding>float</encoding>-->
+                </point>
+                <point id="ns=1;s=SSRobot.WeldingStart">
+                    <address>24000</address>
                 </point>
             </block>
             <block>
@@ -56,7 +54,7 @@
         </slave>
     </device>
     <!-- 明匠立体库 -->
-    <device name="MJWarehouse" host="localhost" port="502" update_period="1">
+    <device name="MJWarehouse" host="192.168.1.6" port="502" update_period="1">
         <slave id="1">
             <block>
                 <!-- COILS DISCRETE_INPUTS HOLDING_REGISTERS INPUT_REGISTERS -->
@@ -64,19 +62,70 @@
                 <starting_address>6496</starting_address>
                 <size>7</size>
                     <point id="ns=1;s=MJWarehouse.Start">
+                        <!-- 物料方向 -->
                         <address>6496</address>
                     </point>
                     <point id="ns=1;s=MJWarehouse.InOutLocation">
+                        <!-- 出入库位置 -->
                         <address>6497</address>
                     </point>
                     <point id="ns=1;s=MJWarehouse.MpLocation">
+                        <!-- 物料台位置 -->
                         <address>6498</address>
                     </point>
                     <point id="ns=1;s=MJWarehouse.MStatus" readonly="True">
+                        <!-- 物料状态 -->
                         <address>6500</address>
                     </point>
                     <point id="ns=1;s=MJWarehouse.FinishStatus" readonly="True">
+                        <!-- 完成状态 -->
                         <address>6502</address>
+                    </point>
+            </block>
+            <block>
+                <!-- COILS DISCRETE_INPUTS HOLDING_REGISTERS INPUT_REGISTERS -->
+                <type>HOLDING_REGISTERS</type>
+                <starting_address>2110</starting_address>
+                <size>7</size>
+                    <point id="ns=1;s=MJWarehouse.FaultStatus" readonly="True">
+                        <!-- 故障状态 -->
+                        <address>2110</address>
+                    </point>
+                    <point id="ns=1;s=MJWarehouse.Go">
+                        <!-- 启动 -->
+                        <address>2118</address>
+                    </point>
+                    <point id="ns=1;s=MJWarehouse.Stop">
+                        <!-- 停止 -->
+                        <address>2119</address>
+                    </point>
+                    <point id="ns=1;s=MJWarehouse.OriginStatus" readonly="True">
+                        <!-- 原点状态 -->
+                        <address>2129</address>
+                    </point>
+                    <point id="ns=1;s=MJWarehouse.FaultReset" readonly="True">
+                        <!-- 故障复位 -->
+                        <address>2157</address>
+                    </point>
+            </block>
+            <block>
+                <!-- COILS DISCRETE_INPUTS HOLDING_REGISTERS INPUT_REGISTERS -->
+                <type>HOLDING_REGISTERS</type>
+                <starting_address>2452</starting_address>
+                <size>1</size>
+                    <point id="ns=1;s=MJWarehouse.OriginReset">
+                        <!-- 原点回归 -->
+                        <address>2452</address>
+                    </point>
+            </block>
+             <block>
+                <!-- COILS DISCRETE_INPUTS HOLDING_REGISTERS INPUT_REGISTERS -->
+                <type>HOLDING_REGISTERS</type>
+                <starting_address>2548</starting_address>
+                <size>1</size>
+                    <point id="ns=1;s=MJWarehouse.EnableState">
+                        <!-- 使能状态 -->
+                        <address>2548</address>
                     </point>
             </block>
         </slave>

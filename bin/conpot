@@ -288,7 +288,7 @@ def main():
         ('opcua', OPCUAServer),
 
         # emulators
-        # ('dct', DCT),
+        ('dct', DCT),
         # ('mmis', MMIS)
     )
 

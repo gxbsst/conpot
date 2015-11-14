@@ -33,6 +33,12 @@ Server.create_method(ua_object, node_id, browser_name, go, input_args, output_ar
     <!-- 明匠坡口机器人 -->
     <!-- State: waiting -> starting -> delivered -> grooved －> completed -->
     <object node_id="ns=1;s=MJGrooveRobot" browser_name="MJGrooveRobot">
+        <variable node_id="ns=1;s=MJGrooveRobot.MovingPro" browser_name="MovingPro" >
+            <value type="int">1</value>
+        </variable>
+        <variable node_id="ns=1;s=MJGrooveRobot.CuttingPro" browser_name="CuttingPro" >
+            <value type="int">1</value>
+        </variable>
         <variable node_id="ns=1;s=MJGrooveRobot.State" browser_name="State" readonly="True">
             <value type="str">waiting</value>
         </variable>
@@ -40,7 +46,13 @@ Server.create_method(ua_object, node_id, browser_name, go, input_args, output_ar
             <output_args>Boolean</output_args>
             <func>
                 <![CDATA[
-def start(parent):
+def start(parent, move_pro_variant, cut_pro_variant):
+    ret = databus.set_value('w ns=1;s=MJGrooveRobot.MovingPro', move_pro_variant.Value, sync=True)
+    if not ret or not ret[0]:
+        return [ua.Variant(False, ua.VariantType.Boolean)]
+    ret = databus.set_value('w ns=1;s=MJGrooveRobot.CuttingPro', cut_pro_variant.Value, sync=True)
+    if not ret or not ret[0]:
+        return [ua.Variant(False, ua.VariantType.Boolean)]
     # 确保已经清零
     ret = databus.set_value('w ns=1;s=MJGrooveRobot.StartSignal', False, sync=True, forced=True)
     if not ret or not ret[0]:
@@ -68,23 +80,20 @@ Server.create_method(ua_object, node_id, browser_name, start, input_args, output
         <variable node_id="ns=1;s=MJWarehouse.FinishStatus" browser_name="FinishStatus" readonly="True">
             <value type="int">1</value>
         </variable>
+        <variable node_id="ns=1;s=MJWarehouse.FaultStatus" browser_name="FaultStatus" readonly="True">
+            <value type="int">1</value>
+        </variable>
+        <variable node_id="ns=1;s=MJWarehouse.EnableState" browser_name="EnableState" readonly="True">
+            <value type="int">1</value>
+        </variable>
+        <variable node_id="ns=1;s=MJWarehouse.OriginStatus" browser_name="OriginStatus" readonly="True">
+            <value type="int">1</value>
+        </variable>
         <method node_id="ns=1;s=MJWarehouse.Start" browser_name="Start">
             <output_args>Boolean</output_args>
             <func>
                 <![CDATA[
 def start(parent, mp_variant, io_variant, start_variant):
-    #先判断故障状态
-    if databus.get_value('r ns=1;s=MJWarehouse.FaultStatus'):
-        #故障复位
-        if databus.set_value('w ns=1;s=MJWarehouse.FaultReset', true, sync=True):
-            #判断原点状态
-            if databus.get_value('r ns=1;s=MJWarehouse.OriginStatus'):
-                #原点回归
-                if databus.set_value('w ns=1;s=MJWarehouse.OriginReset', true, sync=True):
-                #使能状态
-                    if databus.get_value('r ns=1;s=MJWarehouse.EnableState'):
-                        databus.set_value('w ns=1;s=MJWarehouse.Go', true, sync=True)
-
     ret = databus.set_value('w ns=1;s=MJWarehouse.MpLocation', mp_variant.Value, sync=True)
     if not ret[0]:
         return [ua.Variant(False, ua.VariantType.Boolean)]

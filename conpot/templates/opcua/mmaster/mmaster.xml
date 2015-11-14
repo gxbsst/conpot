@@ -19,6 +19,19 @@
                     <address>2201</address>
                 </point>
             </block>
+            <block>
+                <type>HOLDING_REGISTERS</type>
+                <starting_address>6097</starting_address>
+                <size>2</size>
+                <!-- 切割程序号 -->
+                <point id="ns=1;s=MJGrooveRobot.CuttingPro">
+                    <address>6097</address>
+                </point>
+                <!-- 搬运程序号 -->
+                <point id="ns=1;s=MJGrooveRobot.MovingPro">
+                    <address>6098</address>
+                </point>
+            </block>
         </slave>
     </device>
     <!-- 新松机器人 -->
@@ -84,10 +97,10 @@
             </block>
             <block>
                 <!-- COILS DISCRETE_INPUTS HOLDING_REGISTERS INPUT_REGISTERS -->
-                <type>HOLDING_REGISTERS</type>
+                <type>COILS</type>
                 <starting_address>2110</starting_address>
-                <size>7</size>
-                    <point id="ns=1;s=MJWarehouse.FaultStatus" readonly="True">
+                <size>47</size>
+                    <point id="ns=1;s=MJWarehouse.FaultStatus">
                         <!-- 故障状态 -->
                         <address>2110</address>
                     </point>
@@ -99,18 +112,18 @@
                         <!-- 停止 -->
                         <address>2119</address>
                     </point>
-                    <point id="ns=1;s=MJWarehouse.OriginStatus" readonly="True">
+                    <point id="ns=1;s=MJWarehouse.OriginStatus" >
                         <!-- 原点状态 -->
                         <address>2129</address>
                     </point>
-                    <point id="ns=1;s=MJWarehouse.FaultReset" readonly="True">
+                    <point id="ns=1;s=MJWarehouse.FaultReset" >
                         <!-- 故障复位 -->
                         <address>2157</address>
                     </point>
             </block>
             <block>
                 <!-- COILS DISCRETE_INPUTS HOLDING_REGISTERS INPUT_REGISTERS -->
-                <type>HOLDING_REGISTERS</type>
+                <type>COILS</type>
                 <starting_address>2452</starting_address>
                 <size>1</size>
                     <point id="ns=1;s=MJWarehouse.OriginReset">
@@ -120,7 +133,7 @@
             </block>
              <block>
                 <!-- COILS DISCRETE_INPUTS HOLDING_REGISTERS INPUT_REGISTERS -->
-                <type>HOLDING_REGISTERS</type>
+                <type>COILS</type>
                 <starting_address>2548</starting_address>
                 <size>1</size>
                     <point id="ns=1;s=MJWarehouse.EnableState">

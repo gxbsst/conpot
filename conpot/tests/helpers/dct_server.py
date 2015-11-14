@@ -1,5 +1,6 @@
 import socket
 import binascii
+import time
 
 
 TCP_IP = '0.0.0.0'
@@ -23,12 +24,15 @@ class DCTServer(object):
             data = self.conn.recv(BUFFER_SIZE)
             if not data:
                 break
-            print "received data:", binascii.hexlify(data)
+            # print "received data:", binascii.hexlify(data)
             data_bytes = bytearray(data)
             if data_bytes[1] == 0x03:
-                print "send 01030A00010002000300040005"
+                time.sleep(0.5)
+                # print "send 01030A00010002000300040005"
                 self.conn.send('\x01\x03\x0A\x00\x01\x00\x02\x00\x03\x00\x04\x00\x05')
             elif data_bytes[1] == 0x10:
+                time.sleep(0.5)
+                print "send 0x01 0x10 0x00 0x14 0x00 0x01"
                 self.conn.send('\x01\x10\x00\x14\x00\x01')
 
     def stop(self):

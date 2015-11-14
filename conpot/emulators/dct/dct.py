@@ -8,6 +8,10 @@ import time
 from enum import Enum
 import sys
 import conpot.core as conpot_core
+from gevent.lock import RLock
+
+
+lock = RLock()
 
 logger = logging.getLogger(__name__)
 # stream_handler = logging.StreamHandler(sys.stderr)
@@ -97,7 +101,7 @@ DEFAULT_PORT = 90002
 class DCT(object):
     def __init__(self, template, template_directory, args):
         # Create a TCP/IP socket
-        self.sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        self.sock = None
         self.host = DEFAULT_HOST
         self.port = DEFAULT_PORT
         self.current_site = 1
@@ -118,30 +122,36 @@ class DCT(object):
                + ', errors: ' + str(self.errors) + ']'
 
     def connect(self):
-        time.sleep(3)
+        if self.sock and not self.connected:
+            # 关闭失败的连接
+            self.sock.close()
+            # 等待重连
+            time.sleep(1)
         # Connect the socket to the port where the server is listening
         server_address = (self.host, self.port)
         logger.info('connecting to %s port %s' % server_address)
+        self.sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.sock.connect(server_address)
         self.sock.sendall(READ_STATUS_MSG)
         self.connected = True
 
     def execute_msg(self, reset_msg, order_msg):
-        # 重置
-        logger.info('sending "%s"' % binascii.hexlify(reset_msg))
-        self.sock.sendall(reset_msg)
+        with lock:
+            # 重置
+            logger.info('sending "%s"' % binascii.hexlify(reset_msg))
+            self.sock.sendall(reset_msg)
 
-        # 收到信息
-        receive_msg = self.sock.recv(6)
-        logger.info('received "%s"' % binascii.hexlify(receive_msg))
+            # 收到信息
+            receive_msg = self.sock.recv(6)
+            logger.info('received "%s"' % binascii.hexlify(receive_msg))
 
-        # 执行启动命令
-        logger.info('sending "%s"' % binascii.hexlify(order_msg))
-        self.sock.sendall(order_msg)
+            # 执行启动命令
+            logger.info('sending "%s"' % binascii.hexlify(order_msg))
+            self.sock.sendall(order_msg)
 
-        # 收取信息
-        receive_msg = self.sock.recv(6)
-        logger.info('received "%s"' % binascii.hexlify(receive_msg))
+            # 收取信息
+            receive_msg = self.sock.recv(6)
+            logger.info('received "%s"' % binascii.hexlify(receive_msg))
 
     def bind_go(self, key):
         source_site, target_site = conpot_core.get_databus().get_value(key)
@@ -197,6 +207,8 @@ class DCT(object):
                 self.errors.add(err)
 
     def unpack_state(self, msg_bytes):
+        if len(msg_bytes) != 13:
+            return
         if msg_bytes[3] & LoadState.no_load.value == LoadState.no_load.value:
             self.load_state = LoadState.no_load
         elif msg_bytes[3] & LoadState.full_load.value == LoadState.full_load.value:
@@ -234,12 +246,13 @@ class DCT(object):
             self.errors.clear()
 
     def get_rgv_state(self):
-        logger.debug('sending "%s"' % binascii.hexlify(READ_STATUS_MSG))
-        self.sock.sendall(READ_STATUS_MSG)
-        # Look for the response
-        receive_msg = self.sock.recv(13)
-        logger.debug('received "%s"' % binascii.hexlify(receive_msg))
-        self.unpack_state(bytearray(receive_msg))
+        with lock:
+            logger.debug('sending "%s"' % binascii.hexlify(READ_STATUS_MSG))
+            self.sock.sendall(READ_STATUS_MSG)
+            # Look for the response
+            receive_msg = self.sock.recv(13)
+            logger.debug('received "%s"' % binascii.hexlify(receive_msg))
+            self.unpack_state(bytearray(receive_msg))
 
     def start(self, host, port):
         self.host = host

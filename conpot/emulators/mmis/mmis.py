@@ -46,17 +46,22 @@ DEFAULT_PORT = 90002
 
 class MMIS(object):
     def __init__(self, template, template_directory, args):
-        self.sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        self.sock = None
         self.host = DEFAULT_HOST
         self.port = DEFAULT_PORT
         self.connected = False
         self.closed = False
 
     def connect(self):
-        time.sleep(3)
+        if self.sock and not self.connected:
+            # 关闭失败的连接
+            self.sock.close()
+            # 等待重连
+            time.sleep(1)
         # Connect the socket to the port where the server is listening
         server_address = (self.host, self.port)
         logger.info('connecting to %s port %s' % server_address)
+        self.sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.sock.connect(server_address)
         self.connected = True
 

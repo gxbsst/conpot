@@ -41,12 +41,21 @@
                 <!-- COILS DISCRETE_INPUTS HOLDING_REGISTERS INPUT_REGISTERS -->
                 <type>HOLDING_REGISTERS</type>
                 <starting_address>24000</starting_address>
-                <size>1</size>
+                <size>4</size>
                 <point id="ns=1;s=SSRobot.MovingStart">
                     <address>24000</address>
                 </point>
                 <point id="ns=1;s=SSRobot.WeldingStart">
                     <address>24000</address>
+                </point>
+                <point id="ns=1;s=SSRobot.MovePro">
+                    <address>24001</address>
+                </point>
+                <point id="ns=1;s=SSRobot.WeldingPro">
+                    <address>24002</address>
+                </point>
+                <point id="ns=1;s=SSRobot.Floors">
+                    <address>24003</address>
                 </point>
             </block>
             <block>

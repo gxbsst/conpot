@@ -40,8 +40,8 @@ CONFIRM_ORDER_FMT = '<HIH'
 # s = '\x13\x27\x01\x00\x00\x00\x00\x00\x01\x00\x3c'
 # print struct.unpack(RECEIVE_ORDER_FMT, s)
 
-DEFAULT_HOST = '192.168.1.188'
-DEFAULT_PORT = 90002
+DEFAULT_HOST = '192.168.1.100'
+DEFAULT_PORT = 3000
 
 
 class MMIS(object):
@@ -116,12 +116,14 @@ class MMIS(object):
                 header_1_msg = self.sock.recv(1)
                 recv_msg = self.recv_msg(header_1_msg, '\x13', '\x27')
                 if recv_msg:
+                    print "***************订单已确认***************************"
                     header, order_no, oder_step, state, checksum = recv_msg
                     logger.info('订单已确认，订单号: ' + str(order_no))
                     conpot_core.get_databus().set_value('r ns=1;s=SSAgv.ConfirmedEvent', order_no, forced=True)
                     continue
                 recv_msg = self.recv_msg(header_1_msg, '\x15', '\x27')
                 if recv_msg:
+                    print "***************订单已完成***************************"
                     header, order_no, oder_step, vno, checksum = recv_msg
                     logger.info('订单已完成，订单号: ' + str(order_no))
                     conpot_core.get_databus().set_value('r ns=1;s=SSAgv.CompletedEvent', order_no, forced=True)

@@ -19,9 +19,7 @@
             <func>
                 <![CDATA[
 def go(parent, source_site_variant, target_site_variant):
-    ret = databus.set_value('w ns=1;s=KYRgv.Go', (source_site_variant.Value, target_site_variant.Value), sync=True, forced=True)
-    if not ret[0]:
-        return [ua.Variant(False, ua.VariantType.Boolean)]
+    databus.set_value('w ns=1;s=KYRgv.Go', (source_site_variant.Value, target_site_variant.Value), forced=True)
     return [ua.Variant(True, ua.VariantType.Boolean)]
 
 Server.create_method(ua_object, node_id, browser_name, go, input_args, output_args)
@@ -128,9 +126,15 @@ Server.create_method(ua_object, node_id, browser_name, start, input_args, output
             <output_args>Boolean</output_args>
             <func>
                 <![CDATA[
-def start(parent):
-    ＃搬运开始置0
-    var = databus.get_value('r ns=1;s=SSRobot.MovingStart') & 0b1111111011111111
+def start(parent, floor_variant, movePro_variant):
+    ret = databus.set_value('w ns=1;s=SSRobot.Floors', floor_variant.Value, sync=True)
+    if not ret[0]:
+        return [ua.Variant(False, ua.VariantType.Boolean)]
+    ret = databus.set_value('w ns=1;s=SSRobot.MovePro', movePro_variant.Value, sync=True)
+    if not ret[0]:
+        return [ua.Variant(False, ua.VariantType.Boolean)]
+    #搬运开始置0
+    var = databus.get_value('r ns=1;s=SSRobot.MovingStart')[0] & 0b1111111011111111
     ret = databus.set_value('w ns=1;s=SSRobot.MovingStart', var, sync=True)
     if not ret[0]:
         return [ua.Variant(False, ua.VariantType.Boolean)]
@@ -149,8 +153,11 @@ Server.create_method(ua_object, node_id, browser_name, start, input_args, output
             <output_args>Boolean</output_args>
             <func>
                 <![CDATA[
-def start(parent):
-    var = databus.get_value('r ns=1;s=SSRobot.WeldingStart') & 0b1111101111111111
+def start(parent, weldPro):
+    ret = databus.set_value('w ns=1;s=SSRobot.WeldingPro', weldPro.Value, sync=True)
+    if not ret[0]:
+        return [ua.Variant(False, ua.VariantType.Boolean)]
+    var = databus.get_value('r ns=1;s=SSRobot.WeldingStart')[0] & 0b1111101111111111
     ret = databus.set_value('w ns=1;s=SSRobot.WeldingStart', var, sync=True)
     if not ret[0]:
         return [ua.Variant(False, ua.VariantType.Boolean)]

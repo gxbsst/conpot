@@ -34,6 +34,9 @@ Server.create_method(ua_object, node_id, browser_name, go, input_args, output_ar
         <variable node_id="ns=1;s=MJGrooveRobot.MovingPro" browser_name="MovingPro" >
             <value type="int">1</value>
         </variable>
+         <variable node_id="ns=1;s=MJGrooveRobot.FaultStatus" browser_name="FaultStatus" >
+            <value type="int">1</value>
+        </variable>
         <variable node_id="ns=1;s=MJGrooveRobot.CuttingPro" browser_name="CuttingPro" >
             <value type="int">1</value>
         </variable>
@@ -72,10 +75,16 @@ Server.create_method(ua_object, node_id, browser_name, start, input_args, output
 
     <!-- 明匠立体仓库 -->
     <object node_id="ns=1;s=MJWarehouse" browser_name="MJWarehouse">
+        <variable node_id="ns=1;s=MJWarehouse.InOutLocation" browser_name="InOutLocation">
+            <value type="int">1</value>
+        </variable>
+        <variable node_id="ns=1;s=MJWarehouse.MpLocation" browser_name="MpLocation">
+            <value type="int">1</value>
+        </variable>
         <variable node_id="ns=1;s=MJWarehouse.MStatus" browser_name="MStatus" readonly="True">
             <value type="int">1</value>
         </variable>
-        <variable node_id="ns=1;s=MJWarehouse.FinishStatus" browser_name="FinishStatus" readonly="True">
+        <variable node_id="ns=1;s=MJWarehouse.FinishStatus" browser_name="FinishStatus">
             <value type="int">1</value>
         </variable>
         <variable node_id="ns=1;s=MJWarehouse.FaultStatus" browser_name="FaultStatus" readonly="True">
@@ -118,6 +127,9 @@ Server.create_method(ua_object, node_id, browser_name, start, input_args, output
             <value type="int">1</value>
         </variable>
         <variable node_id="ns=1;s=SSRobot.Welding" browser_name="Welding" readonly="True">
+            <value type="int">1</value>
+        </variable>
+        <variable node_id="ns=1;s=SSRobot.FaultStatus" browser_name="FaultStatus" readonly="True">
             <value type="int">1</value>
         </variable>
         <!--搬运开始-->

@@ -32,6 +32,19 @@
                     <address>6098</address>
                 </point>
             </block>
+             <block>
+                <type>COILS</type>
+                <starting_address>2348</starting_address>
+                <size>2</size>
+                <!-- 搬运机器人故障状态 -->
+                <point id="ns=1;s=MJGrooveRobot.FaultStatus">
+                    <address>2348</address>
+                </point>
+                <!-- 切割机器人故障状态 -->
+                <point id="ns=1;s=MJGrooveRobot.FaultStatus">
+                    <address>2349</address>
+                </point>
+            </block>
         </slave>
     </device>
     <!-- 新松机器人 -->
@@ -66,6 +79,12 @@
                 <point id="ns=1;s=SSRobot.Moved">
                     <address>23900</address>
                 </point>
+                <point id="ns=1;s=SSRobot.FaultStatus">
+                    <address>23901</address>
+                </point>
+                <point id="ns=1;s=SSRobot.FaultStatus">
+                    <address>23904</address>
+                </point>
                 <point id="ns=1;s=SSRobot.Cutting">
                     <address>23903</address>
                 </point>
@@ -99,7 +118,7 @@
                         <!-- 物料状态 -->
                         <address>6500</address>
                     </point>
-                    <point id="ns=1;s=MJWarehouse.FinishStatus" readonly="True">
+                    <point id="ns=1;s=MJWarehouse.FinishStatus">
                         <!-- 完成状态 -->
                         <address>6502</address>
                     </point>

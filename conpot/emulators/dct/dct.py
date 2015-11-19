@@ -45,6 +45,8 @@ class State(Enum):
     fault = 8
     # 维修状态
     repair = 16
+    # 完成放料后下降状态
+    off = 32
 
 
 # 载重状态
@@ -226,6 +228,8 @@ class DCT(object):
             self.state = State.fault
         elif msg_bytes[4] & State.repair.value == State.repair.value:
             self.state = State.repair
+        elif msg_bytes[3] & State.off.value == State.off.value:
+            self.state = State.off
         else:
             self.state = State.waiting
 

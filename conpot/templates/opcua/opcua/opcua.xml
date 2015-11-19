@@ -1,7 +1,7 @@
 <opcua enabled="True" name="MJ OPCUA Server" host="0.0.0.0" port="4881">
 
     <!-- 开元RGV -->
-    <!-- State: waiting stopped halt running fault repair -->
+    <!-- State: waiting stopped halt running off fault repair -->
     <!-- LoadState: no_load full_load -->
     <object node_id="ns=1;s=KYRgv" browser_name="KYRgv">
         <variable node_id="ns=1;s=KYRgv.State" browser_name="State" readonly="True">

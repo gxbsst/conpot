@@ -326,7 +326,7 @@ def main():
         # Modbus Master
         template_mmaster = os.path.join(root_template_directory, 'mmaster', 'mmaster.xml')
         if os.path.isfile(template_mmaster):
-            xsd_file = os.path.join(os.path.dirname(inspect.getfile(MMaster)), 'MMaster.xsd')
+            xsd_file = os.path.join(os.path.dirname(inspect.getfile(MMaster)), 'mmaster.xsd')
             validate_template(template_mmaster, xsd_file)
             dom_mmaster = etree.parse(template_mmaster)
             if dom_mmaster.xpath('//mmaster'):

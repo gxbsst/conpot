@@ -21,3 +21,4 @@ pyghmi
 mixbox
 pymodbus
 trollius
+aiogevent

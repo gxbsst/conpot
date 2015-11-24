@@ -128,16 +128,20 @@ class MMaster(object):
                 elif point.endian == 'Big':
                     endian = Endian.Big
                 builder = BinaryPayloadBuilder(endian=endian)
-                if point.encoding == 'bits':
-                    builder.add_bits(value)
-                elif point.encoding == '8int':
-                    builder.add_8bit_int(value)
-                elif point.encoding == '16uint':
-                    builder.add_16bit_uint(value)
-                elif point.encoding == 'float':
-                    builder.add_32bit_float(value)
-                elif point.encoding == 'string':
-                    builder.add_string(value)
+                builder_map = {'bits': builder.add_bits,
+                               '8unit': builder.add_8bit_uint,
+                               '16unit': builder.add_16bit_uint,
+                               '32unit': builder.add_32bit_uint,
+                               '64unit': builder.add_64bit_uint,
+                               '8int': builder.add_8bit_int,
+                               '16int': builder.add_16bit_int,
+                               '32int': builder.add_32bit_int,
+                               '64int': builder.add_64bit_int,
+                               '32float': builder.add_32bit_float,
+                               '64float': builder.add_64bit_float,
+                               'string': builder.add_string}
+                builder_map[point.encoding](value)
+
                 with lock:
                     return self.modbus_client.write_registers(point.address,
                                                               builder.build(),
@@ -233,16 +237,19 @@ class MMaster(object):
                                     elif point.endian == 'Big':
                                         endian = Endian.Big
                                     decoder = BinaryPayloadDecoder.fromRegisters(value, endian=endian)
-                                    if point.encoding == 'bits':
-                                        value = decoder.decode_bits()
-                                    elif point.encoding == '8int':
-                                        value = decoder.decode_8bit_int()
-                                    elif point.encoding == '16uint':
-                                        value = decoder.decode_16bit_uint()
-                                    elif point.encoding == 'float':
-                                        value = decoder.decode_32bit_float()
-                                    elif point.encoding == 'string':
-                                        value = decoder.decode_string(point.count)
+                                    encoding_map = {'bits': decoder.decode_bits,
+                                                    '8unit': decoder.decode_8bit_uint,
+                                                    '16unit': decoder.decode_16bit_uint,
+                                                    '32unit': decoder.decode_32bit_uint,
+                                                    '64unit': decoder.decode_64bit_uint,
+                                                    '8int': decoder.decode_8bit_int,
+                                                    '16int': decoder.decode_16bit_int,
+                                                    '32int': decoder.decode_32bit_int,
+                                                    '64int': decoder.decode_64bit_int,
+                                                    '32float': decoder.decode_32bit_float,
+                                                    '64float': decoder.decode_64bit_float,
+                                                    'string': decoder.decode_string}
+                                    value = encoding_map[point.encoding]()
 
                             if point.condition:
                                 if point.condition[0] == '=':

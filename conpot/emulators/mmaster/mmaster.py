@@ -4,6 +4,7 @@ from gevent.lock import RLock
 import logging
 import socket
 import time
+from struct import pack, unpack
 from pymodbus.constants import Endian
 from pymodbus.payload import BinaryPayloadDecoder
 from pymodbus.payload import BinaryPayloadBuilder
@@ -236,7 +237,8 @@ class MMaster(object):
                                         endian = Endian.Little
                                     elif point.endian == 'Big':
                                         endian = Endian.Big
-                                    decoder = BinaryPayloadDecoder.fromRegisters(value, endian=endian)
+                                    payload = ''.join(pack(endian + 'H', x) for x in value)
+                                    decoder = BinaryPayloadDecoder(payload, endian)
                                     encoding_map = {'bits': decoder.decode_bits,
                                                     '8unit': decoder.decode_8bit_uint,
                                                     '16unit': decoder.decode_16bit_uint,

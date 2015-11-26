@@ -1,6 +1,6 @@
-gevent>=1.1
+gevent>=1.1rc1
 pysnmp>=4.2.4
-lxml
+lxml==3.4.4
 bottle
 jinja2
 beautifulsoup4

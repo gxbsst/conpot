@@ -143,11 +143,11 @@ class MMaster(object):
                                'string': builder.add_string}
                 builder_map[point.encoding](value)
 
+                payload = [unpack(endian + 'H', x)[0] for x in builder.build()]
                 with lock:
                     return self.modbus_client.write_registers(point.address,
-                                                              builder.build(),
-                                                              unit=point.slave_id,
-                                                              skip_encode=True)
+                                                              payload,
+                                                              unit=point.slave_id)
             else:
                 with lock:
                     return self.modbus_client.write_registers(point.address, [value], unit=point.slave_id)

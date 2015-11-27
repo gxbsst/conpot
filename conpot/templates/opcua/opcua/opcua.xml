@@ -203,6 +203,20 @@ Server.create_method(ua_object, node_id, browser_name, send_order, input_args, o
         </method>
     </object>
 
+
+    <!-- 牛腿搬运机器人 -->
+    <object node_id="ns=1;s=MJMoveRobot" browser_name="MJMoveRobot">
+        <variable node_id="ns=1;s=MJMoveRobot.Move" browser_name="Move">
+            <value type="int">1</value>
+        </variable>
+        <variable node_id="ns=1;s=MJMoveRobot.FinishStatus" browser_name="FinishStatus">
+            <value type="int">1</value>
+        </variable>
+        <variable node_id="ns=1;s=MJMoveRobot.Status" browser_name="Status">
+            <value type="int">1</value>
+        </variable>
+    </object>
+
     <event event_id="ns=1;s=SSAgv.ConfirmedEvent" severity="300">
         <message>Confirmed Event</message>
     </event>

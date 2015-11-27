@@ -1,5 +1,5 @@
 <mmaster enabled="True">
-    <!-- 明匠机器人 -->
+     <!--明匠机器人-->
     <device name="MJGrooveRobot" host="192.168.1.5" port="502" update_period="1">
         <slave id="1">
             <block>
@@ -47,7 +47,7 @@
             </block>
         </slave>
     </device>
-    <!-- 新松机器人 -->
+     <!--新松机器人-->
     <device name="SSRobot" host="192.168.1.66" port="502" update_period="1">
         <slave id="1">
             <block>
@@ -94,7 +94,7 @@
             </block>
         </slave>
     </device>
-    <!-- 明匠立体库 -->
+     <!--明匠立体库-->
     <device name="MJWarehouse" host="192.168.1.6" port="502" update_period="1">
         <slave id="1">
             <block>
@@ -167,6 +167,201 @@
                     <point id="ns=1;s=MJWarehouse.EnableState">
                         <!-- 使能状态 -->
                         <address>2548</address>
+                    </point>
+            </block>
+        </slave>
+    </device>
+
+    <!-- 流量计 -->
+    <device name="Flowmeter" host="192.168.1.55" port="502" update_period="0.5">
+        <slave id="1">
+            <block>
+                <type>HOLDING_REGISTERS</type>
+                <starting_address>0</starting_address>
+                <size>120</size>
+                    <point id="ns=1;s=Flowmeter.EthineInstVol">
+                        <address>0</address>
+                        <count>2</count>
+                        <endian>Little</endian>
+                        <encoding>32float</encoding>
+                    </point>
+
+                    <point id="ns=1;s=Flowmeter.SumL1">
+                        <address>4</address>
+                        <count>2</count>
+                        <endian>Little</endian>
+                        <encoding>32int</encoding>
+                    </point>
+                    <point id="ns=1;s=Flowmeter.SumU1">
+                        <address>6</address>
+                        <count>2</count>
+                        <endian>Little</endian>
+                        <encoding>32int</encoding>
+                    </point>
+
+                    <point id="ns=1;s=Flowmeter.HyperOxygenInstVol">
+                        <address>20</address>
+                        <count>2</count>
+                        <endian>Little</endian>
+                        <encoding>32float</encoding>
+                    </point>
+
+                    <point id="ns=1;s=Flowmeter.SumL2">
+                        <address>24</address>
+                        <count>2</count>
+                        <endian>Little</endian>
+                        <encoding>32int</encoding>
+                    </point>
+                    <point id="ns=1;s=Flowmeter.SumU2">
+                        <address>26</address>
+                        <count>2</count>
+                        <endian>Little</endian>
+                        <encoding>32int</encoding>
+                    </point>
+
+                    <point id="ns=1;s=Flowmeter.LowOxygenInstVol">
+                        <address>40</address>
+                        <count>2</count>
+                        <endian>Little</endian>
+                        <encoding>32float</encoding>
+                    </point>
+
+                    <point id="ns=1;s=Flowmeter.SumL3">
+                        <address>44</address>
+                        <count>2</count>
+                        <endian>Little</endian>
+                        <encoding>32int</encoding>
+                    </point>
+                    <point id="ns=1;s=Flowmeter.SumU3">
+                        <address>46</address>
+                        <count>2</count>
+                        <endian>Little</endian>
+                        <encoding>32int</encoding>
+                    </point>
+
+                    <point id="ns=1;s=Flowmeter.VolA">
+                        <address>60</address>
+                        <count>2</count>
+                        <endian>Little</endian>
+                        <encoding>32float</encoding>
+                    </point>
+                    <point id="ns=1;s=Flowmeter.VolB">
+                        <address>62</address>
+                        <count>2</count>
+                        <endian>Little</endian>
+                        <encoding>32float</encoding>
+                    </point>
+                    <point id="ns=1;s=Flowmeter.VolC">
+                        <address>64</address>
+                        <count>2</count>
+                        <endian>Little</endian>
+                        <encoding>32float</encoding>
+                    </point>
+                    <point id="ns=1;s=Flowmeter.VolAvrPh">
+                        <address>66</address>
+                        <count>2</count>
+                        <endian>Little</endian>
+                        <encoding>32float</encoding>
+                    </point>
+
+                    <point id="ns=1;s=Flowmeter.VolAB">
+                        <address>68</address>
+                        <count>2</count>
+                        <endian>Little</endian>
+                        <encoding>32float</encoding>
+                    </point>
+                    <point id="ns=1;s=Flowmeter.VolBC">
+                        <address>70</address>
+                        <count>2</count>
+                        <endian>Little</endian>
+                        <encoding>32float</encoding>
+                    </point>
+                    <point id="ns=1;s=Flowmeter.VolCA">
+                        <address>72</address>
+                        <count>2</count>
+                        <endian>Little</endian>
+                        <encoding>32float</encoding>
+                    </point>
+                    <point id="ns=1;s=Flowmeter.VolAvrLn">
+                        <address>74</address>
+                        <count>2</count>
+                        <endian>Little</endian>
+                        <encoding>32float</encoding>
+                    </point>
+
+                    <point id="ns=1;s=Flowmeter.CurrentA">
+                        <address>76</address>
+                        <count>2</count>
+                        <endian>Little</endian>
+                        <encoding>32float</encoding>
+                    </point>
+                    <point id="ns=1;s=Flowmeter.CurrentB">
+                        <address>78</address>
+                        <count>2</count>
+                        <endian>Little</endian>
+                        <encoding>32float</encoding>
+                    </point>
+                    <point id="ns=1;s=Flowmeter.CurrentC">
+                        <address>80</address>
+                        <count>2</count>
+                        <endian>Little</endian>
+                        <encoding>32float</encoding>
+                    </point>
+                    <point id="ns=1;s=Flowmeter.CurrentAvr">
+                        <address>82</address>
+                        <count>2</count>
+                        <endian>Little</endian>
+                        <encoding>32float</encoding>
+                    </point>
+
+                    <point id="ns=1;s=Flowmeter.PSum">
+                        <address>96</address>
+                        <count>2</count>
+                        <endian>Little</endian>
+                        <encoding>32float</encoding>
+                    </point>
+                    <point id="ns=1;s=Flowmeter.PA">
+                        <address>98</address>
+                        <count>2</count>
+                        <endian>Little</endian>
+                        <encoding>32float</encoding>
+                    </point>
+                    <point id="ns=1;s=Flowmeter.PB">
+                        <address>100</address>
+                        <count>2</count>
+                        <endian>Little</endian>
+                        <encoding>32float</encoding>
+                    </point>
+                    <point id="ns=1;s=Flowmeter.PC">
+                        <address>102</address>
+                        <count>2</count>
+                        <endian>Little</endian>
+                        <encoding>32float</encoding>
+                    </point>
+
+                    <point id="ns=1;s=Flowmeter.PowerAP">
+                        <address>104</address>
+                        <count>2</count>
+                        <endian>Little</endian>
+                        <encoding>32int</encoding>
+                    </point>
+                    <point id="ns=1;s=Flowmeter.PowerAN">
+                        <address>106</address>
+                        <count>2</count>
+                        <endian>Little</endian>
+                        <encoding>32int</encoding>
+                    </point>
+                    <point id="ns=1;s=Flowmeter.PowerIP">
+                        <address>108</address>
+                        <count>2</count>
+                        <endian>Little</endian>
+                        <encoding>32int</encoding>
+                    </point>
+                    <point id="ns=1;s=Flowmeter.PowerIN">
+                        <address>110</address>
+                        <count>2</count>
+                        <endian>Little</endian>
+                        <encoding>32int</encoding>
                     </point>
             </block>
         </slave>

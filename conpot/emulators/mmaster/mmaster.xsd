@@ -46,6 +46,10 @@
                                                                             name="encoding"
                                                                             minOccurs="0"
                                                                             maxOccurs="1"/>
+                                                                <xs:element type="xs:string"
+                                                                            name="custom_decoder"
+                                                                            minOccurs="0"
+                                                                            maxOccurs="1"/>
                                                             </xs:sequence>
                                                             <xs:attribute type="xs:string"
                                                                           name="id"

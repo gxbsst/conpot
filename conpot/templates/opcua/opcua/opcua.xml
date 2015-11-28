@@ -6,30 +6,39 @@
         <variable node_id="ns=1;s=Flowmeter.EthineInstVol" browser_name="EthineInstVol" readonly="True">
             <value type="float">0.0</value>
         </variable>
+        <variable node_id="ns=1;s=Flowmeter.FreEthine" browser_name="FreEthine" readonly="True">
+            <value type="float">0.0</value>
+        </variable>
         <variable node_id="ns=1;s=Flowmeter.HyperOxygenInstVol" browser_name="HyperOxygenInstVol" readonly="True">
+            <value type="float">0.0</value>
+        </variable>
+        <variable node_id="ns=1;s=Flowmeter.FreHyperOxygen" browser_name="FreHyperOxygen" readonly="True">
             <value type="float">0.0</value>
         </variable>
         <variable node_id="ns=1;s=Flowmeter.LowOxygenInstVol" browser_name="LowOxygenInstVol" readonly="True">
             <value type="float">0.0</value>
         </variable>
+        <variable node_id="ns=1;s=Flowmeter.FreLowOxygen" browser_name="FreLowOxygen" readonly="True">
+            <value type="float">0.0</value>
+        </variable>
 
         <!-- 累积量低位 -->
-        <variable node_id="ns=1;s=Flowmeter.SumL1" browser_name="SumL1" readonly="True">
+        <variable node_id="ns=1;s=Flowmeter.SumEthineL" browser_name="SumEthineL" readonly="True">
             <value type="int">0</value>
         </variable>
-        <variable node_id="ns=1;s=Flowmeter.SumU1" browser_name="SumU1" readonly="True">
+        <variable node_id="ns=1;s=Flowmeter.SumEthineU" browser_name="SumEthineU" readonly="True">
             <value type="int">0</value>
         </variable>
-        <variable node_id="ns=1;s=Flowmeter.SumL2" browser_name="SumL2" readonly="True">
+        <variable node_id="ns=1;s=Flowmeter.SumHOxyL" browser_name="SumHOxyL" readonly="True">
             <value type="int">0</value>
         </variable>
-        <variable node_id="ns=1;s=Flowmeter.SumU2" browser_name="SumU2" readonly="True">
+        <variable node_id="ns=1;s=Flowmeter.SumHOxyU" browser_name="SumHOxyU" readonly="True">
             <value type="int">0</value>
         </variable>
-        <variable node_id="ns=1;s=Flowmeter.SumL3" browser_name="SumL3" readonly="True">
+        <variable node_id="ns=1;s=Flowmeter.SumLOxyL" browser_name="SumLOxyL" readonly="True">
             <value type="int">0</value>
         </variable>
-        <variable node_id="ns=1;s=Flowmeter.SumU3" browser_name="SumU3" readonly="True">
+        <variable node_id="ns=1;s=Flowmeter.SumLOxyU" browser_name="SumLOxyU" readonly="True">
             <value type="int">0</value>
         </variable>
 
@@ -43,23 +52,23 @@
         <variable node_id="ns=1;s=Flowmeter.VolC" browser_name="VolC" readonly="True">
             <value type="float">0.0</value>
         </variable>
-        <variable node_id="ns=1;s=Flowmeter.VolAvrPh" browser_name="VolAvrPh" readonly="True">
-            <value type="float">0.0</value>
-        </variable>
+        <!--<variable node_id="ns=1;s=Flowmeter.VolAvrPh" browser_name="VolAvrPh" readonly="True">-->
+            <!--<value type="float">0.0</value>-->
+        <!--</variable>-->
 
         <!-- AB BC CA 线电压 -->
-        <variable node_id="ns=1;s=Flowmeter.VolAB" browser_name="VolAB" readonly="True">
-            <value type="float">0.0</value>
-        </variable>
-        <variable node_id="ns=1;s=Flowmeter.VolBC" browser_name="VolBC" readonly="True">
-            <value type="float">0.0</value>
-        </variable>
-        <variable node_id="ns=1;s=Flowmeter.VolCA" browser_name="VolCA" readonly="True">
-            <value type="float">0.0</value>
-        </variable>
-        <variable node_id="ns=1;s=Flowmeter.VolAvrLn" browser_name="VolAvrLn" readonly="True">
-            <value type="float">0.0</value>
-        </variable>
+        <!--<variable node_id="ns=1;s=Flowmeter.VolAB" browser_name="VolAB" readonly="True">-->
+            <!--<value type="float">0.0</value>-->
+        <!--</variable>-->
+        <!--<variable node_id="ns=1;s=Flowmeter.VolBC" browser_name="VolBC" readonly="True">-->
+            <!--<value type="float">0.0</value>-->
+        <!--</variable>-->
+        <!--<variable node_id="ns=1;s=Flowmeter.VolCA" browser_name="VolCA" readonly="True">-->
+            <!--<value type="float">0.0</value>-->
+        <!--</variable>-->
+        <!--<variable node_id="ns=1;s=Flowmeter.VolAvrLn" browser_name="VolAvrLn" readonly="True">-->
+            <!--<value type="float">0.0</value>-->
+        <!--</variable>-->
 
         <!-- A B C 相电流-->
         <variable node_id="ns=1;s=Flowmeter.CurrentA" browser_name="CurrentA" readonly="True">
@@ -71,20 +80,20 @@
         <variable node_id="ns=1;s=Flowmeter.CurrentC" browser_name="CurrentC" readonly="True">
             <value type="float">0.0</value>
         </variable>
-        <variable node_id="ns=1;s=Flowmeter.CurrentAvr" browser_name="CurrentAvr" readonly="True">
-            <value type="float">0.0</value>
-        </variable>
+        <!--<variable node_id="ns=1;s=Flowmeter.CurrentAvr" browser_name="CurrentAvr" readonly="True">-->
+            <!--<value type="float">0.0</value>-->
+        <!--</variable>-->
 
-        <!-- A B C 相 有功功率 -->
-        <variable node_id="ns=1;s=Flowmeter.PA" browser_name="PA" readonly="True">
-            <value type="float">0.0</value>
-        </variable>
-        <variable node_id="ns=1;s=Flowmeter.PB" browser_name="PB" readonly="True">
-            <value type="float">0.0</value>
-        </variable>
-        <variable node_id="ns=1;s=Flowmeter.PC" browser_name="PC" readonly="True">
-            <value type="float">0.0</value>
-        </variable>
+        <!-- A B C相 有功功率 总有功功率-->
+        <!--<variable node_id="ns=1;s=Flowmeter.PA" browser_name="PA" readonly="True">-->
+            <!--<value type="float">0.0</value>-->
+        <!--</variable>-->
+        <!--<variable node_id="ns=1;s=Flowmeter.PB" browser_name="PB" readonly="True">-->
+            <!--<value type="float">0.0</value>-->
+        <!--</variable>-->
+        <!--<variable node_id="ns=1;s=Flowmeter.PC" browser_name="PC" readonly="True">-->
+            <!--<value type="float">0.0</value>-->
+        <!--</variable>-->
         <variable node_id="ns=1;s=Flowmeter.PSum" browser_name="PSum" readonly="True">
             <value type="float">0.0</value>
         </variable>

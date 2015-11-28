@@ -1,176 +1,176 @@
 <mmaster enabled="True">
      <!--明匠机器人-->
-    <device name="MJGrooveRobot" host="192.168.1.5" port="502" update_period="1">
-        <slave id="1">
-            <block>
-                <type>COILS</type>
-                <starting_address>2148</starting_address>
-                <size>54</size>
-                <point id="ns=1;s=MJGrooveRobot.StartSignal">
-                    <address>2148</address>
-                </point>
-                <point id="ns=1;s=MJGrooveRobot.State" readonly="True" state="grooved" condition="=True">
-                    <address>2172</address>
-                </point>
-                <point id="ns=1;s=MJGrooveRobot.State" readonly="True" state="delivered" condition="=True">
-                    <address>2200</address>
-                </point>
-                <point id="ns=1;s=MJGrooveRobot.State" readonly="True" state="completed" condition="=True">
-                    <address>2201</address>
-                </point>
-            </block>
-            <block>
-                <type>HOLDING_REGISTERS</type>
-                <starting_address>6097</starting_address>
-                <size>2</size>
-                <!-- 切割程序号 -->
-                <point id="ns=1;s=MJGrooveRobot.CuttingPro">
-                    <address>6097</address>
-                </point>
-                <!-- 搬运程序号 -->
-                <point id="ns=1;s=MJGrooveRobot.MovingPro">
-                    <address>6098</address>
-                </point>
-            </block>
-             <block>
-                <type>COILS</type>
-                <starting_address>2348</starting_address>
-                <size>2</size>
-                <!-- 搬运机器人故障状态 -->
-                <point id="ns=1;s=MJGrooveRobot.FaultStatus">
-                    <address>2348</address>
-                </point>
-                <!-- 切割机器人故障状态 -->
-                <point id="ns=1;s=MJGrooveRobot.FaultStatus">
-                    <address>2349</address>
-                </point>
-            </block>
-        </slave>
-    </device>
+    <!--<device name="MJGrooveRobot" host="192.168.1.5" port="502" update_period="1">-->
+        <!--<slave id="1">-->
+            <!--<block>-->
+                <!--<type>COILS</type>-->
+                <!--<starting_address>2148</starting_address>-->
+                <!--<size>54</size>-->
+                <!--<point id="ns=1;s=MJGrooveRobot.StartSignal">-->
+                    <!--<address>2148</address>-->
+                <!--</point>-->
+                <!--<point id="ns=1;s=MJGrooveRobot.State" readonly="True" state="grooved" condition="=True">-->
+                    <!--<address>2172</address>-->
+                <!--</point>-->
+                <!--<point id="ns=1;s=MJGrooveRobot.State" readonly="True" state="delivered" condition="=True">-->
+                    <!--<address>2200</address>-->
+                <!--</point>-->
+                <!--<point id="ns=1;s=MJGrooveRobot.State" readonly="True" state="completed" condition="=True">-->
+                    <!--<address>2201</address>-->
+                <!--</point>-->
+            <!--</block>-->
+            <!--<block>-->
+                <!--<type>HOLDING_REGISTERS</type>-->
+                <!--<starting_address>6097</starting_address>-->
+                <!--<size>2</size>-->
+                <!--&lt;!&ndash; 切割程序号 &ndash;&gt;-->
+                <!--<point id="ns=1;s=MJGrooveRobot.CuttingPro">-->
+                    <!--<address>6097</address>-->
+                <!--</point>-->
+                <!--&lt;!&ndash; 搬运程序号 &ndash;&gt;-->
+                <!--<point id="ns=1;s=MJGrooveRobot.MovingPro">-->
+                    <!--<address>6098</address>-->
+                <!--</point>-->
+            <!--</block>-->
+             <!--<block>-->
+                <!--<type>COILS</type>-->
+                <!--<starting_address>2348</starting_address>-->
+                <!--<size>2</size>-->
+                <!--&lt;!&ndash; 搬运机器人故障状态 &ndash;&gt;-->
+                <!--<point id="ns=1;s=MJGrooveRobot.FaultStatus">-->
+                    <!--<address>2348</address>-->
+                <!--</point>-->
+                <!--&lt;!&ndash; 切割机器人故障状态 &ndash;&gt;-->
+                <!--<point id="ns=1;s=MJGrooveRobot.FaultStatus">-->
+                    <!--<address>2349</address>-->
+                <!--</point>-->
+            <!--</block>-->
+        <!--</slave>-->
+    <!--</device>-->
      <!--新松机器人-->
-    <device name="SSRobot" host="192.168.1.66" port="502" update_period="1">
-        <slave id="1">
-            <block>
-                <!-- COILS DISCRETE_INPUTS HOLDING_REGISTERS INPUT_REGISTERS -->
-                <type>HOLDING_REGISTERS</type>
-                <starting_address>24000</starting_address>
-                <size>4</size>
-                <point id="ns=1;s=SSRobot.MovingStart">
-                    <address>24000</address>
-                </point>
-                <point id="ns=1;s=SSRobot.WeldingStart">
-                    <address>24000</address>
-                </point>
-                <point id="ns=1;s=SSRobot.MovePro">
-                    <address>24001</address>
-                </point>
-                <point id="ns=1;s=SSRobot.WeldingPro">
-                    <address>24002</address>
-                </point>
-                <point id="ns=1;s=SSRobot.Floors">
-                    <address>24003</address>
-                </point>
-            </block>
-            <block>
-                <!-- COILS DISCRETE_INPUTS HOLDING_REGISTERS INPUT_REGISTERS -->
-                <type>HOLDING_REGISTERS</type>
-                <starting_address>23900</starting_address>
-                <size>7</size>
-                <point id="ns=1;s=SSRobot.Moved">
-                    <address>23900</address>
-                </point>
-                <point id="ns=1;s=SSRobot.FaultStatus">
-                    <address>23901</address>
-                </point>
-                <point id="ns=1;s=SSRobot.FaultStatus">
-                    <address>23904</address>
-                </point>
-                <point id="ns=1;s=SSRobot.Cutting">
-                    <address>23903</address>
-                </point>
-                <point id="ns=1;s=SSRobot.Welding">
-                    <address>23906</address>
-                </point>
-            </block>
-        </slave>
-    </device>
+    <!--<device name="SSRobot" host="192.168.1.66" port="502" update_period="1">-->
+        <!--<slave id="1">-->
+            <!--<block>-->
+                <!--&lt;!&ndash; COILS DISCRETE_INPUTS HOLDING_REGISTERS INPUT_REGISTERS &ndash;&gt;-->
+                <!--<type>HOLDING_REGISTERS</type>-->
+                <!--<starting_address>24000</starting_address>-->
+                <!--<size>4</size>-->
+                <!--<point id="ns=1;s=SSRobot.MovingStart">-->
+                    <!--<address>24000</address>-->
+                <!--</point>-->
+                <!--<point id="ns=1;s=SSRobot.WeldingStart">-->
+                    <!--<address>24000</address>-->
+                <!--</point>-->
+                <!--<point id="ns=1;s=SSRobot.MovePro">-->
+                    <!--<address>24001</address>-->
+                <!--</point>-->
+                <!--<point id="ns=1;s=SSRobot.WeldingPro">-->
+                    <!--<address>24002</address>-->
+                <!--</point>-->
+                <!--<point id="ns=1;s=SSRobot.Floors">-->
+                    <!--<address>24003</address>-->
+                <!--</point>-->
+            <!--</block>-->
+            <!--<block>-->
+                <!--&lt;!&ndash; COILS DISCRETE_INPUTS HOLDING_REGISTERS INPUT_REGISTERS &ndash;&gt;-->
+                <!--<type>HOLDING_REGISTERS</type>-->
+                <!--<starting_address>23900</starting_address>-->
+                <!--<size>7</size>-->
+                <!--<point id="ns=1;s=SSRobot.Moved">-->
+                    <!--<address>23900</address>-->
+                <!--</point>-->
+                <!--<point id="ns=1;s=SSRobot.FaultStatus">-->
+                    <!--<address>23901</address>-->
+                <!--</point>-->
+                <!--<point id="ns=1;s=SSRobot.FaultStatus">-->
+                    <!--<address>23904</address>-->
+                <!--</point>-->
+                <!--<point id="ns=1;s=SSRobot.Cutting">-->
+                    <!--<address>23903</address>-->
+                <!--</point>-->
+                <!--<point id="ns=1;s=SSRobot.Welding">-->
+                    <!--<address>23906</address>-->
+                <!--</point>-->
+            <!--</block>-->
+        <!--</slave>-->
+    <!--</device>-->
      <!--明匠立体库-->
-    <device name="MJWarehouse" host="192.168.1.6" port="502" update_period="1">
-        <slave id="1">
-            <block>
-                <!-- COILS DISCRETE_INPUTS HOLDING_REGISTERS INPUT_REGISTERS -->
-                <type>HOLDING_REGISTERS</type>
-                <starting_address>6496</starting_address>
-                <size>7</size>
-                    <point id="ns=1;s=MJWarehouse.Start">
-                        <!-- 物料方向 -->
-                        <address>6496</address>
-                    </point>
-                    <point id="ns=1;s=MJWarehouse.InOutLocation">
-                        <!-- 出入库位置 -->
-                        <address>6497</address>
-                    </point>
-                    <point id="ns=1;s=MJWarehouse.MpLocation">
-                        <!-- 物料台位置 -->
-                        <address>6498</address>
-                    </point>
-                    <point id="ns=1;s=MJWarehouse.MStatus" readonly="True">
-                        <!-- 物料状态 -->
-                        <address>6500</address>
-                    </point>
-                    <point id="ns=1;s=MJWarehouse.FinishStatus">
-                        <!-- 完成状态 -->
-                        <address>6502</address>
-                    </point>
-            </block>
-            <block>
-                <!-- COILS DISCRETE_INPUTS HOLDING_REGISTERS INPUT_REGISTERS -->
-                <type>COILS</type>
-                <starting_address>2110</starting_address>
-                <size>47</size>
-                    <point id="ns=1;s=MJWarehouse.FaultStatus">
-                        <!-- 故障状态 -->
-                        <address>2110</address>
-                    </point>
-                    <point id="ns=1;s=MJWarehouse.Go">
-                        <!-- 启动 -->
-                        <address>2118</address>
-                    </point>
-                    <point id="ns=1;s=MJWarehouse.Stop">
-                        <!-- 停止 -->
-                        <address>2119</address>
-                    </point>
-                    <point id="ns=1;s=MJWarehouse.OriginStatus" >
-                        <!-- 原点状态 -->
-                        <address>2129</address>
-                    </point>
-                    <point id="ns=1;s=MJWarehouse.FaultReset" >
-                        <!-- 故障复位 -->
-                        <address>2157</address>
-                    </point>
-            </block>
-            <block>
-                <!-- COILS DISCRETE_INPUTS HOLDING_REGISTERS INPUT_REGISTERS -->
-                <type>COILS</type>
-                <starting_address>2452</starting_address>
-                <size>1</size>
-                    <point id="ns=1;s=MJWarehouse.OriginReset">
-                        <!-- 原点回归 -->
-                        <address>2452</address>
-                    </point>
-            </block>
-             <block>
-                <!-- COILS DISCRETE_INPUTS HOLDING_REGISTERS INPUT_REGISTERS -->
-                <type>COILS</type>
-                <starting_address>2548</starting_address>
-                <size>1</size>
-                    <point id="ns=1;s=MJWarehouse.EnableState">
-                        <!-- 使能状态 -->
-                        <address>2548</address>
-                    </point>
-            </block>
-        </slave>
-    </device>
+    <!--<device name="MJWarehouse" host="192.168.1.6" port="502" update_period="1">-->
+        <!--<slave id="1">-->
+            <!--<block>-->
+                <!--&lt;!&ndash; COILS DISCRETE_INPUTS HOLDING_REGISTERS INPUT_REGISTERS &ndash;&gt;-->
+                <!--<type>HOLDING_REGISTERS</type>-->
+                <!--<starting_address>6496</starting_address>-->
+                <!--<size>7</size>-->
+                    <!--<point id="ns=1;s=MJWarehouse.Start">-->
+                        <!--&lt;!&ndash; 物料方向 &ndash;&gt;-->
+                        <!--<address>6496</address>-->
+                    <!--</point>-->
+                    <!--<point id="ns=1;s=MJWarehouse.InOutLocation">-->
+                        <!--&lt;!&ndash; 出入库位置 &ndash;&gt;-->
+                        <!--<address>6497</address>-->
+                    <!--</point>-->
+                    <!--<point id="ns=1;s=MJWarehouse.MpLocation">-->
+                        <!--&lt;!&ndash; 物料台位置 &ndash;&gt;-->
+                        <!--<address>6498</address>-->
+                    <!--</point>-->
+                    <!--<point id="ns=1;s=MJWarehouse.MStatus" readonly="True">-->
+                        <!--&lt;!&ndash; 物料状态 &ndash;&gt;-->
+                        <!--<address>6500</address>-->
+                    <!--</point>-->
+                    <!--<point id="ns=1;s=MJWarehouse.FinishStatus">-->
+                        <!--&lt;!&ndash; 完成状态 &ndash;&gt;-->
+                        <!--<address>6502</address>-->
+                    <!--</point>-->
+            <!--</block>-->
+            <!--<block>-->
+                <!--&lt;!&ndash; COILS DISCRETE_INPUTS HOLDING_REGISTERS INPUT_REGISTERS &ndash;&gt;-->
+                <!--<type>COILS</type>-->
+                <!--<starting_address>2110</starting_address>-->
+                <!--<size>47</size>-->
+                    <!--<point id="ns=1;s=MJWarehouse.FaultStatus">-->
+                        <!--&lt;!&ndash; 故障状态 &ndash;&gt;-->
+                        <!--<address>2110</address>-->
+                    <!--</point>-->
+                    <!--<point id="ns=1;s=MJWarehouse.Go">-->
+                        <!--&lt;!&ndash; 启动 &ndash;&gt;-->
+                        <!--<address>2118</address>-->
+                    <!--</point>-->
+                    <!--<point id="ns=1;s=MJWarehouse.Stop">-->
+                        <!--&lt;!&ndash; 停止 &ndash;&gt;-->
+                        <!--<address>2119</address>-->
+                    <!--</point>-->
+                    <!--<point id="ns=1;s=MJWarehouse.OriginStatus" >-->
+                        <!--&lt;!&ndash; 原点状态 &ndash;&gt;-->
+                        <!--<address>2129</address>-->
+                    <!--</point>-->
+                    <!--<point id="ns=1;s=MJWarehouse.FaultReset" >-->
+                        <!--&lt;!&ndash; 故障复位 &ndash;&gt;-->
+                        <!--<address>2157</address>-->
+                    <!--</point>-->
+            <!--</block>-->
+            <!--<block>-->
+                <!--&lt;!&ndash; COILS DISCRETE_INPUTS HOLDING_REGISTERS INPUT_REGISTERS &ndash;&gt;-->
+                <!--<type>COILS</type>-->
+                <!--<starting_address>2452</starting_address>-->
+                <!--<size>1</size>-->
+                    <!--<point id="ns=1;s=MJWarehouse.OriginReset">-->
+                        <!--&lt;!&ndash; 原点回归 &ndash;&gt;-->
+                        <!--<address>2452</address>-->
+                    <!--</point>-->
+            <!--</block>-->
+             <!--<block>-->
+                <!--&lt;!&ndash; COILS DISCRETE_INPUTS HOLDING_REGISTERS INPUT_REGISTERS &ndash;&gt;-->
+                <!--<type>COILS</type>-->
+                <!--<starting_address>2548</starting_address>-->
+                <!--<size>1</size>-->
+                    <!--<point id="ns=1;s=MJWarehouse.EnableState">-->
+                        <!--&lt;!&ndash; 使能状态 &ndash;&gt;-->
+                        <!--<address>2548</address>-->
+                    <!--</point>-->
+            <!--</block>-->
+        <!--</slave>-->
+    <!--</device>-->
 
     <!-- 流量计 -->
     <device name="Flowmeter" host="192.168.1.55" port="502" update_period="0.5">
@@ -186,17 +186,23 @@
                         <encoding>32float</encoding>
                     </point>
 
-                    <point id="ns=1;s=Flowmeter.SumL1">
+                    <point id="ns=1;s=Flowmeter.SumEthineL">
                         <address>4</address>
                         <count>2</count>
                         <endian>Little</endian>
                         <encoding>32int</encoding>
                     </point>
-                    <point id="ns=1;s=Flowmeter.SumU1">
+                    <point id="ns=1;s=Flowmeter.SumEthineU">
                         <address>6</address>
                         <count>2</count>
                         <endian>Little</endian>
                         <encoding>32int</encoding>
+                    </point>
+                    <point id="ns=1;s=Flowmeter.FreEthine">
+                        <address>12</address>
+                        <count>2</count>
+                        <endian>Little</endian>
+                        <encoding>32float</encoding>
                     </point>
 
                     <point id="ns=1;s=Flowmeter.HyperOxygenInstVol">
@@ -206,17 +212,23 @@
                         <encoding>32float</encoding>
                     </point>
 
-                    <point id="ns=1;s=Flowmeter.SumL2">
+                    <point id="ns=1;s=Flowmeter.SumHOxyL">
                         <address>24</address>
                         <count>2</count>
                         <endian>Little</endian>
                         <encoding>32int</encoding>
                     </point>
-                    <point id="ns=1;s=Flowmeter.SumU2">
+                    <point id="ns=1;s=Flowmeter.SumHOxyU">
                         <address>26</address>
                         <count>2</count>
                         <endian>Little</endian>
                         <encoding>32int</encoding>
+                    </point>
+                    <point id="ns=1;s=Flowmeter.FreHyperOxygen">
+                        <address>32</address>
+                        <count>2</count>
+                        <endian>Little</endian>
+                        <encoding>32float</encoding>
                     </point>
 
                     <point id="ns=1;s=Flowmeter.LowOxygenInstVol">
@@ -226,17 +238,23 @@
                         <encoding>32float</encoding>
                     </point>
 
-                    <point id="ns=1;s=Flowmeter.SumL3">
+                    <point id="ns=1;s=Flowmeter.SumLOxyL">
                         <address>44</address>
                         <count>2</count>
                         <endian>Little</endian>
                         <encoding>32int</encoding>
                     </point>
-                    <point id="ns=1;s=Flowmeter.SumU3">
+                    <point id="ns=1;s=Flowmeter.SumLOxyU">
                         <address>46</address>
                         <count>2</count>
                         <endian>Little</endian>
                         <encoding>32int</encoding>
+                    </point>
+                    <point id="ns=1;s=Flowmeter.FreLowOxygen">
+                        <address>52</address>
+                        <count>2</count>
+                        <endian>Little</endian>
+                        <encoding>32float</encoding>
                     </point>
 
                     <point id="ns=1;s=Flowmeter.VolA">

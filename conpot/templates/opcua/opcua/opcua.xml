@@ -22,24 +22,15 @@
             <value type="float">0.0</value>
         </variable>
 
-        <!-- 累积量低位 -->
-        <variable node_id="ns=1;s=Flowmeter.SumEthineL" browser_name="SumEthineL" readonly="True">
-            <value type="int">0</value>
+        <!-- 乙炔累积量 高压氧累积量 低压氧累积量 -->
+        <variable node_id="ns=1;s=Flowmeter.SumEthine" browser_name="SumEthine" readonly="True">
+            <value type="float">0.0</value>
         </variable>
-        <variable node_id="ns=1;s=Flowmeter.SumEthineU" browser_name="SumEthineU" readonly="True">
-            <value type="int">0</value>
+        <variable node_id="ns=1;s=Flowmeter.SumHOxy" browser_name="SumHOxy" readonly="True">
+            <value type="float">0.0</value>
         </variable>
-        <variable node_id="ns=1;s=Flowmeter.SumHOxyL" browser_name="SumHOxyL" readonly="True">
-            <value type="int">0</value>
-        </variable>
-        <variable node_id="ns=1;s=Flowmeter.SumHOxyU" browser_name="SumHOxyU" readonly="True">
-            <value type="int">0</value>
-        </variable>
-        <variable node_id="ns=1;s=Flowmeter.SumLOxyL" browser_name="SumLOxyL" readonly="True">
-            <value type="int">0</value>
-        </variable>
-        <variable node_id="ns=1;s=Flowmeter.SumLOxyU" browser_name="SumLOxyU" readonly="True">
-            <value type="int">0</value>
+        <variable node_id="ns=1;s=Flowmeter.SumLOxy" browser_name="SumLOxy" readonly="True">
+            <value type="float">0.0</value>
         </variable>
 
         <!-- A B C 相电压 -->

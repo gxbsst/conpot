@@ -186,24 +186,11 @@
                         <encoding>32float</encoding>
                     </point>
 
-                    <!--<point id="ns=1;s=Flowmeter.SumEthineL">-->
-                        <!--<address>4</address>-->
-                        <!--<count>2</count>-->
-                        <!--<endian>Little</endian>-->
-                        <!--<encoding>32int</encoding>-->
-                    <!--</point>-->
-                    <!--<point id="ns=1;s=Flowmeter.SumEthineU">-->
-                        <!--<address>6</address>-->
-                        <!--<count>2</count>-->
-                        <!--<endian>Little</endian>-->
-                        <!--<encoding>32int</encoding>-->
-                    <!--</point>-->
-
                     <point id="ns=1;s=Flowmeter.SumEthine">
                         <address>4</address>
                         <count>4</count>
                         <encoding>custom</encoding>
-                        <custom_decoder>BinaryPayloadDecoder(''.join(pack(Endian.Little + 'H', x) for x in value[:2]), Endian.Little).decode_32bit_float() * 1000000 + BinaryPayloadDecoder(''.join(pack(Endian.Little + 'H', x) for x in value[2:]), Endian.Little).decode_32bit_float() * 1000</custom_decoder>
+                        <custom_decoder>BinaryPayloadDecoder(''.join(pack(Endian.Little + 'H', x) for x in value[:2]), Endian.Little).decode_32bit_float() / 1000 + BinaryPayloadDecoder(''.join(pack(Endian.Little + 'H', x) for x in value[2:]), Endian.Little).decode_32bit_float() * 1000000</custom_decoder>
                     </point>
 
                     <point id="ns=1;s=Flowmeter.FreEthine">
@@ -220,18 +207,13 @@
                         <encoding>32float</encoding>
                     </point>
 
-                    <point id="ns=1;s=Flowmeter.SumHOxyL">
+                    <point id="ns=1;s=Flowmeter.SumHOxy">
                         <address>24</address>
-                        <count>2</count>
-                        <endian>Little</endian>
-                        <encoding>32int</encoding>
+                        <count>4</count>
+                        <encoding>custom</encoding>
+                        <custom_decoder>BinaryPayloadDecoder(''.join(pack(Endian.Little + 'H', x) for x in value[:2]), Endian.Little).decode_32bit_float() / 1000 + BinaryPayloadDecoder(''.join(pack(Endian.Little + 'H', x) for x in value[2:]), Endian.Little).decode_32bit_float() * 1000000</custom_decoder>
                     </point>
-                    <point id="ns=1;s=Flowmeter.SumHOxyU">
-                        <address>26</address>
-                        <count>2</count>
-                        <endian>Little</endian>
-                        <encoding>32int</encoding>
-                    </point>
+
                     <point id="ns=1;s=Flowmeter.FreHyperOxygen">
                         <address>32</address>
                         <count>2</count>
@@ -246,18 +228,13 @@
                         <encoding>32float</encoding>
                     </point>
 
-                    <point id="ns=1;s=Flowmeter.SumLOxyL">
+                    <point id="ns=1;s=Flowmeter.SumLOxy">
                         <address>44</address>
-                        <count>2</count>
-                        <endian>Little</endian>
-                        <encoding>32int</encoding>
+                        <count>4</count>
+                        <encoding>custom</encoding>
+                        <custom_decoder>BinaryPayloadDecoder(''.join(pack(Endian.Little + 'H', x) for x in value[:2]), Endian.Little).decode_32bit_float() / 1000 + BinaryPayloadDecoder(''.join(pack(Endian.Little + 'H', x) for x in value[2:]), Endian.Little).decode_32bit_float() * 1000000</custom_decoder>
                     </point>
-                    <point id="ns=1;s=Flowmeter.SumLOxyU">
-                        <address>46</address>
-                        <count>2</count>
-                        <endian>Little</endian>
-                        <encoding>32int</encoding>
-                    </point>
+
                     <point id="ns=1;s=Flowmeter.FreLowOxygen">
                         <address>52</address>
                         <count>2</count>

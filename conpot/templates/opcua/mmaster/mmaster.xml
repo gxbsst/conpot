@@ -172,6 +172,35 @@
         </slave>
     </device>
 
+
+    <!-- 牛腿搬运机器人-->
+    <device name="MJMoveRobot" host="192.168.1.7" port="502" update_period="1">
+        <slave id="1">
+            <block>
+                <type>HOLDING_REGISTERS</type>
+                <starting_address>4146</starting_address>
+                <size>5</size>
+                <point id="ns=1;s=MJMoveRobot.Move">
+                    <address>4146</address>
+                </point>
+                <point id="ns=1;s=MJMoveRobot.FinishStatus">
+                    <address>4149</address>
+                </point>
+                <point id="ns=1;s=MJMoveRobot.Status">
+                    <address>4150</address>
+                </point>
+            </block>
+            <block>
+                <type>COILS</type>
+                <starting_address>2083</starting_address>
+                <size>1</size>
+                <point id="ns=1;s=MJMoveRobot.MagnetConfirm">
+                    <address>2083</address>
+                </point>
+            </block>
+        </slave>
+    </device>
+
     <!-- 流量计 -->
     <device name="Flowmeter" host="192.168.1.55" port="502" update_period="0.5">
         <slave id="1">

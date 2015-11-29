@@ -327,6 +327,37 @@ Server.create_method(ua_object, node_id, browser_name, send_order, input_args, o
         </method>
     </object>
 
+     <!-- 牛腿搬运机器人 -->
+    <object node_id="ns=1;s=MJMoveRobot" browser_name="MJMoveRobot">
+        <variable node_id="ns=1;s=MJMoveRobot.Move" browser_name="Move">
+            <value type="int">1</value>
+        </variable>
+        <variable node_id="ns=1;s=MJMoveRobot.FinishStatus" browser_name="FinishStatus">
+            <value type="int">1</value>
+        </variable>
+        <variable node_id="ns=1;s=MJMoveRobot.Status" browser_name="Status">
+            <value type="int">1</value>
+        </variable>
+        <variable node_id="ns=1;s=MJMoveRobot.MagnetConfirm" browser_name="MagnetConfirm">
+            <value type="int">1</value>
+        </variable>
+   <method node_id="ns=1;s=MJMoveRobot.Start" browser_name="Start">
+            <input_args>Int64</input_args>
+            <output_args>Boolean</output_args>
+            <func>
+                <![CDATA[
+def start(parent, variant):
+    ret = databus.set_value('w ns=1;s=MJMoveRobot.Move', variant.Value, sync=True)
+    if not ret[0]:
+        return [ua.Variant(False, ua.VariantType.Boolean)]
+    return [ua.Variant(True, ua.VariantType.Boolean)]
+
+Server.create_method(ua_object, node_id, browser_name, start, input_args, output_args)
+                ]]>
+            </func>
+        </method>
+    </object>
+
     <event event_id="ns=1;s=SSAgv.ConfirmedEvent" severity="300">
         <message>Confirmed Event</message>
     </event>

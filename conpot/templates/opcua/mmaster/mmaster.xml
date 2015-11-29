@@ -215,17 +215,18 @@
                         <encoding>32float</encoding>
                     </point>
 
-                    <point id="ns=1;s=Flowmeter.SumL1">
+                    <point id="ns=1;s=Flowmeter.SumEthine">
                         <address>4</address>
-                        <count>2</count>
-                        <endian>Little</endian>
-                        <encoding>32int</encoding>
+                        <count>4</count>
+                        <encoding>custom</encoding>
+                        <custom_decoder>BinaryPayloadDecoder(''.join(pack(Endian.Little + 'H', x) for x in value[:2]), Endian.Little).decode_32bit_float() / 1000 + BinaryPayloadDecoder(''.join(pack(Endian.Little + 'H', x) for x in value[2:]), Endian.Little).decode_32bit_float() * 1000000</custom_decoder>
                     </point>
-                    <point id="ns=1;s=Flowmeter.SumU1">
-                        <address>6</address>
+
+                    <point id="ns=1;s=Flowmeter.FreEthine">
+                        <address>12</address>
                         <count>2</count>
                         <endian>Little</endian>
-                        <encoding>32int</encoding>
+                        <encoding>32float</encoding>
                     </point>
 
                     <point id="ns=1;s=Flowmeter.HyperOxygenInstVol">
@@ -235,17 +236,18 @@
                         <encoding>32float</encoding>
                     </point>
 
-                    <point id="ns=1;s=Flowmeter.SumL2">
+                    <point id="ns=1;s=Flowmeter.SumHOxy">
                         <address>24</address>
-                        <count>2</count>
-                        <endian>Little</endian>
-                        <encoding>32int</encoding>
+                        <count>4</count>
+                        <encoding>custom</encoding>
+                        <custom_decoder>BinaryPayloadDecoder(''.join(pack(Endian.Little + 'H', x) for x in value[:2]), Endian.Little).decode_32bit_float() / 1000 + BinaryPayloadDecoder(''.join(pack(Endian.Little + 'H', x) for x in value[2:]), Endian.Little).decode_32bit_float() * 1000000</custom_decoder>
                     </point>
-                    <point id="ns=1;s=Flowmeter.SumU2">
-                        <address>26</address>
+
+                    <point id="ns=1;s=Flowmeter.FreHyperOxygen">
+                        <address>32</address>
                         <count>2</count>
                         <endian>Little</endian>
-                        <encoding>32int</encoding>
+                        <encoding>32float</encoding>
                     </point>
 
                     <point id="ns=1;s=Flowmeter.LowOxygenInstVol">
@@ -255,17 +257,18 @@
                         <encoding>32float</encoding>
                     </point>
 
-                    <point id="ns=1;s=Flowmeter.SumL3">
+                    <point id="ns=1;s=Flowmeter.SumLOxy">
                         <address>44</address>
-                        <count>2</count>
-                        <endian>Little</endian>
-                        <encoding>32int</encoding>
+                        <count>4</count>
+                        <encoding>custom</encoding>
+                        <custom_decoder>BinaryPayloadDecoder(''.join(pack(Endian.Little + 'H', x) for x in value[:2]), Endian.Little).decode_32bit_float() / 1000 + BinaryPayloadDecoder(''.join(pack(Endian.Little + 'H', x) for x in value[2:]), Endian.Little).decode_32bit_float() * 1000000</custom_decoder>
                     </point>
-                    <point id="ns=1;s=Flowmeter.SumU3">
-                        <address>46</address>
+
+                    <point id="ns=1;s=Flowmeter.FreLowOxygen">
+                        <address>52</address>
                         <count>2</count>
                         <endian>Little</endian>
-                        <encoding>32int</encoding>
+                        <encoding>32float</encoding>
                     </point>
 
                     <point id="ns=1;s=Flowmeter.VolA">

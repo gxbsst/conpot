@@ -47,6 +47,7 @@ class Point(object):
         self.readonly = readonly
         self.condition = condition
         self.state = state
+        self.custom_decoder = None
 
     def get_read_value(self, value):
         if self.state:
@@ -104,6 +105,10 @@ class MMaster(object):
                     if endian_nodes is not None and len(endian_nodes) > 0:
                         endian = endian_nodes[0].text
                         point.endian = endian
+                    custom_decoder_nodes = point_node.xpath('./custom_decoder')
+                    if custom_decoder_nodes is not None and len(custom_decoder_nodes) > 0:
+                        custom_decoder = custom_decoder_nodes[0].text
+                        point.custom_decoder = custom_decoder
                     point.slave_id = slave.slave_id
                     point.readonly = readonly
                     point.condition = condition
@@ -231,7 +236,7 @@ class MMaster(object):
                             elif isinstance(result, ReadHoldingRegistersResponse):
                                 start = point.address - starting_address
                                 value = result.registers[start:start + point.count]
-                                if not point.encoding == 'none':
+                                if not point.encoding == 'none' and not point.encoding == 'custom':
                                     endian = Endian.Auto
                                     if point.endian == 'Little':
                                         endian = Endian.Little
@@ -252,6 +257,9 @@ class MMaster(object):
                                                     '64float': decoder.decode_64bit_float,
                                                     'string': decoder.decode_string}
                                     value = encoding_map[point.encoding]()
+                                elif point.encoding == 'custom' and point.custom_decoder:
+                                    decode = eval("lambda value: " + point.custom_decoder)
+                                    value = decode(value)
 
                             if point.condition:
                                 if point.condition[0] == '=':

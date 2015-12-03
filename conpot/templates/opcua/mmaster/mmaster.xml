@@ -174,7 +174,7 @@
 
 
     <!-- 牛腿搬运机器人-->
-    <device name="MJMoveRobot" host="192.168.1.7" port="502" update_period="1">
+    <device name="MJMoveRobot" host="192.168.1.8" port="502" update_period="1">
         <slave id="1">
             <block>
                 <type>HOLDING_REGISTERS</type>

@@ -2,6 +2,10 @@
 
     <!-- 流量计 -->
     <object node_id="ns=1;s=Flowmeter" browser_name="Flowmeter">
+        <variable node_id="ns=1;s=Flowmeter.Values" browser_name="Values" readonly="True">
+            <value type="array">[0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]</value>
+        </variable>
+
         <!-- 乙炔瞬时量 高压氧瞬时量 低压氧瞬时量-->
         <variable node_id="ns=1;s=Flowmeter.EthineInstVol" browser_name="EthineInstVol" readonly="True">
             <value type="float">0.0</value>

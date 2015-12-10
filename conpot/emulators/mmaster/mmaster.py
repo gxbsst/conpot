@@ -48,6 +48,7 @@ class Point(object):
         self.condition = condition
         self.state = state
         self.custom_decoder = None
+        self.index = -1
 
     def get_read_value(self, value):
         if self.state:
@@ -87,12 +88,15 @@ class MMaster(object):
                     condition = None
                     state = None
                     readonly = False
+                    index = -1
                     if 'readonly' in point_node.attrib:
                         readonly = eval(point_node.attrib['readonly'])
                     if 'condition' in point_node.attrib:
                         condition = point_node.attrib['condition']
                     if 'state' in point_node.attrib:
                         state = point_node.attrib['state']
+                    if 'index' in point_node.attrib:
+                        index = int(point_node.attrib['index'])
                     address = point_node.xpath('./address')[0].text
                     point = Point(point_id, int(address))
                     count_nodes = point_node.xpath('./count')
@@ -113,6 +117,7 @@ class MMaster(object):
                     point.readonly = readonly
                     point.condition = condition
                     point.state = state
+                    point.index = index
                     self.point_dict[point_id] = point
                     block.points.append(point)
 
@@ -265,22 +270,27 @@ class MMaster(object):
                                 if point.condition[0] == '=':
                                     if str(value) == point.condition[1:]:
                                         conpot_core.get_databus().set_value('r ' + point.point_id,
-                                                                            point.get_read_value(value))
+                                                                            point.get_read_value(value),
+                                                                            index=point.index)
                                 elif point.condition[0] == '!':
                                     if not str(value) == point.condition[1:]:
                                         conpot_core.get_databus().set_value('r ' + point.point_id,
-                                                                            point.get_read_value(value))
+                                                                            point.get_read_value(value),
+                                                                            index=point.index)
                                 elif point.condition[0] == '>':
                                     if str(value) > point.condition[1:]:
                                         conpot_core.get_databus().set_value('r ' + point.point_id,
-                                                                            point.get_read_value(value))
+                                                                            point.get_read_value(value),
+                                                                            index=point.index)
                                 elif point.condition[0] == '<':
                                     if str(value) < point.condition[1:]:
                                         conpot_core.get_databus().set_value('r ' + point.point_id,
-                                                                            point.get_read_value(value))
+                                                                            point.get_read_value(value),
+                                                                            index=point.index)
                             else:
                                 conpot_core.get_databus().set_value('r ' + point.point_id,
-                                                                    point.get_read_value(value))
+                                                                    point.get_read_value(value),
+                                                                    index=point.index)
             except ConnectionException, e:
                 logger.error('Error because: %s' % e)
                 self.connected = False

@@ -65,9 +65,15 @@ class OPCUAServer(Server):
             for variable in variables:
                 value = variable.xpath('./value')[0]
                 node_id = variable.attrib['node_id']
-                ua_variable = ua_object.add_variable(variable.attrib['node_id'],
-                                                     variable.attrib['browser_name'],
-                                                     eval(value.attrib['type'] + "('" + value.text + "')"))
+                value_type = value.attrib['type']
+                if value_type == 'array':
+                    ua_variable = ua_object.add_variable(variable.attrib['node_id'],
+                                                         variable.attrib['browser_name'],
+                                                         eval(value.text))
+                else:
+                    ua_variable = ua_object.add_variable(variable.attrib['node_id'],
+                                                         variable.attrib['browser_name'],
+                                                         eval(value.attrib['type'] + "('" + value.text + "')"))
                 writable = True
                 if 'readonly' in variable.attrib:
                     if eval(variable.attrib['readonly']):

@@ -65,7 +65,7 @@ class Databus(object):
             real_key = key[2:]
         return real_key
 
-    def set_value(self, key, value, sync=False, forced=False, delay=0):
+    def set_value(self, key, value, index=-1, sync=False, forced=False, delay=0):
         """
         放入key相关的值，并通知调用者
         当sync为True的时候将会通知调用者，并等待调用结果返回
@@ -74,7 +74,12 @@ class Databus(object):
         real_key = Databus.get_real_key(key)
         if forced or (real_key not in self._data or not self._data[real_key] == value):
             # store value
-            self._data[real_key] = value
+            if index < 0:
+                self._data[real_key] = value
+            else:
+                data_value = self._data[real_key] or []
+                data_value[index] = value
+                self._data[real_key] = data_value
             # notify observers
             if key in self._observer_map:
                 if sync:

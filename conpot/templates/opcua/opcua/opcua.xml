@@ -6,106 +6,6 @@
             <value type="array">[0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]</value>
         </variable>
 
-        <!-- 乙炔瞬时量 高压氧瞬时量 低压氧瞬时量-->
-        <variable node_id="ns=1;s=Flowmeter.EthineInstVol" browser_name="EthineInstVol" readonly="True">
-            <value type="float">0.0</value>
-        </variable>
-        <variable node_id="ns=1;s=Flowmeter.FreEthine" browser_name="FreEthine" readonly="True">
-            <value type="float">0.0</value>
-        </variable>
-        <variable node_id="ns=1;s=Flowmeter.HyperOxygenInstVol" browser_name="HyperOxygenInstVol" readonly="True">
-            <value type="float">0.0</value>
-        </variable>
-        <variable node_id="ns=1;s=Flowmeter.FreHyperOxygen" browser_name="FreHyperOxygen" readonly="True">
-            <value type="float">0.0</value>
-        </variable>
-        <variable node_id="ns=1;s=Flowmeter.LowOxygenInstVol" browser_name="LowOxygenInstVol" readonly="True">
-            <value type="float">0.0</value>
-        </variable>
-        <variable node_id="ns=1;s=Flowmeter.FreLowOxygen" browser_name="FreLowOxygen" readonly="True">
-            <value type="float">0.0</value>
-        </variable>
-
-        <!-- 乙炔累积量 高压氧累积量 低压氧累积量 -->
-        <variable node_id="ns=1;s=Flowmeter.SumEthine" browser_name="SumEthine" readonly="True">
-            <value type="float">0.0</value>
-        </variable>
-        <variable node_id="ns=1;s=Flowmeter.SumHOxy" browser_name="SumHOxy" readonly="True">
-            <value type="float">0.0</value>
-        </variable>
-        <variable node_id="ns=1;s=Flowmeter.SumLOxy" browser_name="SumLOxy" readonly="True">
-            <value type="float">0.0</value>
-        </variable>
-
-        <!-- A B C 相电压 -->
-        <variable node_id="ns=1;s=Flowmeter.VolA" browser_name="VolA" readonly="True">
-            <value type="float">0.0</value>
-        </variable>
-        <variable node_id="ns=1;s=Flowmeter.VolB" browser_name="VolB" readonly="True">
-            <value type="float">0.0</value>
-        </variable>
-        <variable node_id="ns=1;s=Flowmeter.VolC" browser_name="VolC" readonly="True">
-            <value type="float">0.0</value>
-        </variable>
-        <!--<variable node_id="ns=1;s=Flowmeter.VolAvrPh" browser_name="VolAvrPh" readonly="True">-->
-            <!--<value type="float">0.0</value>-->
-        <!--</variable>-->
-
-        <!-- AB BC CA 线电压 -->
-        <!--<variable node_id="ns=1;s=Flowmeter.VolAB" browser_name="VolAB" readonly="True">-->
-            <!--<value type="float">0.0</value>-->
-        <!--</variable>-->
-        <!--<variable node_id="ns=1;s=Flowmeter.VolBC" browser_name="VolBC" readonly="True">-->
-            <!--<value type="float">0.0</value>-->
-        <!--</variable>-->
-        <!--<variable node_id="ns=1;s=Flowmeter.VolCA" browser_name="VolCA" readonly="True">-->
-            <!--<value type="float">0.0</value>-->
-        <!--</variable>-->
-        <!--<variable node_id="ns=1;s=Flowmeter.VolAvrLn" browser_name="VolAvrLn" readonly="True">-->
-            <!--<value type="float">0.0</value>-->
-        <!--</variable>-->
-
-        <!-- A B C 相电流-->
-        <variable node_id="ns=1;s=Flowmeter.CurrentA" browser_name="CurrentA" readonly="True">
-            <value type="float">0.0</value>
-        </variable>
-        <variable node_id="ns=1;s=Flowmeter.CurrentB" browser_name="CurrentB" readonly="True">
-            <value type="float">0.0</value>
-        </variable>
-        <variable node_id="ns=1;s=Flowmeter.CurrentC" browser_name="CurrentC" readonly="True">
-            <value type="float">0.0</value>
-        </variable>
-        <!--<variable node_id="ns=1;s=Flowmeter.CurrentAvr" browser_name="CurrentAvr" readonly="True">-->
-            <!--<value type="float">0.0</value>-->
-        <!--</variable>-->
-
-        <!-- A B C相 有功功率 总有功功率-->
-        <!--<variable node_id="ns=1;s=Flowmeter.PA" browser_name="PA" readonly="True">-->
-            <!--<value type="float">0.0</value>-->
-        <!--</variable>-->
-        <!--<variable node_id="ns=1;s=Flowmeter.PB" browser_name="PB" readonly="True">-->
-            <!--<value type="float">0.0</value>-->
-        <!--</variable>-->
-        <!--<variable node_id="ns=1;s=Flowmeter.PC" browser_name="PC" readonly="True">-->
-            <!--<value type="float">0.0</value>-->
-        <!--</variable>-->
-        <variable node_id="ns=1;s=Flowmeter.PSum" browser_name="PSum" readonly="True">
-            <value type="float">0.0</value>
-        </variable>
-
-        <!-- AP：正向有功功能  AN：正向无功功能  IP：逆向有功功能 IN：逆向无功功能 -->
-        <variable node_id="ns=1;s=Flowmeter.PowerAP" browser_name="PowerAP" readonly="True">
-            <value type="int">0</value>
-        </variable>
-        <variable node_id="ns=1;s=Flowmeter.PowerAN" browser_name="PowerAN" readonly="True">
-            <value type="int">0</value>
-        </variable>
-        <variable node_id="ns=1;s=Flowmeter.PowerIP" browser_name="PowerIP" readonly="True">
-            <value type="int">0</value>
-        </variable>
-        <variable node_id="ns=1;s=Flowmeter.PowerIN" browser_name="PowerIN" readonly="True">
-            <value type="int">0</value>
-        </variable>
     </object>
 
     <!-- 开元RGV -->
@@ -310,7 +210,6 @@ Server.create_method(ua_object, node_id, browser_name, start, input_args, output
             </func>
         </method>
     </object>
-
 
     <!-- 新松AGV -->
     <object node_id="ns=1;s=SSAgv" browser_name="SSAgv">

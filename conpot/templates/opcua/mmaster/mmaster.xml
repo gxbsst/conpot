@@ -173,7 +173,7 @@
     </device>
 
 
-    <!-- 牛腿搬运机器人-->
+     <!--牛腿搬运机器人-->
     <device name="MJMoveRobot" host="192.168.1.8" port="502" update_period="1">
         <slave id="1">
             <block>
@@ -219,14 +219,13 @@
     </device>
 
     <!-- 流量计 -->
-    <!--<device name="Flowmeter" host="192.168.1.55" port="502" update_period="0.5">-->
     <device name="Flowmeter" host="192.168.1.55" port="502" update_period="0.5">
         <slave id="1">
             <block>
                 <type>HOLDING_REGISTERS</type>
                 <starting_address>0</starting_address>
                 <size>120</size>
-                    <!-- 高压氧瞬时量 HyperOxygenInstVol -->
+                    <!-- 高压氧瞬时量 HOxyInstVol -->
                     <point id="ns=1;s=Flowmeter.Values" index="0">
                         <address>0</address>
                         <count>2</count>
@@ -248,7 +247,7 @@
                         <encoding>32float</encoding>
                     </point>
 
-                    <!-- 低压氧瞬时量 LowOxygenInstVol -->
+                    <!-- 低压氧瞬时量 LOxyInstVol -->
                     <point id="ns=1;s=Flowmeter.Values" index="3">
                         <address>20</address>
                         <count>2</count>
@@ -285,7 +284,7 @@
                         <custom_decoder>BinaryPayloadDecoder(''.join(pack(Endian.Little + 'H', x) for x in value[:2]), Endian.Little).decode_32bit_float() / 1000 + BinaryPayloadDecoder(''.join(pack(Endian.Little + 'H', x) for x in value[2:]), Endian.Little).decode_32bit_float() * 1000000</custom_decoder>
                     </point>
                     <!-- 乙炔频率 FreEthine-->
-                    <point id="ns=1;s=Flowmeter.FreEthine" index="8">
+                    <point id="ns=1;s=Flowmeter.Values" index="8">
                         <address>52</address>
                         <count>2</count>
                         <endian>Little</endian>

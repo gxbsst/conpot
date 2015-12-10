@@ -345,12 +345,24 @@ Server.create_method(ua_object, node_id, browser_name, send_order, input_args, o
         <variable node_id="ns=1;s=MJMoveRobot.MagnetConfirm" browser_name="MagnetConfirm">
             <value type="int">1</value>
         </variable>
+        <variable node_id="ns=1;s=MJMoveRobot.Fault" browser_name="Fault">
+            <value type="int">1</value>
+        </variable>
+        <variable node_id="ns=1;s=MJMoveRobot.Wait" browser_name="Fault">
+            <value type="int">1</value>
+        </variable>
+        <variable node_id="ns=1;s=MJMoveRobot.Run" browser_name="Fault">
+            <value type="int">1</value>
+        </variable>
    <method node_id="ns=1;s=MJMoveRobot.Start" browser_name="Start">
             <input_args>Int64</input_args>
             <output_args>Boolean</output_args>
             <func>
                 <![CDATA[
 def start(parent, variant):
+    clc = databus.set_value('w ns=1;s=MJMoveRobot.FinishStatus', 5)
+    if not clc[0]:
+        return [ua.Variant(False, ua.VariantType.Boolean)]
     ret = databus.set_value('w ns=1;s=MJMoveRobot.Move', variant.Value, sync=True)
     if not ret[0]:
         return [ua.Variant(False, ua.VariantType.Boolean)]

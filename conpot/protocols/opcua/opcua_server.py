@@ -30,6 +30,8 @@ class OPCUAServer(Server):
         self.template = template
         self.variables = []
         self.event_dict = {}
+        # 首先解析XML
+        self.parse()
 
     def parse(self):
         dom = etree.parse(self.template)
@@ -65,15 +67,14 @@ class OPCUAServer(Server):
             for variable in variables:
                 value = variable.xpath('./value')[0]
                 node_id = variable.attrib['node_id']
+                browser_name = variable.attrib['browser_name']
                 value_type = value.attrib['type']
                 if value_type == 'array':
-                    ua_variable = ua_object.add_variable(variable.attrib['node_id'],
-                                                         variable.attrib['browser_name'],
-                                                         eval(value.text))
+                    data_value = eval(value.text)
                 else:
-                    ua_variable = ua_object.add_variable(variable.attrib['node_id'],
-                                                         variable.attrib['browser_name'],
-                                                         eval(value.attrib['type'] + "('" + value.text + "')"))
+                    data_value = eval(value.attrib['type'] + "('" + value.text + "')")
+                conpot_core.get_databus().set_value('w ' + node_id, data_value)
+                ua_variable = ua_object.add_variable(node_id, browser_name, data_value)
                 writable = True
                 if 'readonly' in variable.attrib:
                     if eval(variable.attrib['readonly']):
@@ -139,9 +140,6 @@ class OPCUAServer(Server):
         event.trigger()
 
     def start(self, host, port):
-        # 首先解析XML
-        self.parse()
-
         self.set_endpoint("opc.tcp://" + str(host) + ":" + str(port) + "/ua/server/")
         logger.info('OPCUA server started on: %s', (host, port))
         Server.start(self)

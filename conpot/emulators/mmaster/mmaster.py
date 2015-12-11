@@ -10,6 +10,7 @@ from pymodbus.payload import BinaryPayloadDecoder
 from pymodbus.payload import BinaryPayloadBuilder
 from pymodbus.register_read_message import ReadHoldingRegistersResponse
 from pymodbus.bit_read_message import ReadCoilsResponse
+from pymodbus.bit_read_message import ReadDiscreteInputsResponse
 from pymodbus.client.sync import ModbusTcpClient as ModbusClient
 import conpot.core as conpot_core
 from pymodbus.exceptions import ConnectionException
@@ -236,7 +237,7 @@ class MMaster(object):
                     if result:
                         for point in points:
                             value = None
-                            if isinstance(result, ReadCoilsResponse):
+                            if isinstance(result, ReadCoilsResponse) or isinstance(result, ReadDiscreteInputsResponse):
                                 value = result.bits[point.address - starting_address]
                             elif isinstance(result, ReadHoldingRegistersResponse):
                                 start = point.address - starting_address

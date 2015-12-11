@@ -70,6 +70,8 @@ class Databus(object):
         放入key相关的值，并通知调用者
         当sync为True的时候将会通知调用者，并等待调用结果返回
         """
+        if value is None:
+            return
         logger.debug('DataBus: Storing key: [%s] value: [%s]', key, value)
         real_key = Databus.get_real_key(key)
         if forced or (real_key not in self._data or not self._data[real_key] == value):

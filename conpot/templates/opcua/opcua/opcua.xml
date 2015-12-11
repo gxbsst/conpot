@@ -5,7 +5,6 @@
         <variable node_id="ns=1;s=Flowmeter.Values" browser_name="Values" readonly="True">
             <value type="array">[0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]</value>
         </variable>
-
     </object>
 
     <!-- 开元RGV -->
@@ -122,6 +121,11 @@ Server.create_method(ua_object, node_id, browser_name, start, input_args, output
         </variable>
         <variable node_id="ns=1;s=MJWarehouse.OriginStatus" browser_name="OriginStatus" readonly="True">
             <value type="int">1</value>
+        </variable>
+        <variable node_id="ns=1;s=MJWarehouse.Fault" browser_name="Fault" readonly="True">
+            <!--<value type="array">[False,False,False,False,False,False,False,False,False,False,False,False,False,False,False,False,False,False,False,False,False]</value>-->
+            <value type="array">[0,0,0,0,0,0]</value>
+            <!--<value type="array">[False,False,False,False,False,False]</value>-->
         </variable>
         <method node_id="ns=1;s=MJWarehouse.Start" browser_name="Start">
             <output_args>Boolean</output_args>

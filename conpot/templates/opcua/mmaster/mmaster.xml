@@ -159,7 +159,7 @@
                         <address>2452</address>
                     </point>
             </block>
-             <block>
+            <block>
                 <!-- COILS DISCRETE_INPUTS HOLDING_REGISTERS INPUT_REGISTERS -->
                 <type>COILS</type>
                 <starting_address>2548</starting_address>
@@ -169,10 +169,117 @@
                         <address>2548</address>
                     </point>
             </block>
+            <block>
+                <type>COILS</type>
+                <starting_address>1026</starting_address>
+                <size>6</size>
+                    <!-- 卷扬上限位 -->
+                    <point id="ns=1;s=MJWarehouse.Fault" index="0">
+                        <address>1026</address>
+                    </point>
+                    <!-- 卷扬下限位 -->
+                    <point id="ns=1;s=MJWarehouse.Fault" index="1">
+                        <address>1027</address>
+                    </point>
+                    <!-- 货叉西限位 -->
+                    <point id="ns=1;s=MJWarehouse.Fault" index="2">
+                        <address>1028</address>
+                    </point>
+                    <!-- 货叉东限位 -->
+                    <point id="ns=1;s=MJWarehouse.Fault" index="3">
+                        <address>1029</address>
+                    </point>
+                    <!-- 货叉西光电 -->
+                    <point id="ns=1;s=MJWarehouse.Fault" index="4">
+                        <address>1030</address>
+                    </point>
+                    <!-- 货叉东光电 -->
+                    <point id="ns=1;s=MJWarehouse.Fault" index="5">
+                        <address>1031</address>
+                    </point>
+            </block>
+            <!--<block>-->
+                <!--<type>COILS</type>-->
+                <!--<starting_address>1054</starting_address>-->
+                <!--<size>2</size>-->
+                    <!--&lt;!&ndash; 行走南限位 &ndash;&gt;-->
+                    <!--<point id="ns=1;s=MJWarehouse.Fault" index="6">-->
+                        <!--<address>1054</address>-->
+                    <!--</point>-->
+                    <!--&lt;!&ndash; 行走北限位 &ndash;&gt;-->
+                    <!--<point id="ns=1;s=MJWarehouse.Fault" index="7">-->
+                        <!--<address>1055</address>-->
+                    <!--</point>-->
+            <!--</block>-->
+            <!--<block>-->
+                <!--<type>COILS</type>-->
+                <!--<starting_address>2088</starting_address>-->
+                <!--<size>3</size>-->
+                    <!--&lt;!&ndash; 卷扬超程 &ndash;&gt;-->
+                    <!--<point id="ns=1;s=MJWarehouse.Fault" index="8">-->
+                        <!--<address>2088</address>-->
+                    <!--</point>-->
+                    <!--&lt;!&ndash; 行走超程 &ndash;&gt;-->
+                    <!--<point id="ns=1;s=MJWarehouse.Fault" index="9">-->
+                        <!--<address>2089</address>-->
+                    <!--</point>-->
+                    <!--&lt;!&ndash; 货叉超程 &ndash;&gt;-->
+                    <!--<point id="ns=1;s=MJWarehouse.Fault" index="10">-->
+                        <!--<address>2090</address>-->
+                    <!--</point>-->
+            <!--</block>-->
+            <!--<block>-->
+                <!--<type>COILS</type>-->
+                <!--<starting_address>2109</starting_address>-->
+                <!--<size>41</size>-->
+                    <!--&lt;!&ndash; 堆垛车远程失败 &ndash;&gt;-->
+                    <!--<point id="ns=1;s=MJWarehouse.Fault" index="11">-->
+                        <!--<address>2109</address>-->
+                    <!--</point>-->
+                    <!--&lt;!&ndash; 料台急停 &ndash;&gt;-->
+                    <!--<point id="ns=1;s=MJWarehouse.Fault" index="12">-->
+                        <!--<address>2112</address>-->
+                    <!--</point>-->
+                    <!--&lt;!&ndash; 堆垛车急停 &ndash;&gt;-->
+                    <!--<point id="ns=1;s=MJWarehouse.Fault" index="13">-->
+                        <!--<address>2113</address>-->
+                    <!--</point>-->
+                    <!--&lt;!&ndash; 载货超重 &ndash;&gt;-->
+                    <!--<point id="ns=1;s=MJWarehouse.Fault" index="14">-->
+                        <!--<address>2137</address>-->
+                    <!--</point>-->
+                    <!--&lt;!&ndash; 载货失重 &ndash;&gt;-->
+                    <!--<point id="ns=1;s=MJWarehouse.Fault" index="15">-->
+                        <!--<address>2142</address>-->
+                    <!--</point>-->
+                    <!--&lt;!&ndash; 钢丝绳断裂 &ndash;&gt;-->
+                    <!--<point id="ns=1;s=MJWarehouse.Fault" index="16">-->
+                        <!--<address>2143</address>-->
+                    <!--</point>-->
+                    <!--&lt;!&ndash; 卷扬故障 &ndash;&gt;-->
+                    <!--<point id="ns=1;s=MJWarehouse.Fault" index="17">-->
+                        <!--<address>2148</address>-->
+                    <!--</point>-->
+                    <!--&lt;!&ndash; 行走故障 &ndash;&gt;-->
+                    <!--<point id="ns=1;s=MJWarehouse.Fault" index="18">-->
+                        <!--<address>2149</address>-->
+                    <!--</point>-->
+                    <!--&lt;!&ndash; 货叉故障 &ndash;&gt;-->
+                    <!--<point id="ns=1;s=MJWarehouse.Fault" index="19">-->
+                        <!--<address>2150</address>-->
+                    <!--</point>-->
+            <!--</block>-->
+            <!--<block>-->
+                <!--<type>COILS</type>-->
+                <!--<starting_address>2573</starting_address>-->
+                <!--<size>1</size>-->
+                    <!--&lt;!&ndash; 急停故障 &ndash;&gt;-->
+                    <!--<point id="ns=1;s=MJWarehouse.Fault" index="20">-->
+                        <!--<address>2573</address>-->
+                    <!--</point>-->
+            <!--</block>-->
         </slave>
     </device>
-
-
      <!--牛腿搬运机器人-->
     <device name="MJMoveRobot" host="192.168.1.8" port="502" update_period="1">
         <slave id="1">
@@ -217,213 +324,212 @@
             </block>
         </slave>
     </device>
-
     <!-- 流量计 -->
-    <device name="Flowmeter" host="192.168.1.55" port="502" update_period="0.5">
-        <slave id="1">
-            <block>
-                <type>HOLDING_REGISTERS</type>
-                <starting_address>0</starting_address>
-                <size>120</size>
-                    <!-- 高压氧瞬时量 HOxyInstVol -->
-                    <point id="ns=1;s=Flowmeter.Values" index="0">
-                        <address>0</address>
-                        <count>2</count>
-                        <endian>Little</endian>
-                        <encoding>32float</encoding>
-                    </point>
-                    <!-- 高压氧累积量 SumHOxy -->
-                    <point id="ns=1;s=Flowmeter.Values" index="1">
-                        <address>4</address>
-                        <count>4</count>
-                        <encoding>custom</encoding>
-                        <custom_decoder>BinaryPayloadDecoder(''.join(pack(Endian.Little + 'H', x) for x in value[:2]), Endian.Little).decode_32bit_float() / 1000 + BinaryPayloadDecoder(''.join(pack(Endian.Little + 'H', x) for x in value[2:]), Endian.Little).decode_32bit_float() * 1000000</custom_decoder>
-                    </point>
-                    <!-- 高压氧频率 FreHOxy-->
-                    <point id="ns=1;s=Flowmeter.Values" index="2">
-                        <address>12</address>
-                        <count>2</count>
-                        <endian>Little</endian>
-                        <encoding>32float</encoding>
-                    </point>
+    <!--<device name="Flowmeter" host="192.168.1.55" port="502" update_period="0.5">-->
+        <!--<slave id="1">-->
+            <!--<block>-->
+                <!--<type>HOLDING_REGISTERS</type>-->
+                <!--<starting_address>0</starting_address>-->
+                <!--<size>120</size>-->
+                    <!--&lt;!&ndash; 高压氧瞬时量 HOxyInstVol &ndash;&gt;-->
+                    <!--<point id="ns=1;s=Flowmeter.Values" index="0">-->
+                        <!--<address>0</address>-->
+                        <!--<count>2</count>-->
+                        <!--<endian>Little</endian>-->
+                        <!--<encoding>32float</encoding>-->
+                    <!--</point>-->
+                    <!--&lt;!&ndash; 高压氧累积量 SumHOxy &ndash;&gt;-->
+                    <!--<point id="ns=1;s=Flowmeter.Values" index="1">-->
+                        <!--<address>4</address>-->
+                        <!--<count>4</count>-->
+                        <!--<encoding>custom</encoding>-->
+                        <!--<custom_decoder>BinaryPayloadDecoder(''.join(pack(Endian.Little + 'H', x) for x in value[:2]), Endian.Little).decode_32bit_float() / 1000 + BinaryPayloadDecoder(''.join(pack(Endian.Little + 'H', x) for x in value[2:]), Endian.Little).decode_32bit_float() * 1000000</custom_decoder>-->
+                    <!--</point>-->
+                    <!--&lt;!&ndash; 高压氧频率 FreHOxy&ndash;&gt;-->
+                    <!--<point id="ns=1;s=Flowmeter.FreHOxy">-->
+                        <!--<address>12</address>-->
+                        <!--<count>2</count>-->
+                        <!--<endian>Little</endian>-->
+                        <!--<encoding>32float</encoding>-->
+                    <!--</point>-->
 
-                    <!-- 低压氧瞬时量 LOxyInstVol -->
-                    <point id="ns=1;s=Flowmeter.Values" index="3">
-                        <address>20</address>
-                        <count>2</count>
-                        <endian>Little</endian>
-                        <encoding>32float</encoding>
-                    </point>
-                    <!-- 低压氧累积量 SumLOxy -->
-                    <point id="ns=1;s=Flowmeter.Values" index="4">
-                        <address>24</address>
-                        <count>4</count>
-                        <encoding>custom</encoding>
-                        <custom_decoder>BinaryPayloadDecoder(''.join(pack(Endian.Little + 'H', x) for x in value[:2]), Endian.Little).decode_32bit_float() / 1000 + BinaryPayloadDecoder(''.join(pack(Endian.Little + 'H', x) for x in value[2:]), Endian.Little).decode_32bit_float() * 1000000</custom_decoder>
-                    </point>
-                    <!-- 低压氧频率 FreLOxy-->
-                    <point id="ns=1;s=Flowmeter.Values" index="5">
-                        <address>32</address>
-                        <count>2</count>
-                        <endian>Little</endian>
-                        <encoding>32float</encoding>
-                    </point>
+                    <!--&lt;!&ndash; 低压氧瞬时量 LOxyInstVol &ndash;&gt;-->
+                    <!--<point id="ns=1;s=Flowmeter.Values" index="2">-->
+                        <!--<address>20</address>-->
+                        <!--<count>2</count>-->
+                        <!--<endian>Little</endian>-->
+                        <!--<encoding>32float</encoding>-->
+                    <!--</point>-->
+                    <!--&lt;!&ndash; 低压氧累积量 SumLOxy &ndash;&gt;-->
+                    <!--<point id="ns=1;s=Flowmeter.Values" index="3">-->
+                        <!--<address>24</address>-->
+                        <!--<count>4</count>-->
+                        <!--<encoding>custom</encoding>-->
+                        <!--<custom_decoder>BinaryPayloadDecoder(''.join(pack(Endian.Little + 'H', x) for x in value[:2]), Endian.Little).decode_32bit_float() / 1000 + BinaryPayloadDecoder(''.join(pack(Endian.Little + 'H', x) for x in value[2:]), Endian.Little).decode_32bit_float() * 1000000</custom_decoder>-->
+                    <!--</point>-->
+                    <!--&lt;!&ndash; 低压氧频率 FreLOxy&ndash;&gt;-->
+                    <!--<point id="ns=1;s=Flowmeter.FreLOxy">-->
+                        <!--<address>32</address>-->
+                        <!--<count>2</count>-->
+                        <!--<endian>Little</endian>-->
+                        <!--<encoding>32float</encoding>-->
+                    <!--</point>-->
 
-                    <!-- 乙炔瞬时量 EthineInstVol -->
-                    <point id="ns=1;s=Flowmeter.Values" index="6">
-                        <address>40</address>
-                        <count>2</count>
-                        <endian>Little</endian>
-                        <encoding>32float</encoding>
-                    </point>
-                    <!-- 乙炔累积量 SumEthine -->
-                    <point id="ns=1;s=Flowmeter.Values" index="7">
-                        <address>44</address>
-                        <count>4</count>
-                        <encoding>custom</encoding>
-                        <custom_decoder>BinaryPayloadDecoder(''.join(pack(Endian.Little + 'H', x) for x in value[:2]), Endian.Little).decode_32bit_float() / 1000 + BinaryPayloadDecoder(''.join(pack(Endian.Little + 'H', x) for x in value[2:]), Endian.Little).decode_32bit_float() * 1000000</custom_decoder>
-                    </point>
-                    <!-- 乙炔频率 FreEthine-->
-                    <point id="ns=1;s=Flowmeter.Values" index="8">
-                        <address>52</address>
-                        <count>2</count>
-                        <endian>Little</endian>
-                        <encoding>32float</encoding>
-                    </point>
-                    <!-- VolA -->
-                    <point id="ns=1;s=Flowmeter.Values" index="9">
-                        <address>60</address>
-                        <count>2</count>
-                        <endian>Little</endian>
-                        <encoding>32float</encoding>
-                    </point>
-                    <!-- VolB -->
-                    <point id="ns=1;s=Flowmeter.Values" index="10">
-                        <address>62</address>
-                        <count>2</count>
-                        <endian>Little</endian>
-                        <encoding>32float</encoding>
-                    </point>
-                    <!-- VolC -->
-                    <point id="ns=1;s=Flowmeter.Values" index="11">
-                        <address>64</address>
-                        <count>2</count>
-                        <endian>Little</endian>
-                        <encoding>32float</encoding>
-                    </point>
-                    <point id="ns=1;s=Flowmeter.VolAvrPh">
-                        <address>66</address>
-                        <count>2</count>
-                        <endian>Little</endian>
-                        <encoding>32float</encoding>
-                    </point>
+                    <!--&lt;!&ndash; 乙炔瞬时量 EthineInstVol &ndash;&gt;-->
+                    <!--<point id="ns=1;s=Flowmeter.Values" index="4">-->
+                        <!--<address>40</address>-->
+                        <!--<count>2</count>-->
+                        <!--<endian>Little</endian>-->
+                        <!--<encoding>32float</encoding>-->
+                    <!--</point>-->
+                    <!--&lt;!&ndash; 乙炔累积量 SumEthine &ndash;&gt;-->
+                    <!--<point id="ns=1;s=Flowmeter.Values" index="5">-->
+                        <!--<address>44</address>-->
+                        <!--<count>4</count>-->
+                        <!--<encoding>custom</encoding>-->
+                        <!--<custom_decoder>BinaryPayloadDecoder(''.join(pack(Endian.Little + 'H', x) for x in value[:2]), Endian.Little).decode_32bit_float() / 1000 + BinaryPayloadDecoder(''.join(pack(Endian.Little + 'H', x) for x in value[2:]), Endian.Little).decode_32bit_float() * 1000000</custom_decoder>-->
+                    <!--</point>-->
+                    <!--&lt;!&ndash; 乙炔频率 FreEthine&ndash;&gt;-->
+                    <!--<point id="ns=1;s=Flowmeter.FreEthine">-->
+                        <!--<address>52</address>-->
+                        <!--<count>2</count>-->
+                        <!--<endian>Little</endian>-->
+                        <!--<encoding>32float</encoding>-->
+                    <!--</point>-->
+                    <!--&lt;!&ndash; VolA &ndash;&gt;-->
+                    <!--<point id="ns=1;s=Flowmeter.Values" index="6">-->
+                        <!--<address>60</address>-->
+                        <!--<count>2</count>-->
+                        <!--<endian>Little</endian>-->
+                        <!--<encoding>32float</encoding>-->
+                    <!--</point>-->
+                    <!--&lt;!&ndash; VolB &ndash;&gt;-->
+                    <!--<point id="ns=1;s=Flowmeter.Values" index="7">-->
+                        <!--<address>62</address>-->
+                        <!--<count>2</count>-->
+                        <!--<endian>Little</endian>-->
+                        <!--<encoding>32float</encoding>-->
+                    <!--</point>-->
+                    <!--&lt;!&ndash; VolC &ndash;&gt;-->
+                    <!--<point id="ns=1;s=Flowmeter.Values" index="8">-->
+                        <!--<address>64</address>-->
+                        <!--<count>2</count>-->
+                        <!--<endian>Little</endian>-->
+                        <!--<encoding>32float</encoding>-->
+                    <!--</point>-->
+                    <!--<point id="ns=1;s=Flowmeter.VolAvrPh">-->
+                        <!--<address>66</address>-->
+                        <!--<count>2</count>-->
+                        <!--<endian>Little</endian>-->
+                        <!--<encoding>32float</encoding>-->
+                    <!--</point>-->
 
-                    <point id="ns=1;s=Flowmeter.VolAB">
-                        <address>68</address>
-                        <count>2</count>
-                        <endian>Little</endian>
-                        <encoding>32float</encoding>
-                    </point>
-                    <point id="ns=1;s=Flowmeter.VolBC">
-                        <address>70</address>
-                        <count>2</count>
-                        <endian>Little</endian>
-                        <encoding>32float</encoding>
-                    </point>
-                    <point id="ns=1;s=Flowmeter.VolCA">
-                        <address>72</address>
-                        <count>2</count>
-                        <endian>Little</endian>
-                        <encoding>32float</encoding>
-                    </point>
-                    <point id="ns=1;s=Flowmeter.VolAvrLn">
-                        <address>74</address>
-                        <count>2</count>
-                        <endian>Little</endian>
-                        <encoding>32float</encoding>
-                    </point>
-                    <!-- CurrentA -->
-                    <point id="ns=1;s=Flowmeter.Values" index="12">
-                        <address>76</address>
-                        <count>2</count>
-                        <endian>Little</endian>
-                        <encoding>32float</encoding>
-                    </point>
-                    <!-- CurrentB -->
-                    <point id="ns=1;s=Flowmeter.Values" index="13">
-                        <address>78</address>
-                        <count>2</count>
-                        <endian>Little</endian>
-                        <encoding>32float</encoding>
-                    </point>
-                    <!-- CurrentC -->
-                    <point id="ns=1;s=Flowmeter.Values" index="14">
-                        <address>80</address>
-                        <count>2</count>
-                        <endian>Little</endian>
-                        <encoding>32float</encoding>
-                    </point>
-                    <point id="ns=1;s=Flowmeter.CurrentAvr">
-                        <address>82</address>
-                        <count>2</count>
-                        <endian>Little</endian>
-                        <encoding>32float</encoding>
-                    </point>
-                    <!-- 总有功功率 PSum -->
-                    <point id="ns=1;s=Flowmeter.Values" index="15">
-                        <address>96</address>
-                        <count>2</count>
-                        <endian>Little</endian>
-                        <encoding>32float</encoding>
-                    </point>
-                    <point id="ns=1;s=Flowmeter.PA">
-                        <address>98</address>
-                        <count>2</count>
-                        <endian>Little</endian>
-                        <encoding>32float</encoding>
-                    </point>
-                    <point id="ns=1;s=Flowmeter.PB">
-                        <address>100</address>
-                        <count>2</count>
-                        <endian>Little</endian>
-                        <encoding>32float</encoding>
-                    </point>
-                    <point id="ns=1;s=Flowmeter.PC">
-                        <address>102</address>
-                        <count>2</count>
-                        <endian>Little</endian>
-                        <encoding>32float</encoding>
-                    </point>
-                    <!-- PowerAP 正向有功电能 -->
-                    <point id="ns=1;s=Flowmeter.Values" index="16">
-                        <address>104</address>
-                        <count>2</count>
-                        <endian>Little</endian>
-                        <encoding>32int</encoding>
-                    </point>
-                    <!-- 正向无功电能 PowerAN -->
-                    <point id="ns=1;s=Flowmeter.">
-                        <address>106</address>
-                        <count>2</count>
-                        <endian>Little</endian>
-                        <encoding>32int</encoding>
-                    </point>
-                    <!-- 反向有功电能 PowerIP -->
-                    <point id="ns=1;s=Flowmeter.Values" index="17">
-                        <address>108</address>
-                        <count>2</count>
-                        <endian>Little</endian>
-                        <encoding>32int</encoding>
-                    </point>
-                    <!-- 反向无功电能 PowerIN -->
-                    <point id="ns=1;s=Flowmeter.Values" index="18">
-                        <address>110</address>
-                        <count>2</count>
-                        <endian>Little</endian>
-                        <encoding>32int</encoding>
-                    </point>
-            </block>
-        </slave>
-    </device>
+                    <!--<point id="ns=1;s=Flowmeter.VolAB">-->
+                        <!--<address>68</address>-->
+                        <!--<count>2</count>-->
+                        <!--<endian>Little</endian>-->
+                        <!--<encoding>32float</encoding>-->
+                    <!--</point>-->
+                    <!--<point id="ns=1;s=Flowmeter.VolBC">-->
+                        <!--<address>70</address>-->
+                        <!--<count>2</count>-->
+                        <!--<endian>Little</endian>-->
+                        <!--<encoding>32float</encoding>-->
+                    <!--</point>-->
+                    <!--<point id="ns=1;s=Flowmeter.VolCA">-->
+                        <!--<address>72</address>-->
+                        <!--<count>2</count>-->
+                        <!--<endian>Little</endian>-->
+                        <!--<encoding>32float</encoding>-->
+                    <!--</point>-->
+                    <!--<point id="ns=1;s=Flowmeter.VolAvrLn">-->
+                        <!--<address>74</address>-->
+                        <!--<count>2</count>-->
+                        <!--<endian>Little</endian>-->
+                        <!--<encoding>32float</encoding>-->
+                    <!--</point>-->
+                    <!--&lt;!&ndash; CurrentA &ndash;&gt;-->
+                    <!--<point id="ns=1;s=Flowmeter.Values" index="9">-->
+                        <!--<address>76</address>-->
+                        <!--<count>2</count>-->
+                        <!--<endian>Little</endian>-->
+                        <!--<encoding>32float</encoding>-->
+                    <!--</point>-->
+                    <!--&lt;!&ndash; CurrentB &ndash;&gt;-->
+                    <!--<point id="ns=1;s=Flowmeter.Values" index="10">-->
+                        <!--<address>78</address>-->
+                        <!--<count>2</count>-->
+                        <!--<endian>Little</endian>-->
+                        <!--<encoding>32float</encoding>-->
+                    <!--</point>-->
+                    <!--&lt;!&ndash; CurrentC &ndash;&gt;-->
+                    <!--<point id="ns=1;s=Flowmeter.Values" index="11">-->
+                        <!--<address>80</address>-->
+                        <!--<count>2</count>-->
+                        <!--<endian>Little</endian>-->
+                        <!--<encoding>32float</encoding>-->
+                    <!--</point>-->
+                    <!--<point id="ns=1;s=Flowmeter.CurrentAvr">-->
+                        <!--<address>82</address>-->
+                        <!--<count>2</count>-->
+                        <!--<endian>Little</endian>-->
+                        <!--<encoding>32float</encoding>-->
+                    <!--</point>-->
+                    <!--&lt;!&ndash; 总有功功率 PSum &ndash;&gt;-->
+                    <!--<point id="ns=1;s=Flowmeter.Values" index="12">-->
+                        <!--<address>96</address>-->
+                        <!--<count>2</count>-->
+                        <!--<endian>Little</endian>-->
+                        <!--<encoding>32float</encoding>-->
+                    <!--</point>-->
+                    <!--<point id="ns=1;s=Flowmeter.PA">-->
+                        <!--<address>98</address>-->
+                        <!--<count>2</count>-->
+                        <!--<endian>Little</endian>-->
+                        <!--<encoding>32float</encoding>-->
+                    <!--</point>-->
+                    <!--<point id="ns=1;s=Flowmeter.PB">-->
+                        <!--<address>100</address>-->
+                        <!--<count>2</count>-->
+                        <!--<endian>Little</endian>-->
+                        <!--<encoding>32float</encoding>-->
+                    <!--</point>-->
+                    <!--<point id="ns=1;s=Flowmeter.PC">-->
+                        <!--<address>102</address>-->
+                        <!--<count>2</count>-->
+                        <!--<endian>Little</endian>-->
+                        <!--<encoding>32float</encoding>-->
+                    <!--</point>-->
+                    <!--&lt;!&ndash; PowerAP 正向有功电能 &ndash;&gt;-->
+                    <!--<point id="ns=1;s=Flowmeter.Values" index="13">-->
+                        <!--<address>104</address>-->
+                        <!--<count>2</count>-->
+                        <!--<endian>Little</endian>-->
+                        <!--<encoding>32int</encoding>-->
+                    <!--</point>-->
+                    <!--&lt;!&ndash; 正向无功电能 PowerAN &ndash;&gt;-->
+                    <!--<point id="ns=1;s=Flowmeter.Values" index="14">-->
+                        <!--<address>106</address>-->
+                        <!--<count>2</count>-->
+                        <!--<endian>Little</endian>-->
+                        <!--<encoding>32int</encoding>-->
+                    <!--</point>-->
+                    <!--&lt;!&ndash; 反向有功电能 PowerIP &ndash;&gt;-->
+                    <!--<point id="ns=1;s=Flowmeter.Values" index="15">-->
+                        <!--<address>108</address>-->
+                        <!--<count>2</count>-->
+                        <!--<endian>Little</endian>-->
+                        <!--<encoding>32int</encoding>-->
+                    <!--</point>-->
+                    <!--&lt;!&ndash; 反向无功电能 PowerIN &ndash;&gt;-->
+                    <!--<point id="ns=1;s=Flowmeter.Values" index="16">-->
+                        <!--<address>110</address>-->
+                        <!--<count>2</count>-->
+                        <!--<endian>Little</endian>-->
+                        <!--<encoding>32int</encoding>-->
+                    <!--</point>-->
+            <!--</block>-->
+        <!--</slave>-->
+    <!--</device>-->
 
 </mmaster>

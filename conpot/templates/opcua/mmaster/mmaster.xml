@@ -169,112 +169,112 @@
                         <address>2548</address>
                     </point>
             </block>
-            <block>
-                <type>DISCRETE_INPUTS</type>
-                <starting_address>1026</starting_address>
-                <size>6</size>
-                    <!-- 卷扬上限位 -->
-                    <point id="ns=1;s=MJWarehouse.Fault" index="0">
-                        <address>1026</address>
-                    </point>
-                    <!-- 卷扬下限位 -->
-                    <point id="ns=1;s=MJWarehouse.Fault" index="1">
-                        <address>1027</address>
-                    </point>
-                    <!-- 货叉西限位 -->
-                    <point id="ns=1;s=MJWarehouse.Fault" index="2">
-                        <address>1028</address>
-                    </point>
-                    <!-- 货叉东限位 -->
-                    <point id="ns=1;s=MJWarehouse.Fault" index="3">
-                        <address>1029</address>
-                    </point>
-                    <!-- 货叉西光电 -->
-                    <point id="ns=1;s=MJWarehouse.Fault" index="4">
-                        <address>1030</address>
-                    </point>
-                    <!-- 货叉东光电 -->
-                    <point id="ns=1;s=MJWarehouse.Fault" index="5">
-                        <address>1031</address>
-                    </point>
-            </block>
-            <block>
-                <type>DISCRETE_INPUTS</type>
-                <starting_address>1054</starting_address>
-                <size>2</size>
-                    <!-- 行走南限位 -->
-                    <point id="ns=1;s=MJWarehouse.Fault" index="6">
-                        <address>1054</address>
-                    </point>
-                    <!-- 行走北限位 -->
-                    <point id="ns=1;s=MJWarehouse.Fault" index="7">
-                        <address>1055</address>
-                    </point>
-            </block>
-            <block>
-                <type>DISCRETE_INPUTS</type>
-                <starting_address>2088</starting_address>
-                <size>3</size>
-                    <!-- 卷扬超程 -->
-                    <point id="ns=1;s=MJWarehouse.Fault" index="8">
-                        <address>2088</address>
-                    </point>
-                    <!-- 行走超程 -->
-                    <point id="ns=1;s=MJWarehouse.Fault" index="9">
-                        <address>2089</address>
-                    </point>
-                    <!-- 货叉超程 -->
-                    <point id="ns=1;s=MJWarehouse.Fault" index="10">
-                        <address>2090</address>
-                    </point>
-            </block>
+            <!--<block>-->
+                <!--<type>DISCRETE_INPUTS</type>-->
+                <!--<starting_address>1026</starting_address>-->
+                <!--<size>6</size>-->
+                    <!--&lt;!&ndash; 卷扬上限位 &ndash;&gt;-->
+                    <!--<point id="ns=1;s=MJWarehouse.Fault" index="0">-->
+                        <!--<address>1026</address>-->
+                    <!--</point>-->
+                    <!--&lt;!&ndash; 卷扬下限位 &ndash;&gt;-->
+                    <!--<point id="ns=1;s=MJWarehouse.Fault" index="1">-->
+                        <!--<address>1027</address>-->
+                    <!--</point>-->
+                    <!--&lt;!&ndash; 货叉西限位 &ndash;&gt;-->
+                    <!--<point id="ns=1;s=MJWarehouse.Fault" index="2">-->
+                        <!--<address>1028</address>-->
+                    <!--</point>-->
+                    <!--&lt;!&ndash; 货叉东限位 &ndash;&gt;-->
+                    <!--<point id="ns=1;s=MJWarehouse.Fault" index="3">-->
+                        <!--<address>1029</address>-->
+                    <!--</point>-->
+                    <!--&lt;!&ndash; 货叉西光电 &ndash;&gt;-->
+                    <!--<point id="ns=1;s=MJWarehouse.Fault" index="4">-->
+                        <!--<address>1030</address>-->
+                    <!--</point>-->
+                    <!--&lt;!&ndash; 货叉东光电 &ndash;&gt;-->
+                    <!--<point id="ns=1;s=MJWarehouse.Fault" index="5">-->
+                        <!--<address>1031</address>-->
+                    <!--</point>-->
+            <!--</block>-->
+            <!--<block>-->
+                <!--<type>DISCRETE_INPUTS</type>-->
+                <!--<starting_address>1054</starting_address>-->
+                <!--<size>2</size>-->
+                    <!--&lt;!&ndash; 行走南限位 &ndash;&gt;-->
+                    <!--<point id="ns=1;s=MJWarehouse.Fault" index="6">-->
+                        <!--<address>1054</address>-->
+                    <!--</point>-->
+                    <!--&lt;!&ndash; 行走北限位 &ndash;&gt;-->
+                    <!--<point id="ns=1;s=MJWarehouse.Fault" index="7">-->
+                        <!--<address>1055</address>-->
+                    <!--</point>-->
+            <!--</block>-->
+            <!--<block>-->
+                <!--<type>DISCRETE_INPUTS</type>-->
+                <!--<starting_address>2088</starting_address>-->
+                <!--<size>3</size>-->
+                    <!--&lt;!&ndash; 卷扬超程 &ndash;&gt;-->
+                    <!--<point id="ns=1;s=MJWarehouse.Fault" index="8">-->
+                        <!--<address>2088</address>-->
+                    <!--</point>-->
+                    <!--&lt;!&ndash; 行走超程 &ndash;&gt;-->
+                    <!--<point id="ns=1;s=MJWarehouse.Fault" index="9">-->
+                        <!--<address>2089</address>-->
+                    <!--</point>-->
+                    <!--&lt;!&ndash; 货叉超程 &ndash;&gt;-->
+                    <!--<point id="ns=1;s=MJWarehouse.Fault" index="10">-->
+                        <!--<address>2090</address>-->
+                    <!--</point>-->
+            <!--</block>-->
             <block>
                 <type>DISCRETE_INPUTS</type>
                 <starting_address>2109</starting_address>
                 <size>41</size>
                     <!-- 堆垛车远程失败 -->
-                    <point id="ns=1;s=MJWarehouse.Fault" index="11">
-                        <address>2109</address>
-                    </point>
+                    <!--<point id="ns=1;s=MJWarehouse.Fault" index="11">-->
+                        <!--<address>2109</address>-->
+                    <!--</point>-->
                     <!-- 料台急停 -->
-                    <point id="ns=1;s=MJWarehouse.Fault" index="12">
+                    <point id="ns=1;s=MJWarehouse.Fault" index="1">
                         <address>2112</address>
                     </point>
                     <!-- 堆垛车急停 -->
-                    <point id="ns=1;s=MJWarehouse.Fault" index="13">
+                    <point id="ns=1;s=MJWarehouse.Fault" index="2">
                         <address>2113</address>
                     </point>
                     <!-- 载货超重 -->
-                    <point id="ns=1;s=MJWarehouse.Fault" index="14">
-                        <address>2137</address>
-                    </point>
-                    <!-- 载货失重 -->
-                    <point id="ns=1;s=MJWarehouse.Fault" index="15">
-                        <address>2142</address>
-                    </point>
-                    <!-- 钢丝绳断裂 -->
-                    <point id="ns=1;s=MJWarehouse.Fault" index="16">
-                        <address>2143</address>
-                    </point>
-                    <!-- 卷扬故障 -->
-                    <point id="ns=1;s=MJWarehouse.Fault" index="17">
-                        <address>2148</address>
-                    </point>
-                    <!-- 行走故障 -->
-                    <point id="ns=1;s=MJWarehouse.Fault" index="18">
-                        <address>2149</address>
-                    </point>
-                    <!-- 货叉故障 -->
-                    <point id="ns=1;s=MJWarehouse.Fault" index="19">
-                        <address>2150</address>
-                    </point>
+                    <!--<point id="ns=1;s=MJWarehouse.Fault" index="14">-->
+                        <!--<address>2137</address>-->
+                    <!--</point>-->
+                    <!--&lt;!&ndash; 载货失重 &ndash;&gt;-->
+                    <!--<point id="ns=1;s=MJWarehouse.Fault" index="15">-->
+                        <!--<address>2142</address>-->
+                    <!--</point>-->
+                    <!--&lt;!&ndash; 钢丝绳断裂 &ndash;&gt;-->
+                    <!--<point id="ns=1;s=MJWarehouse.Fault" index="16">-->
+                        <!--<address>2143</address>-->
+                    <!--</point>-->
+                    <!--&lt;!&ndash; 卷扬故障 &ndash;&gt;-->
+                    <!--<point id="ns=1;s=MJWarehouse.Fault" index="17">-->
+                        <!--<address>2148</address>-->
+                    <!--</point>-->
+                    <!--&lt;!&ndash; 行走故障 &ndash;&gt;-->
+                    <!--<point id="ns=1;s=MJWarehouse.Fault" index="18">-->
+                        <!--<address>2149</address>-->
+                    <!--</point>-->
+                    <!--&lt;!&ndash; 货叉故障 &ndash;&gt;-->
+                    <!--<point id="ns=1;s=MJWarehouse.Fault" index="19">-->
+                        <!--<address>2150</address>-->
+                    <!--</point>-->
             </block>
             <block>
                 <type>DISCRETE_INPUTS</type>
                 <starting_address>2573</starting_address>
                 <size>1</size>
                     <!-- 急停故障 -->
-                    <point id="ns=1;s=MJWarehouse.Fault" index="20">
+                    <point id="ns=1;s=MJWarehouse.Fault" index="3">
                         <address>2573</address>
                     </point>
             </block>
@@ -325,7 +325,7 @@
         </slave>
     </device>
     <!-- 流量计 -->
-    <device name="Flowmeter" host="192.168.1.55" port="502" update_period="0.5">
+    <device name="Flowmeter" host="192.168.1.55" port="502" update_period="2">
         <slave id="1">
             <block>
                 <type>HOLDING_REGISTERS</type>

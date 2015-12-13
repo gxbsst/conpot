@@ -79,7 +79,14 @@ class Databus(object):
             if index < 0:
                 self._data[real_key] = value
             else:
-                data_value = self._data[real_key] or []
+                data_value = self._data[real_key]
+                # 如果数组长度不够直接返回
+                if len(data_value) <= index:
+                    return
+                old_value = data_value[index]
+                # 如何不是强制的,并且数组中对应的值和现在的值相等直接返回
+                if not forced and old_value == value:
+                    return
                 data_value[index] = value
                 self._data[real_key] = data_value
             # notify observers

@@ -199,19 +199,16 @@ Server.create_method(ua_object, node_id, browser_name, start, input_args, output
             <func>
                 <![CDATA[
 def start(parent, weldPro):
-    ret = databus.set_value('w ns=1;s=SSRobot.WeldingStart', 8192, sync=True)
-    if not ret[0]:
+    mrs = databus.get_value('r ns=1;s=MJMoveRobot.Run')[0]
+    if mrs:
         return [ua.Variant(False, ua.VariantType.Boolean)]
-    print "&"*20
     ret = databus.set_value('w ns=1;s=SSRobot.WeldingPro', weldPro.Value, sync=True)
     if not ret[0]:
         return [ua.Variant(False, ua.VariantType.Boolean)]
-    print "%"*20
     var = databus.get_value('r ns=1;s=SSRobot.WeldingStart')[0] & 0b1111101111111111
     ret = databus.set_value('w ns=1;s=SSRobot.WeldingStart', var, sync=True)
     if not ret[0]:
         return [ua.Variant(False, ua.VariantType.Boolean)]
-    print "#"*20
     ret = databus.set_value('w ns=1;s=SSRobot.WeldingStart', 1024, sync=True)
     if not ret[0]:
         return [ua.Variant(False, ua.VariantType.Boolean)]
@@ -271,6 +268,9 @@ Server.create_method(ua_object, node_id, browser_name, send_order, input_args, o
             <func>
                 <![CDATA[
 def start(parent, variant):
+    safe = ((databus.get_value('r ns=1;s=SSRobot.Moved')[0] & 0b0000100000000000) == 2048)
+    if not safe:
+        return [ua.Variant(False, ua.VariantType.Boolean)]
     clc = databus.set_value('w ns=1;s=MJMoveRobot.FinishStatus', 5, sync=True)
     if not clc[0]:
         return [ua.Variant(False, ua.VariantType.Boolean)]

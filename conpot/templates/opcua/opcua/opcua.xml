@@ -199,7 +199,7 @@ Server.create_method(ua_object, node_id, browser_name, start, input_args, output
             <func>
                 <![CDATA[
 def start(parent, weldPro):
-    mrs = databus.get_value('r ns=1;s=MJMoveRobot.Run')[0]
+    mrs = databus.get_value('r ns=1;s=MJMoveRobot.Run')
     if mrs:
         return [ua.Variant(False, ua.VariantType.Boolean)]
     ret = databus.set_value('w ns=1;s=SSRobot.WeldingPro', weldPro.Value, sync=True)
@@ -274,7 +274,7 @@ def start(parent, variant):
     clc = databus.set_value('w ns=1;s=MJMoveRobot.FinishStatus', 5, sync=True)
     if not clc[0]:
         return [ua.Variant(False, ua.VariantType.Boolean)]
-    ret = databus.set_value('w ns=1;s=MJMoveRobot.Move', variant.Value, sync=True)
+    ret = databus.set_value('w ns=1;s=MJMoveRobot.Move', variant.Value)
     if not ret[0]:
         return [ua.Variant(False, ua.VariantType.Boolean)]
     return [ua.Variant(True, ua.VariantType.Boolean)]

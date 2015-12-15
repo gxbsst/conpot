@@ -8,7 +8,7 @@ class SubHandler(object):
 
 
 if __name__ == "__main__":
-    client = Client("opc.tcp://localhost:4881/ua/server/")
+    client = Client("opc.tcp://10.9.192.199:4881/ua/server/")
     client.connect()
 
     root = client.get_root_node()
@@ -26,8 +26,8 @@ if __name__ == "__main__":
     # obj = root.get_child(["0:Objects", "0:SSAgv"])
     # res = obj.call_method("0:SendOrder", 2, 9, 1)
 
-    # obj = root.get_child(["0:Objects", "0:MJMoveRobot"])
-    # res = obj.call_method("0:Start", 1)
+    obj = root.get_child(["0:Objects", "0:MJMoveRobot"])
+    res = obj.call_method("0:Start", 1)
     #getting a variable by path and setting its value attribute
     # var = root.get_child(["0:Objects", "0:MJMoveRobot", "0:MagnetConfirm"])
     # print var
@@ -38,6 +38,6 @@ if __name__ == "__main__":
     # sub = client.create_subscription(500, handler)
     # sub.subscribe_data_change(var)
 
-    # print res
+    print res
 
     client.disconnect()

@@ -131,7 +131,7 @@ Server.create_method(ua_object, node_id, browser_name, start, input_args, output
             <func>
                 <![CDATA[
 def start(parent, mp_variant, io_variant, start_variant):
-    ret = databus.set_value('w ns=1;s=MJWarehouse.FaultStatus', 5, sync=True)
+    ret = databus.set_value('w ns=1;s=MJWarehouse.FinishStatus', 5, sync=True)
     if not ret[0]:
         return [ua.Variant(False, ua.VariantType.Boolean)]
     ret = databus.set_value('w ns=1;s=MJWarehouse.MpLocation', mp_variant.Value, sync=True)

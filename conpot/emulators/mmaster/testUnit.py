@@ -23,11 +23,11 @@ if __name__ == "__main__":
     # obj = root.get_child(["0:Objects", "0:SSRobot"])
     # res = obj.call_method("0:WeldingStart", 1)
 
-    # obj = root.get_child(["0:Objects", "0:SSAgv"])
-    # res = obj.call_method("0:SendOrder", 2, 9, 1)
+    obj = root.get_child(["0:Objects", "0:SSAgv"])
+    res = obj.call_method("0:SendOrder", 1, 7, 9)
 
-    obj = root.get_child(["0:Objects", "0:MJMoveRobot"])
-    res = obj.call_method("0:Start", 1)
+    # obj = root.get_child(["0:Objects", "0:MJMoveRobot"])
+    # res = obj.call_method("0:Start", 1)
     #getting a variable by path and setting its value attribute
     # var = root.get_child(["0:Objects", "0:MJMoveRobot", "0:MagnetConfirm"])
     # print var

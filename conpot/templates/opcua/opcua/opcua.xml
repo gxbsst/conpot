@@ -274,7 +274,7 @@ def start(parent, variant):
     clc = databus.set_value('w ns=1;s=MJMoveRobot.FinishStatus', 5, sync=True)
     if not clc[0]:
         return [ua.Variant(False, ua.VariantType.Boolean)]
-    ret = databus.set_value('w ns=1;s=MJMoveRobot.Move', variant.Value)
+    ret = databus.set_value('w ns=1;s=MJMoveRobot.Move', variant.Value, sync=True)
     if not ret[0]:
         return [ua.Variant(False, ua.VariantType.Boolean)]
     return [ua.Variant(True, ua.VariantType.Boolean)]

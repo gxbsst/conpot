@@ -268,9 +268,8 @@ Server.create_method(ua_object, node_id, browser_name, send_order, input_args, o
             <func>
                 <![CDATA[
 def start(parent, variant):
-    var = (databus.get_value('r ns=1;s=SSRobot.Moved')[0]
-    safe = var & 0b0000100000000000
-    if (safe == 2048):
+    var = databus.get_value('r ns=1;s=SSRobot.Moved')[0]
+    if ((var & 0b0000100000000000) == 2048):
         return [ua.Variant(False, ua.VariantType.Boolean)]
     clc = databus.set_value('w ns=1;s=MJMoveRobot.FinishStatus', 5, sync=True)
     if not clc[0]:

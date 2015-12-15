@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env pypy
 # Copyright (C) 2013  Lukas Rist <glaslos@gmail.com>
 #
 # This program is free software; you can redistribute it and/or
@@ -289,9 +289,9 @@ def main():
         ('opcua', OPCUAServer),
 
         # emulators
-        # ('dct', DCT),
-        # ('mmis', MMIS),
-        # ('weld_robot', WeldRobot),
+        ('dct', DCT),
+        ('mmis', MMIS),
+        ('weld_robot', WeldRobot),
     )
 
     # no need to fork process when we don't want to change MAC address

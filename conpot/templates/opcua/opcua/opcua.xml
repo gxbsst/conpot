@@ -205,11 +205,11 @@ def start(parent, weldPro):
     ret = databus.set_value('w ns=1;s=SSRobot.WeldingPro', weldPro.Value, sync=True)
     if not ret[0]:
         return [ua.Variant(False, ua.VariantType.Boolean)]
-    var = databus.get_value('r ns=1;s=SSRobot.WeldingStart')[0] & 0b1111101111111111
+    var = databus.get_value('r ns=1;s=SSRobot.WeldingStart')[0] & 0b1101101111111111
     ret = databus.set_value('w ns=1;s=SSRobot.WeldingStart', var, sync=True)
     if not ret[0]:
         return [ua.Variant(False, ua.VariantType.Boolean)]
-    ret = databus.set_value('w ns=1;s=SSRobot.WeldingStart', 1024, sync=True)
+    ret = databus.set_value('w ns=1;s=SSRobot.WeldingStart', 9216, sync=True)
     if not ret[0]:
         return [ua.Variant(False, ua.VariantType.Boolean)]
     return [ua.Variant(True, ua.VariantType.Boolean)]

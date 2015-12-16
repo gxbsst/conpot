@@ -69,6 +69,9 @@ Server.create_method(ua_object, node_id, browser_name, go, input_args, output_ar
         <variable node_id="ns=1;s=MJGrooveRobot.State" browser_name="State" readonly="True">
             <value type="str">waiting</value>
         </variable>
+        <variable node_id="ns=1;s=MJGrooveRobot.Working" browser_name="Working" readonly="True">
+            <value type="array">[0,0]</value>
+        </variable>
         <method node_id="ns=1;s=MJGrooveRobot.Start" browser_name="Start">
             <output_args>Boolean</output_args>
             <func>

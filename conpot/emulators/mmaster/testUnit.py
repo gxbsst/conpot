@@ -24,7 +24,7 @@ if __name__ == "__main__":
     # res = obj.call_method("0:WeldingStart", 1)
 
     obj = root.get_child(["0:Objects", "0:SSAgv"])
-    res = obj.call_method("0:SendOrder", 1, 7, 9)
+    res = obj.call_method("0:SendOrder", 1, 11, 1)
 
     # obj = root.get_child(["0:Objects", "0:MJMoveRobot"])
     # res = obj.call_method("0:Start", 1)

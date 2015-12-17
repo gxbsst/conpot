@@ -20,8 +20,8 @@ if __name__ == "__main__":
     # obj = root.get_child(["0:Objects", "0:SSRobot"])
     # res = obj.call_method("0:WeldingStart", 2)
 
-    # obj = root.get_child(["0:Objects", "0:MJGrooveRobot"])
-    # res = obj.call_method("0:Start", 10, 10)
+    obj = root.get_child(["0:Objects", "0:MJGrooveRobot"])
+    res = obj.call_method("0:Start", 2, 2)
 
     # obj = root.get_child(["0:Objects", "0:MJMoveRobot"])
     # res = obj.call_method("0:Start", 1)
@@ -34,8 +34,8 @@ if __name__ == "__main__":
     # res = obj.call_method("0:Start", 2, 10, 1)
 
 
-    obj = root.get_child(["0:Objects", "0:KYRgv"])
-    res = obj.call_method("0:Go", 1, 3)
+    # obj = root.get_child(["0:Objects", "0:KYRgv"])
+    # res = obj.call_method("0:Go", 1, 3)
     print res
 
     client.disconnect()

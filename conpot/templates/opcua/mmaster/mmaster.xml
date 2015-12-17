@@ -28,14 +28,14 @@
             <block>
                 <type>HOLDING_REGISTERS</type>
                 <starting_address>6097</starting_address>
-                <size>2</size>
+                <size>3</size>
                 <!-- 切割程序号 -->
                 <point id="ns=1;s=MJGrooveRobot.CuttingPro">
                     <address>6097</address>
                 </point>
                 <!-- 搬运程序号 -->
                 <point id="ns=1;s=MJGrooveRobot.MovingPro">
-                    <address>6098</address>
+                    <address>6099</address>
                 </point>
             </block>
              <block>

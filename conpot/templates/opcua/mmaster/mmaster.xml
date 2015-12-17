@@ -353,7 +353,7 @@
                         <address>4</address>
                         <count>4</count>
                         <encoding>custom</encoding>
-                        <custom_decoder>BinaryPayloadDecoder(''.join(pack(Endian.Little + 'H', x) for x in value[:2]), Endian.Little).decode_32bit_float() / 1000 + BinaryPayloadDecoder(''.join(pack(Endian.Little + 'H', x) for x in value[2:]), Endian.Little).decode_32bit_float() * 1000000</custom_decoder>
+                        <custom_decoder>BinaryPayloadDecoder(''.join(pack(Endian.Little + 'H', x) for x in value[:2]), Endian.Little).decode_32bit_uint() / 1000 + BinaryPayloadDecoder(''.join(pack(Endian.Little + 'H', x) for x in value[2:]), Endian.Little).decode_32bit_uint() * 1000000</custom_decoder>
                     </point>
                     <!-- 高压氧频率 FreHOxy-->
                     <point id="ns=1;s=Flowmeter.FreHOxy">
@@ -375,7 +375,7 @@
                         <address>24</address>
                         <count>4</count>
                         <encoding>custom</encoding>
-                        <custom_decoder>BinaryPayloadDecoder(''.join(pack(Endian.Little + 'H', x) for x in value[:2]), Endian.Little).decode_32bit_float() / 1000 + BinaryPayloadDecoder(''.join(pack(Endian.Little + 'H', x) for x in value[2:]), Endian.Little).decode_32bit_float() * 1000000</custom_decoder>
+                        <custom_decoder>BinaryPayloadDecoder(''.join(pack(Endian.Little + 'H', x) for x in value[:2]), Endian.Little).decode_32bit_uint() / 1000 + BinaryPayloadDecoder(''.join(pack(Endian.Little + 'H', x) for x in value[2:]), Endian.Little).decode_32bit_uint() * 1000000</custom_decoder>
                     </point>
                     <!-- 低压氧频率 FreLOxy-->
                     <point id="ns=1;s=Flowmeter.FreLOxy">
@@ -397,7 +397,7 @@
                         <address>44</address>
                         <count>4</count>
                         <encoding>custom</encoding>
-                        <custom_decoder>BinaryPayloadDecoder(''.join(pack(Endian.Little + 'H', x) for x in value[:2]), Endian.Little).decode_32bit_float() / 1000 + BinaryPayloadDecoder(''.join(pack(Endian.Little + 'H', x) for x in value[2:]), Endian.Little).decode_32bit_float() * 1000000</custom_decoder>
+                        <custom_decoder>BinaryPayloadDecoder(''.join(pack(Endian.Little + 'H', x) for x in value[:2]), Endian.Little).decode_32bit_uint() / 1000 + BinaryPayloadDecoder(''.join(pack(Endian.Little + 'H', x) for x in value[2:]), Endian.Little).decode_32bit_uint() * 1000000</custom_decoder>
                     </point>
                     <!-- 乙炔频率 FreEthine-->
                     <point id="ns=1;s=Flowmeter.FreEthine">

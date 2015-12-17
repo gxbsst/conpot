@@ -77,11 +77,14 @@ class MMIS(object):
         return self.send_order(order_no, source_site, target_site)
 
     def send_order(self, order_no, source_site, target_site):
-        data = struct.pack(SEND_ORDER_FMT, 10003, order_no, 0, 0, 0, 1, 255, 0, 0, 4, source_site, 0, target_site, 0)
-        data += MMIS.checksum(data)
-        self.sock.sendall(data)
-        logger.info('sending "%s"' % binascii.hexlify(data))
-        logger.info('发送订单，订单号: ' + str(order_no) + ' 取货点: ' + str(source_site) + ' 送货点: ' + str(target_site))
+        try:
+            data = struct.pack(SEND_ORDER_FMT, 10003, order_no, 0, 0, 0, 1, 255, 0, 0, 4, source_site, 0, target_site, 0)
+            data += MMIS.checksum(data)
+            self.sock.sendall(data)
+            logger.info('sending "%s"' % binascii.hexlify(data))
+            logger.info('发送订单，订单号: ' + str(order_no) + ' 取货点: ' + str(source_site) + ' 送货点: ' + str(target_site))
+        except socket.error, e:
+            return False
         return True
 
     def confirm_order(self, order_no):

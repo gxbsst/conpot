@@ -5,7 +5,7 @@
             <block>
                 <type>COILS</type>
                 <starting_address>2148</starting_address>
-                <size>54</size>
+                <size>55</size>
                 <point id="ns=1;s=MJGrooveRobot.StartSignal">
                     <address>2148</address>
                 </point>
@@ -81,27 +81,31 @@
                 <!-- COILS DISCRETE_INPUTS HOLDING_REGISTERS INPUT_REGISTERS -->
                 <type>HOLDING_REGISTERS</type>
                 <starting_address>23900</starting_address>
-                <size>7</size>
+                <size>8</size>
                 <point id="ns=1;s=SSRobot.Moved">
                     <address>23900</address>
                 </point>
-                <point id="ns=1;s=SSRobot.FaultStatus">
+                <point id="ns=1;s=SSRobot.Working">
                     <address>23901</address>
-                </point>
-                <point id="ns=1;s=SSRobot.FaultStatus">
-                    <address>23904</address>
                 </point>
                 <point id="ns=1;s=SSRobot.Cutting">
                     <address>23903</address>
                 </point>
+                <point id="ns=1;s=SSRobot.Working">
+                    <address>23904</address>
+                </point>
                 <point id="ns=1;s=SSRobot.Welding">
                     <address>23906</address>
+                </point>
+                <point id="ns=1;s=SSRobot.Working">
+                    <address>23907</address>
                 </point>
             </block>
         </slave>
     </device>
      <!--明匠立体库-->
     <device name="MJWarehouse" host="192.168.1.6" port="502" update_period="1">
+    <!--<device name="MJWarehouse" host="192.168.199.130" port="502" update_period="1">-->
         <slave id="1">
             <block>
                 <!-- COILS DISCRETE_INPUTS HOLDING_REGISTERS INPUT_REGISTERS -->

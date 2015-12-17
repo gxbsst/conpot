@@ -165,8 +165,11 @@ Server.create_method(ua_object, node_id, browser_name, start, input_args, output
         <variable node_id="ns=1;s=SSRobot.Welding" browser_name="Welding" readonly="True">
             <value type="int">1</value>
         </variable>
-        <variable node_id="ns=1;s=SSRobot.FaultStatus" browser_name="FaultStatus" readonly="True">
-            <value type="int">1</value>
+        <!--<variable node_id="ns=1;s=SSRobot.FaultStatus" browser_name="FaultStatus" readonly="True">-->
+            <!--<value type="int">1</value>-->
+        <!--</variable>-->
+        <variable node_id="ns=1;s=SSRobot.Working" browser_name="Working" readonly="True">
+            <value type="array">[5,5,5]</value>
         </variable>
         <!--搬运开始-->
         <method node_id="ns=1;s=SSRobot.MovingStart" browser_name="MovingStart">

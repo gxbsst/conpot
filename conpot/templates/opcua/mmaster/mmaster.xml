@@ -85,19 +85,19 @@
                 <point id="ns=1;s=SSRobot.Moved">
                     <address>23900</address>
                 </point>
-                <point id="ns=1;s=SSRobot.Working">
+                <point id="ns=1;s=SSRobot.Working" index="0">
                     <address>23901</address>
                 </point>
                 <point id="ns=1;s=SSRobot.Cutting">
                     <address>23903</address>
                 </point>
-                <point id="ns=1;s=SSRobot.Working">
+                <point id="ns=1;s=SSRobot.Working" index="1">
                     <address>23904</address>
                 </point>
                 <point id="ns=1;s=SSRobot.Welding">
                     <address>23906</address>
                 </point>
-                <point id="ns=1;s=SSRobot.Working">
+                <point id="ns=1;s=SSRobot.Working" index="2">
                     <address>23907</address>
                 </point>
             </block>

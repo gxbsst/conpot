@@ -30,12 +30,12 @@ if __name__ == "__main__":
     # res = obj.call_method("0:SendOrder", 13, 1, 7)
 
 
-    obj = root.get_child(["0:Objects", "0:MJWarehouse"])
-    res = obj.call_method("0:Start", 2, 10, 1)
+    # obj = root.get_child(["0:Objects", "0:MJWarehouse"])
+    # res = obj.call_method("0:Start", 2, 10, 1)
 
 
-    # obj = root.get_child(["0:Objects", "0:KYRgv"])
-    # res = obj.call_method("0:Go", 3, 1)
+    obj = root.get_child(["0:Objects", "0:KYRgv"])
+    res = obj.call_method("0:Go", 1, 3)
     print res
 
     client.disconnect()

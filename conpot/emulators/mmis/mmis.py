@@ -8,7 +8,7 @@ import sys
 import time
 import threading
 import conpot.core as conpot_core
-
+from utils.timeout import timeout, TimeoutError
 
 logger = logging.getLogger(__name__)
 logger.level = logging.INFO
@@ -51,6 +51,7 @@ class MMIS(object):
         self.port = DEFAULT_PORT
         self.connected = False
         self.closed = False
+        self.order_dict = {}
 
     def connect(self):
         if self.sock and not self.connected:
@@ -74,8 +75,12 @@ class MMIS(object):
 
     def bind_send_order(self, key):
         order_no, source_site, target_site = conpot_core.get_databus().get_value(key)
-        return self.send_order(order_no, source_site, target_site)
+        try:
+            return self.send_order(order_no, source_site, target_site)
+        except TimeoutError:
+            return False
 
+    @timeout(10)
     def send_order(self, order_no, source_site, target_site):
         try:
             data = struct.pack(SEND_ORDER_FMT, 10003, order_no, 0, 0, 0, 1, 255, 0, 0, 4, source_site, 0, target_site, 0)
@@ -83,6 +88,14 @@ class MMIS(object):
             self.sock.sendall(data)
             logger.info('sending "%s"' % binascii.hexlify(data))
             logger.info('发送订单，订单号: ' + str(order_no) + ' 取货点: ' + str(source_site) + ' 送货点: ' + str(target_site))
+            self.order_dict[order_no] = False
+
+            # 等待订单确认
+            while 1:
+                # 服务器确认后返回
+                if self.order_dict[order_no]:
+                    self.order_dict.pop(order_no)
+                    return True
         except socket.error, e:
             logger.error('Error because: %s' % e)
             return False
@@ -120,14 +133,13 @@ class MMIS(object):
                 header_1_msg = self.sock.recv(1)
                 recv_msg = self.recv_msg(header_1_msg, '\x13', '\x27')
                 if recv_msg:
-                    print "***************订单已确认***************************"
                     header, order_no, oder_step, state, checksum = recv_msg
+                    self.order_dict[order_no] = True
                     logger.info('订单已确认，订单号: ' + str(order_no))
                     conpot_core.get_databus().set_value('r ns=1;s=SSAgv.ConfirmedEvent', order_no, forced=True)
                     continue
                 recv_msg = self.recv_msg(header_1_msg, '\x15', '\x27')
                 if recv_msg:
-                    print "***************订单已完成***************************"
                     header, order_no, oder_step, vno, checksum = recv_msg
                     logger.info('订单已完成，订单号: ' + str(order_no))
                     conpot_core.get_databus().set_value('r ns=1;s=SSAgv.CompletedEvent', order_no, forced=True)
@@ -142,10 +154,11 @@ class MMIS(object):
         self.sock.close()
 
 
-# mmis = MMIS(None, None, None)
-# threading.Thread(target=mmis.start, args=('192.168.1.100', 3000)).start()
-# while 1:
-#     if mmis.connected:
-#         mmis.send_order(2, 11, 5)
-#         break
-#     time.sleep(1.1)
+if __name__ == '__main__':
+    mmis = MMIS(None, None, None)
+    threading.Thread(target=mmis.start, args=('192.168.1.100', 3000)).start()
+    while 1:
+        if mmis.connected:
+            print mmis.send_order(1, 9, 1)
+            print mmis.order_dict
+            break

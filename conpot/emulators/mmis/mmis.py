@@ -8,7 +8,7 @@ import sys
 import time
 import threading
 import conpot.core as conpot_core
-from utils.timeout import timeout, TimeoutError
+from conpot.utils.timeout import timeout, TimeoutError
 
 logger = logging.getLogger(__name__)
 logger.level = logging.INFO

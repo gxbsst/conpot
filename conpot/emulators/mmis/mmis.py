@@ -84,6 +84,7 @@ class MMIS(object):
             logger.info('sending "%s"' % binascii.hexlify(data))
             logger.info('发送订单，订单号: ' + str(order_no) + ' 取货点: ' + str(source_site) + ' 送货点: ' + str(target_site))
         except socket.error, e:
+            logger.error('Error because: %s' % e)
             return False
         return True
 

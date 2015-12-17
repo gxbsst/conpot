@@ -159,6 +159,6 @@ if __name__ == '__main__':
     threading.Thread(target=mmis.start, args=('192.168.1.100', 3000)).start()
     while 1:
         if mmis.connected:
-            print mmis.send_order(1, 9, 1)
+            print mmis.send_order(1, 7, 9)
             print mmis.order_dict
             break

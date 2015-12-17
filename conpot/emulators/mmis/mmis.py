@@ -135,7 +135,7 @@ class MMIS(object):
                 recv_msg = self.recv_msg(header_1_msg, '\x13', '\x27')
                 if recv_msg:
                     header, order_no, oder_step, state, checksum = recv_msg
-                    self.order_dict[order_no] = True
+                    # self.order_dict[order_no] = True
                     logger.info('订单已确认，订单号: ' + str(order_no))
                     conpot_core.get_databus().set_value('r ns=1;s=SSAgv.ConfirmedEvent', order_no, forced=True)
                     continue

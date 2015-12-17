@@ -88,14 +88,15 @@ class MMIS(object):
             self.sock.sendall(data)
             logger.info('sending "%s"' % binascii.hexlify(data))
             logger.info('发送订单，订单号: ' + str(order_no) + ' 取货点: ' + str(source_site) + ' 送货点: ' + str(target_site))
-            self.order_dict[order_no] = False
+            # self.order_dict[order_no] = False
+            return True
 
             # 等待订单确认
-            while 1:
-                # 服务器确认后返回
-                if self.order_dict[order_no]:
-                    self.order_dict.pop(order_no)
-                    return True
+            # while 1:
+            #     # 服务器确认后返回
+            #     if self.order_dict[order_no]:
+            #         self.order_dict.pop(order_no)
+            #         return True
         except socket.error, e:
             logger.error('Error because: %s' % e)
             return False
@@ -134,7 +135,7 @@ class MMIS(object):
                 recv_msg = self.recv_msg(header_1_msg, '\x13', '\x27')
                 if recv_msg:
                     header, order_no, oder_step, state, checksum = recv_msg
-                    self.order_dict[order_no] = True
+                    # self.order_dict[order_no] = True
                     logger.info('订单已确认，订单号: ' + str(order_no))
                     conpot_core.get_databus().set_value('r ns=1;s=SSAgv.ConfirmedEvent', order_no, forced=True)
                     continue

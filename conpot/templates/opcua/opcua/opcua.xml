@@ -26,7 +26,9 @@
             <func>
                 <![CDATA[
 def go(parent, source_site_variant, target_site_variant):
-    databus.set_value('w ns=1;s=KYRgv.Go', (source_site_variant.Value, target_site_variant.Value), forced=True)
+    ret = databus.set_value('w ns=1;s=KYRgv.Go', (source_site_variant.Value, target_site_variant.Value), forced=True, sync=True)
+    if not ret or not ret[0]:
+        return [ua.Variant(False, ua.VariantType.Boolean)]
     return [ua.Variant(True, ua.VariantType.Boolean)]
 
 Server.create_method(ua_object, node_id, browser_name, go, input_args, output_args)

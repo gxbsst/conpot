@@ -82,7 +82,6 @@ class MMIS(object):
                 self.order_dict.pop(order_no)
             return False
 
-    @timeout(8)
     def send_order(self, order_no, source_site, target_site):
         try:
             data = struct.pack(SEND_ORDER_FMT, 10003, order_no, 0, 0, 0, 1, 255, 0, 0, 4, source_site, 0, target_site, 0)
@@ -91,10 +90,15 @@ class MMIS(object):
             logger.info('sending "%s"' % binascii.hexlify(data))
             logger.info('发送订单，订单号: ' + str(order_no) + ' 取货点: ' + str(source_site) + ' 送货点: ' + str(target_site))
             self.order_dict[order_no] = False
+            old_time = time.time()
 
             # 等待订单确认
             time.sleep(0.5)
             while 1:
+                # 超时返回
+                new_time = time.time()
+                if new_time - old_time > 7:
+                    return False
                 # 服务器确认后返回
                 if self.order_dict[order_no]:
                     self.order_dict.pop(order_no)

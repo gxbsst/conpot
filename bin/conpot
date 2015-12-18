@@ -21,6 +21,7 @@ import gevent.monkey
 gevent.monkey.patch_all()
 
 import logging
+import logging.handlers
 import os
 import argparse
 import sys
@@ -95,13 +96,14 @@ def setup_logging(log_file, verbose):
     else:
         log_level = logging.INFO
 
-    log_format = logging.Formatter('%(asctime)-15s %(message)s')
+    log_format = logging.Formatter('%(asctime)-15s %(levelname)-8s %(message)s')
     console_log = logging.StreamHandler()
     console_log.setLevel(log_level)
     console_log.setFormatter(log_format)
 
     logger.setLevel(log_level)
-    file_log = logging.FileHandler(log_file)
+    file_log = logging.handlers.TimedRotatingFileHandler(log_file, when="D", interval=1, backupCount=0)
+    file_log.suffix = "%Y%m%d.log"
     file_log.setFormatter(log_format)
     file_log.setLevel(log_level)
 

@@ -335,7 +335,7 @@
         </slave>
     </device>
     <!-- 流量计 -->
-    <device name="Flowmeter" host="192.168.1.55" port="502" update_period="2">
+    <device name="Flowmeter" host="192.168.1.55" port="502" update_period="5">
         <slave id="1">
             <block>
                 <type>HOLDING_REGISTERS</type>

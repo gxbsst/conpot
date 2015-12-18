@@ -8,7 +8,7 @@ class SubHandler(object):
 
 if __name__ == "__main__":
     # client = Client("opc.tcp://localhost:4881/ua/server/")
-    client = Client("opc.tcp://192.168.1.123:4881/ua/server/")
+    client = Client("opc.tcp://192.168.1.123:4881/ua/server/", timeout=10)
     client.connect()
 
     root = client.get_root_node()
@@ -20,22 +20,22 @@ if __name__ == "__main__":
     # obj = root.get_child(["0:Objects", "0:SSRobot"])
     # res = obj.call_method("0:WeldingStart", 2)
 
-    obj = root.get_child(["0:Objects", "0:MJGrooveRobot"])
-    res = obj.call_method("0:Start", 2, 2)
+    # obj = root.get_child(["0:Objects", "0:MJGrooveRobot"])
+    # res = obj.call_method("0:Start", 2, 2)
 
     # obj = root.get_child(["0:Objects", "0:MJMoveRobot"])
     # res = obj.call_method("0:Start", 1)
 
     # obj = root.get_child(["0:Objects", "0:SSAgv"])
-    # res = obj.call_method("0:SendOrder", 13, 1, 7)
+    # res = obj.call_method("0:SendOrder", 1, 9, 1)
 
 
-    # obj = root.get_child(["0:Objects", "0:MJWarehouse"])
-    # res = obj.call_method("0:Start", 2, 10, 1)
-
-
+    obj = root.get_child(["0:Objects", "0:MJWarehouse"])
+    # res = obj.call_method("0:Start", 1, 1, 2)
+    #
+    #
     # obj = root.get_child(["0:Objects", "0:KYRgv"])
-    # res = obj.call_method("0:Go", 1, 3)
-    print res
+    # res = obj.call_method("0:Go", 1, 2)
+    print obj
 
     client.disconnect()

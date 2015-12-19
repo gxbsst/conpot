@@ -26,6 +26,7 @@ import time
 import gevent
 import gevent.event
 from lxml import etree
+from influxdb import InfluxDBClient
 
 
 logger = logging.getLogger(__name__)
@@ -37,6 +38,7 @@ class Databus(object):
         self._future = {}
         self._observer_map = {}
         self.initialized = gevent.event.Event()
+        self.client = InfluxDBClient('localhost', 8086, '', '', 'point_value_history')
 
     # the idea here is that we can store both values and functions in the key value store
     # functions could be used if a profile wants to simulate a sensor, or the function
@@ -89,6 +91,17 @@ class Databus(object):
                     return
                 data_value[index] = value
                 self._data[real_key] = data_value
+            # history data
+            if not (real_key == 'ns=1;s=Flowmeter.Values'):
+                json_body = [
+                    {
+                        "measurement": real_key,
+                        "fields": {
+                            "value": str(value)
+                        }
+                    }
+                ]
+                gevent.spawn(self.client.write_points, json_body)
             # notify observers
             if key in self._observer_map:
                 if sync:

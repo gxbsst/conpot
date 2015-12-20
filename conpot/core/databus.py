@@ -101,7 +101,8 @@ class Databus(object):
                         }
                     }
                 ]
-                gevent.spawn(self.client.write_points, json_body)
+                if self.client:
+                    gevent.spawn(self.client.write_points, json_body)
             # notify observers
             if key in self._observer_map:
                 if sync:

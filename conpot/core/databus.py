@@ -93,11 +93,15 @@ class Databus(object):
                 self._data[real_key] = data_value
             # history data
             if not (real_key == 'ns=1;s=Flowmeter.Values'):
+                value_field = value
+                if isinstance(value, list):
+                    if len(value) == 1:
+                        value_field = str(value[0])
                 json_body = [
                     {
                         "measurement": real_key,
                         "fields": {
-                            "value": str(value)
+                            "value": value_field
                         }
                     }
                 ]

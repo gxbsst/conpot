@@ -27,7 +27,7 @@ if __name__ == "__main__":
     # res = obj.call_method("0:Start", 1)
 
     obj = root.get_child(["0:Objects", "0:SSAgv"])
-    res = obj.call_method("0:SendOrder", 1, 1, 6)
+    res = obj.call_method("0:SendOrder", 4, 7, 1)
 
 
     # obj = root.get_child(["0:Objects", "0:MJWarehouse"])

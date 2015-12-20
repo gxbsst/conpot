@@ -11,4 +11,11 @@
         <!-- Core value that can be retrieved from the databus by key -->
         <key_value_mappings/>
     </databus>
+        <influxdb>
+        <host>localhost</host>
+        <port>8086</port>
+        <username>root</username>
+        <password>root</password>
+        <database>point_value_history</database>
+    </influxdb>
 </core>

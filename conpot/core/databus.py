@@ -37,8 +37,8 @@ class Databus(object):
         self._data = {}
         self._future = {}
         self._observer_map = {}
+        self.client = None
         self.initialized = gevent.event.Event()
-        self.client = InfluxDBClient('localhost', 8086, '', '', 'point_value_history')
 
     # the idea here is that we can store both values and functions in the key value store
     # functions could be used if a profile wants to simulate a sensor, or the function
@@ -157,6 +157,14 @@ class Databus(object):
                     self.set_value(key, _class())
             else:
                 raise Exception('Unknown value type: {0}'.format(value_type))
+        # influxdb config
+        influx_config = dom.xpath('//core/influxdb')[0]
+        host = influx_config.xpath('./host/text()')[0]
+        port = influx_config.xpath('./port/text()')[0]
+        username = influx_config.xpath('./username/text()')[0]
+        password = influx_config.xpath('./password/text()')[0]
+        database = influx_config.xpath('./database/text()')[0]
+        self.client = InfluxDBClient(host, port, username, password, database)
         self.initialized.set()
 
     def get_shapshot(self):

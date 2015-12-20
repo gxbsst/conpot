@@ -26,6 +26,7 @@ import time
 import gevent
 import gevent.event
 from lxml import etree
+from influxdb import InfluxDBClient
 
 
 logger = logging.getLogger(__name__)
@@ -36,6 +37,7 @@ class Databus(object):
         self._data = {}
         self._future = {}
         self._observer_map = {}
+        self.client = None
         self.initialized = gevent.event.Event()
 
     # the idea here is that we can store both values and functions in the key value store
@@ -89,6 +91,22 @@ class Databus(object):
                     return
                 data_value[index] = value
                 self._data[real_key] = data_value
+            # history data
+            if not (real_key == 'ns=1;s=Flowmeter.Values'):
+                value_field = value
+                if isinstance(value, list):
+                    if len(value) == 1:
+                        value_field = str(value[0])
+                json_body = [
+                    {
+                        "measurement": real_key,
+                        "fields": {
+                            "value": value_field
+                        }
+                    }
+                ]
+                if self.client:
+                    gevent.spawn(self.client.write_points, json_body)
             # notify observers
             if key in self._observer_map:
                 if sync:
@@ -144,6 +162,14 @@ class Databus(object):
                     self.set_value(key, _class())
             else:
                 raise Exception('Unknown value type: {0}'.format(value_type))
+        # influxdb config
+        influx_config = dom.xpath('//core/influxdb')[0]
+        host = influx_config.xpath('./host/text()')[0]
+        port = influx_config.xpath('./port/text()')[0]
+        username = influx_config.xpath('./username/text()')[0]
+        password = influx_config.xpath('./password/text()')[0]
+        database = influx_config.xpath('./database/text()')[0]
+        self.client = InfluxDBClient(host, port, username, password, database)
         self.initialized.set()
 
     def get_shapshot(self):

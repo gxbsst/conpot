@@ -22,3 +22,4 @@ mixbox
 pymodbus
 trollius
 aiogevent
+influxdb

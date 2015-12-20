@@ -26,16 +26,16 @@ if __name__ == "__main__":
     # obj = root.get_child(["0:Objects", "0:MJMoveRobot"])
     # res = obj.call_method("0:Start", 1)
 
-    # obj = root.get_child(["0:Objects", "0:SSAgv"])
-    # res = obj.call_method("0:SendOrder", 1, 9, 1)
+    obj = root.get_child(["0:Objects", "0:SSAgv"])
+    res = obj.call_method("0:SendOrder", 4, 7, 1)
 
 
-    obj = root.get_child(["0:Objects", "0:MJWarehouse"])
+    # obj = root.get_child(["0:Objects", "0:MJWarehouse"])
     # res = obj.call_method("0:Start", 1, 1, 2)
     #
     #
     # obj = root.get_child(["0:Objects", "0:KYRgv"])
     # res = obj.call_method("0:Go", 1, 2)
-    print obj
+    print res
 
     client.disconnect()

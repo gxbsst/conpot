@@ -96,12 +96,12 @@ class Databus(object):
                 value_field = value
                 if isinstance(value, list):
                     if len(value) == 1:
-                        value_field = str(value[0])
+                        value_field = value[0]
                 json_body = [
                     {
                         "measurement": real_key,
                         "fields": {
-                            "value": value_field
+                            "value": str(value_field)
                         }
                     }
                 ]

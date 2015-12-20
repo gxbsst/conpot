@@ -8,7 +8,7 @@ class SubHandler(object):
 
 if __name__ == "__main__":
     # client = Client("opc.tcp://localhost:4881/ua/server/")
-    client = Client("opc.tcp://192.168.1.123:4881/ua/server/", timeout=10)
+    client = Client("opc.tcp://10.9.192.199:4881/ua/server/", timeout=10)
     client.connect()
 
     root = client.get_root_node()
@@ -27,7 +27,7 @@ if __name__ == "__main__":
     # res = obj.call_method("0:Start", 1)
 
     obj = root.get_child(["0:Objects", "0:SSAgv"])
-    res = obj.call_method("0:SendOrder", 4, 7, 1)
+    res = obj.call_method("0:SendOrder", 4, 10, 1)
 
 
     # obj = root.get_child(["0:Objects", "0:MJWarehouse"])

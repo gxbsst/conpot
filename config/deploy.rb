@@ -36,7 +36,8 @@ namespace :deploy do
       puts ('*' * 100)
       execute "cd #{current_path};python setup.py install"
       #sudo "python setup.py install"
-      sudo "/root/#{fetch(:application)}/current/bin/conpot --template opcua"
+      # sudo "/root/#{fetch(:application)}/current/bin/conpot --template opcua"
+      execute "/etc/init.d/supervisord restart"
       puts ('#' * 100)
       puts "成功启动scada"
     end

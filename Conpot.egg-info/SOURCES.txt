@@ -41,7 +41,6 @@ conpot/emulators/misc/uptime.py
 conpot/emulators/mmaster/__init__.py
 conpot/emulators/mmaster/mmaster.py
 conpot/emulators/mmaster/mmaster.xsd
-conpot/emulators/mmaster/testAnd.py
 conpot/emulators/mmaster/testUnit.py
 conpot/emulators/mmis/__init__.py
 conpot/emulators/mmis/mmis.py

@@ -1,0 +1,20 @@
+ImportError: No module named node
+出现这个
+
+修改:
+
+/usr/local/lib/python2.7/site-packages/Conpot-0.4.0-py2.7.egg/conpot/protocols/opcua/opcua_server.py
+
+将 from opcua.node import Node => from opcua.common.node import Node
+
+pip install 'freeopcua>=0.9.16,<0.9.17'
+
+wget http://get.influxdb.org.s3.amazonaws.com/influxdb-0.8.9-1.x86_64.rpm
+yum localinstall influxdb-0.8.9-1.x86_64.rpm
+
+https://docs.influxdata.com/influxdb/v0.9/introduction/installation/
+
+http://serverfault.com/questions/96499/how-to-automatically-start-supervisord-on-linux-ubuntud0d68c4af22a7474ad1d011659ea2d27e35b8d/supervisord.sh\
+
+# Setting Up Python and Supervisor on CentOS
+https://rayed.com/wordpress/?p=1496

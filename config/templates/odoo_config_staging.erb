@@ -1,0 +1,22 @@
+[options]
+; This is the password that allows database operations:
+admin_passwd = lbaCUusPOHVR8MHvsnLZ
+; DATABASE OPTIONS
+db_host = 127.0.0.1
+db_port = 5432
+db_user = odoo
+db_password = shmingjiang
+db_name=sfy_mes
+; MISC SETTINGS
+addons_path = /opt/SFY/addons,/home/odoo/<%= fetch(:application) %>/current/addons
+load = web
+timezone = Asia/Shanghai
+without-demo =all
+no-xmlrpc = True
+no-xmlrpcs = True
+no-netrpc = True
+; LOG SETTINGS
+logfile = /var/log/odoo/odoo-server.log
+;log_handler = werkzeug:WARNING
+;log_level = warn
+;no-logrotate = True

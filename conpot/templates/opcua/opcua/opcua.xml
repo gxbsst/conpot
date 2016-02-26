@@ -1,5 +1,10 @@
 <opcua enabled="True" name="MJ OPCUA Server" host="0.0.0.0" port="4881">
 
+    <object node_id="ns=1;s=MJTest" browser_name="MJTest">
+        <variable node_id="ns=1;s=MJTest.Test" browser_name="Test">
+                <value type="array">[0,0,0]</value>
+        </variable>
+    </object>
     <!-- 流量计 -->
     <object node_id="ns=1;s=Flowmeter" browser_name="Flowmeter">
         <variable node_id="ns=1;s=Flowmeter.Values" browser_name="Values" readonly="True">

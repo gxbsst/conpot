@@ -54,20 +54,21 @@ class MMIS(object):
         self.order_dict = {}
 
     def connect(self):
-        if self.sock and not self.connected:
-            # 关闭失败的连接
-            self.sock.close()
-            # 等待重连
-            time.sleep(1)
-        # Connect the socket to the port where the server is listening
-        server_address = (self.host, self.port)
-        logger.info('connecting to %s port %s' % server_address)
-        self.sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        self.sock.connect(server_address)
-        self.connected = True
+        pass
+        # if self.sock and not self.connected:
+        #     # 关闭失败的连接
+        #     self.sock.close()
+        #     # 等待重连
+        #     time.sleep(1)
+        # # Connect the socket to the port where the server is listening
+        # server_address = (self.host, self.port)
+        # logger.info('connecting to %s port %s' % server_address)
+        # self.sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        # self.sock.connect(server_address)
+        # self.connected = True
 
         # 绑定callback
-        conpot_core.get_databus().observe_value('w ns=1;s=SSAgv.SendOrder', lambda key: self.bind_send_order(key))
+        # conpot_core.get_databus().observe_value('w ns=1;s=SSAgv.SendOrder', lambda key: self.bind_send_order(key))
 
     @staticmethod
     def checksum(data):
@@ -129,6 +130,7 @@ class MMIS(object):
         return None
 
     def start(self, host, port):
+        return None
         self.host = host
         self.port = port
         while 1:
@@ -165,10 +167,11 @@ class MMIS(object):
 
 
 if __name__ == '__main__':
-    mmis = MMIS(None, None, None)
-    threading.Thread(target=mmis.start, args=('192.168.1.100', 3000)).start()
-    while 1:
-        if mmis.connected:
-            print mmis.send_order(1, 1, 10)
-            print mmis.order_dict
-            break
+    pass
+    # mmis = MMIS(None, None, None)
+    # threading.Thread(target=mmis.start, args=('192.168.1.100', 3000)).start()
+    # while 1:
+    #     if mmis.connected:
+    #         print mmis.send_order(1, 1, 10)
+    #         print mmis.order_dict
+    #         break
